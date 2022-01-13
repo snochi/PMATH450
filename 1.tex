@@ -279,7 +279,6 @@
 
     The remaining part of this subsection is devoted to making some easy (but useful) remarks about properties of $\sigma$-algebras and of positive measures automatically follow.
 
-    \clearpage
     \begin{prop}{Some Properties of a $\sigma$-algebra}
         Let $X$ be a nonempty set and let $\mA$ be a $\sigma$-algebra of $X$.
         \begin{enumerate}
@@ -521,7 +520,7 @@
         which gives precisely [1.14] we had been left to prove.
     \end{proof}
 
-    \begin{definition}{$\lambda_{\cp}$}
+    \begin{definition}{\textbf{Length} of a Compact Set}
         Let $K\subseteq\R$ be compact. We define the \emph{length} of $K$, denoted as $\lambda_{\cp}\left( K \right)$, by the following procedure. Pick an open interval $\left( a,b \right)$ that contains $K$, consider the open set $D=\left( a,b \right)\setminus K$, and define
         \begin{equation}
             \lambda_{\cp}\left( K \right)=\left( b-a \right)-\lambda_{\op}\left( D \right).\footnotemark[1]
@@ -739,9 +738,8 @@
     \end{enumerate}
     We note that the union indicated in [1.23] is always sure to have some sets in it; that is, there exists some index $j\in\left\lbrace 1,\ldots,k \right\rbrace$ for which $b_j-a_j>\frac{\varep}{k}$. Indeed, if we had $b_j-a_j\leq \frac{\varep}{k}$ for all $j\in\left\lbrace 1,\ldots,k \right\rbrace$, then summing over $j$ in these inequalities would give a contradiction with the assumption that $\lambda_{\op}\left( A \right)>\varep$.
 
-    \np The net lemma records some properties of trimmed open sets which follow directly from the definition.
+    \np The next lemma records some properties of trimmed open sets which follow directly from the definition.
 
-    \clearpage
     \begin{lemma}{}
         Let $\varep>0$ and let $A\subseteq\R$ be an easily tractable open subset of $\R$ such that $\lambda_{\op}\left( A \right)>\varep$. Then $\trim_{\varep}\left( A \right)$ is an easily tractable open set with the properties that
         \begin{enumerate}
@@ -759,13 +757,10 @@
 
         Now note that
         \begin{flalign*}
-            && \lambda_{\op}\left( \trim_{\varep}\left( A \right) \right) & = \sum^{n}_{j=1} \lambda_{\op}\left( \trim_{\frac{\varep}{n}}\left( A_j \right) \right) && \\ 
-            && & = \sum^{n}_{j=1} \left(\lambda_{\op}\left( A_j \right)-\frac{\varep}{n}\right) && \text{by Lemma 1.8} \\
-            && & = \left( \sum^{n}_{j=1}\lambda_{\op}\left( A_j \right) \right)-\varep && \\
-            && & \leq \left( \sum^{k}_{j=1}\lambda_{\op}\left( A_j \right) \right)-\varep && \\
-            && & = \lambda_{\op}\left( A \right)-\varep.
+            && \lambda_{\op}\left( \trim_{\varep}\left( A \right) \right) & = \sum^{n}_{j=1} \lambda_{\op}\left( \trim_{\frac{\varep}{n}}\left( A_j \right) \right) = \sum^{n}_{j=1} \left(\lambda_{\op}\left( A_j \right)-\frac{\varep}{n}\right) = \left( \sum^{n}_{j=1}\lambda_{\op}\left( A_j \right) \right)-\varep && \\
+            && & \leq \left( \sum^{k}_{j=1}\lambda_{\op}\left( A_j \right) \right)-\varep =  \lambda_{\op}\left( A \right)-\varep,
         \end{flalign*}
-        This verifies (a).
+        where the second equality is by Lemma 1.8. This verifies (a).
 
         Also note that, given an open interval $\left( a,b \right)$, with $a<b$, and $\eta<b-a$, we have
         \begin{equation}
