@@ -5,7 +5,7 @@
 
 \begin{document}
 
-    \section{Lebesgue Measure}
+    \section{Construction of Lebesgue Measure}
     
     \subsection{Length of Open Subsets of $\R$}
     
@@ -724,41 +724,41 @@
 
     So then let us make a formal definition for what it means to \textit{trim the endpoints of intervals} for an easily tractable open set.
 
-    \begin{notation}{$\trim_{\varep}$}
-        Suppose we are given $\varep>0$ and an easily tractable open set $A\subseteq\R$ such that $\lambda_{\op}\left( A \right)>\varep$. We define a new open set, denoted as $\trim_{\varep}\left( A \right)$, as follows: denoting the interval components of $A$ as $\left( a_1,b_1 \right),\ldots,\left( a_k,b_k \right)$, we put
+    \begin{notation}{$\trim_{\epsilon}$}
+        Suppose we are given $\epsilon>0$ and an easily tractable open set $A\subseteq\R$ such that $\lambda_{\op}\left( A \right)>\epsilon$. We define a new open set, denoted as $\trim_{\epsilon}\left( A \right)$, as follows: denoting the interval components of $A$ as $\left( a_1,b_1 \right),\ldots,\left( a_k,b_k \right)$, we put
         \begin{equation}
-            \trim_{\varep}\left( A \right) = \bigcup^{k}_{j=1: b_j-a_j>\frac{\varep}{k}} \left( a_j+\frac{\varep}{2k},b_j-\frac{\varep}{2k} \right).
+            \trim_{\epsilon}\left( A \right) = \bigcup^{k}_{j=1: b_j-a_j>\frac{\epsilon}{k}} \left( a_j+\frac{\epsilon}{2k},b_j-\frac{\epsilon}{2k} \right).
         \end{equation}
     \end{notation}
 
-    \np In words, the trimmed set $\trim_{\varep}\left( A \right)$ is obtained by distributing $\varep$ among the $k$ component intervals $\left( a_1,b_1 \right),\ldots.,\left( a_k,b_k \right)$ of $A$, and by trying to trim each of these intervals by a length of $\frac{\varep}{k}$. When doing so, for every $j\in\left\lbrace 1,\ldots,k \right\rbrace$ we find one of two possibilities:
+    \np In words, the trimmed set $\trim_{\epsilon}\left( A \right)$ is obtained by distributing $\epsilon$ among the $k$ component intervals $\left( a_1,b_1 \right),\ldots.,\left( a_k,b_k \right)$ of $A$, and by trying to trim each of these intervals by a length of $\frac{\epsilon}{k}$. When doing so, for every $j\in\left\lbrace 1,\ldots,k \right\rbrace$ we find one of two possibilities:
     \begin{enumerate}
-        \item the length $b_j-a_j$ of $\left( a_j,b_j \right)$ is at most $\frac{\varep}{k}$; the interval $\left( a_j,b_j \right)$ is simply removed; or
-        \item $b_j-a_j>\frac{\varep}{k}$, in which case we shorten the interval $\left( a_j,b_j \right)$ by removing a piece of length $\frac{\varep}{2k}$ at each of its ends.
+        \item the length $b_j-a_j$ of $\left( a_j,b_j \right)$ is at most $\frac{\epsilon}{k}$; the interval $\left( a_j,b_j \right)$ is simply removed; or
+        \item $b_j-a_j>\frac{\epsilon}{k}$, in which case we shorten the interval $\left( a_j,b_j \right)$ by removing a piece of length $\frac{\epsilon}{2k}$ at each of its ends.
     \end{enumerate}
-    We note that the union indicated in [1.23] is always sure to have some sets in it; that is, there exists some index $j\in\left\lbrace 1,\ldots,k \right\rbrace$ for which $b_j-a_j>\frac{\varep}{k}$. Indeed, if we had $b_j-a_j\leq \frac{\varep}{k}$ for all $j\in\left\lbrace 1,\ldots,k \right\rbrace$, then summing over $j$ in these inequalities would give a contradiction with the assumption that $\lambda_{\op}\left( A \right)>\varep$.
+    We note that the union indicated in [1.23] is always sure to have some sets in it; that is, there exists some index $j\in\left\lbrace 1,\ldots,k \right\rbrace$ for which $b_j-a_j>\frac{\epsilon}{k}$. Indeed, if we had $b_j-a_j\leq \frac{\epsilon}{k}$ for all $j\in\left\lbrace 1,\ldots,k \right\rbrace$, then summing over $j$ in these inequalities would give a contradiction with the assumption that $\lambda_{\op}\left( A \right)>\epsilon$.
 
     \np The next lemma records some properties of trimmed open sets which follow directly from the definition.
 
     \begin{lemma}{}
-        Let $\varep>0$ and let $A\subseteq\R$ be an easily tractable open subset of $\R$ such that $\lambda_{\op}\left( A \right)>\varep$. Then $\trim_{\varep}\left( A \right)$ is an easily tractable open set with the properties that
+        Let $\epsilon>0$ and let $A\subseteq\R$ be an easily tractable open subset of $\R$ such that $\lambda_{\op}\left( A \right)>\epsilon$. Then $\trim_{\epsilon}\left( A \right)$ is an easily tractable open set with the properties that
         \begin{enumerate}
-            \item $\lambda_{\op}\left( \trim_{\varep}\left( A \right) \right)\geq\lambda_{\op}\left( A \right)-\varep$; and
-            \item $\cl\left( \trim_{\varep}\left( A \right) \right)\subseteq A$.
+            \item $\lambda_{\op}\left( \trim_{\epsilon}\left( A \right) \right)\geq\lambda_{\op}\left( A \right)-\epsilon$; and
+            \item $\cl\left( \trim_{\epsilon}\left( A \right) \right)\subseteq A$.
         \end{enumerate}
     \end{lemma}
 
     \begin{proof}
-        Let $A=\bigcup^{k}_{j=1}A_j$ be the decomposition of $A$ into interval components, and assume without loss of generality that $A_1,\ldots,A_n$ have lengths more than $\frac{\varep}{k}$ but $A_{n+1},\ldots,A_k$ do not. This means
+        Let $A=\bigcup^{k}_{j=1}A_j$ be the decomposition of $A$ into interval components, and assume without loss of generality that $A_1,\ldots,A_n$ have lengths more than $\frac{\epsilon}{k}$ but $A_{n+1},\ldots,A_k$ do not. This means
         \begin{equation}
-            \trim_{\varep}\left( A \right) = \bigcup^{n}_{j=1} \trim_{\frac{\varep}{n}}\left( A_j \right).
+            \trim_{\epsilon}\left( A \right) = \bigcup^{n}_{j=1} \trim_{\frac{\epsilon}{n}}\left( A_j \right).
         \end{equation}
-        From [1.24] it is immediate that $\trim_{\varep}\left( A \right)$ is an easily tractable open set.
+        From [1.24] it is immediate that $\trim_{\epsilon}\left( A \right)$ is an easily tractable open set.
 
         Now note that
         \begin{flalign*}
-            && \lambda_{\op}\left( \trim_{\varep}\left( A \right) \right) & = \sum^{n}_{j=1} \lambda_{\op}\left( \trim_{\frac{\varep}{n}}\left( A_j \right) \right) = \sum^{n}_{j=1} \left(\lambda_{\op}\left( A_j \right)-\frac{\varep}{n}\right) = \left( \sum^{n}_{j=1}\lambda_{\op}\left( A_j \right) \right)-\varep && \\
-            && & \leq \left( \sum^{k}_{j=1}\lambda_{\op}\left( A_j \right) \right)-\varep =  \lambda_{\op}\left( A \right)-\varep,
+            && \lambda_{\op}\left( \trim_{\epsilon}\left( A \right) \right) & = \sum^{n}_{j=1} \lambda_{\op}\left( \trim_{\frac{\epsilon}{n}}\left( A_j \right) \right) = \sum^{n}_{j=1} \left(\lambda_{\op}\left( A_j \right)-\frac{\epsilon}{n}\right) = \left( \sum^{n}_{j=1}\lambda_{\op}\left( A_j \right) \right)-\epsilon && \\
+            && & \leq \left( \sum^{k}_{j=1}\lambda_{\op}\left( A_j \right) \right)-\epsilon =  \lambda_{\op}\left( A \right)-\epsilon,
         \end{flalign*}
         where the second equality is by Lemma 1.8. This verifies (a).
 
@@ -768,7 +768,7 @@
         \end{equation}
         Applying [1.25] to [1.24] gives
         \begin{equation*}
-            \cl\left( \trim_{\varep}\left( A \right) \right) = \cl\left( \bigcup^{n}_{j=1}\trim_{\frac{\varep}{n}}\left( A_j \right) \right) = \bigcup^{n}_{j=1} \cl\left( \trim_{\frac{\varep}{n}}\left( A_j \right) \right) \subseteq \bigcup^{n}_{j=1} A_j \subseteq \bigcup^{k}_{j=1}A_j = A.
+            \cl\left( \trim_{\epsilon}\left( A \right) \right) = \cl\left( \bigcup^{n}_{j=1}\trim_{\frac{\epsilon}{n}}\left( A_j \right) \right) = \bigcup^{n}_{j=1} \cl\left( \trim_{\frac{\epsilon}{n}}\left( A_j \right) \right) \subseteq \bigcup^{n}_{j=1} A_j \subseteq \bigcup^{k}_{j=1}A_j = A.
         \end{equation*}
         This verifies (b).
     \end{proof}
@@ -853,6 +853,958 @@
         Hence if we pick $x\in\bigcap^{\infty}_{m=1}A_{m,m}$. this $x$ will also belong to $\bigcap^{\infty}_{m=1}A_m$; the letter set is therefore nonempty, as we had to show.
     \end{boxyproof}
 
+    \subsection{Lebesgue Measure of Bounded Measurable Sets}
+
+    In this subsection we get acquainted with some of the \textit{Lebesgue measurable} subsets of $\R$ (namely, those that are bounded), and with how \textit{Lebesgue measure} is measuring such sets. More precisely, we will introduce a collection $\mM_{\bdd}$ of (some) bounded subsets of $\R$ and a length-measuring map $\lambda_{\bdd}:\mM_{\bdd}\to\left[ 0,\infty \right)$, such that $\lambda_{\bdd}$ agrees with $\lambda_{\op}$ on $\mT$ (the collection of all open subsets of $\R$) and $\lambda_{\bdd}$ agrees with $\lambda_{\cp}$ on $\mK$ (the collection of all compact subsets of $\R$).
+
+    \begin{definition}{\textbf{Lebesgue Measurable} Bounded Set}
+        Let $A\subseteq\R$ be bounded. We say that $A$ is \emph{Lebesgue measurable} if
+        \begin{equation}
+            \forall\epsilon>0\exists G,K\subseteq\R\left[ G\text{ is bounded and open}, K\text{ is compact}, K\subseteq A\subseteq G, \lambda_{\op}\left( G \right)-\lambda_{\cp}\left( K \right)<\epsilon \right].
+        \end{equation}
+        That is, given any $\epsilon>0$, we can find bounded open $G\subseteq\R$ and compact $K\subseteq\R$ such that $K\subseteq A\subseteq G$ and that $\lambda_{\op}\left( G \right)-\lambda_{\cp}\left( K \right)<\epsilon$.
+
+        We shall write
+        \begin{equation*}
+            \mM_{\bdd} = \left\lbrace A\subseteq\R:A\text{ is bounded and Lebesgue measurable} \right\rbrace.
+        \end{equation*}
+    \end{definition}
+    
+    \np Note that, in [1.29], $\lambda_{\op}\left( G \right)$ is sure to be a finite quantity, since $G$ is assuemd to be bounded. More formally speaking, there are $a,b\in\R$ such that $G\subseteq\left( a,b \right)$, which means $\lambda_{\op}\left( G \right)=b-a<\infty$.
+
+    \np In fact, the last condition in [1.29], $\lambda_{\op}\left( G \right)-\lambda_{\cp}\left( K \right)<\epsilon$ can be phrased in the form
+    \begin{equation}
+        \lambda_{\op}\left( G\setminus K \right)<\epsilon.
+    \end{equation}
+    Indeed, $G\setminus K$ is open, and the definition of $\lambda_{\cp}\left( \cdot \right)$ was made in such a way that we have
+    \begin{equation*}
+        \lambda_{\cp}\left( K \right)+\lambda_{\op}\left( G\setminus K \right)=\lambda_{\op}\left( G \right).
+    \end{equation*}
+    Hence the difference $\lambda_{\op}\left( G \right)-\lambda_{\cp}\left( K \right)$ is precisely equal to $\lambda_{\op}\left( G\setminus K \right)$.
+
+    \begin{prop}{}
+        Let $A\in\mM_{\bdd}$. Then
+        \begin{equation}
+            \inf\left\lbrace \lambda_{\op}\left( G \right): \text{$G$ is a bounded open set containing $A$} \right\rbrace = 
+            \sup\left\lbrace \lambda_{\op}\left( K \right): \text{$K$ is a compact set contained in $A$} \right\rbrace.
+        \end{equation}
+    \end{prop}
+
+    \begin{proof}
+        Consider the set
+        \begin{equation*}
+            T = \left\lbrace \lambda_{\cp}\left( K \right): K\text{ is a compact set contained in $A$} \right\rbrace.
+        \end{equation*}
+        Clearly, $T$ is nonempty -- for instance $0\in T$, as we find by looking at the compact set $K=\emptyset\subseteq A$. We want to argue that $T$ is bounded above. To that end, we make the following observation.
+
+        \begin{itemize}
+            \item \textit{Claim 1. Let $G$ be a bounded open subset of $\R$ such that $G\subseteq A$ (such sets are sure to exist, due to the assumption that $A$ is bounded). Then $\lambda_{\op}\left( G \right)$ is an upper bounded for the set $T$.}
+
+                \begin{subproof}
+                    We have to show that $\lambda_{\op}\geq t$ for all $t\in T$. Let us fix a $t\in T$ for which we verify this inequality. We pick a compact set $K\subseteq A$ such that $\lambda_{\cp}\left( K \right)=t$, and we argue like this: from $K\subseteq A\subseteq G$, it follows in particular that $K\subseteq G$. We thus find that
+                    \begin{equation*}
+                        \lambda_{\op}\left( G \right) = \lambda_{\cp}\left( K \right)+\lambda_{\op}\left( G\setminus K \right) = t+\lambda_{\op}\left( G\setminus K \right)\geq t,
+                    \end{equation*}
+                    as required.\hfill\textit{(Claim 1 is verified)}
+                \end{subproof}
+        \end{itemize} 
+
+        Due to Claim 1, it makes sense to consider the quantity $\sup\left( T \right)$. Moreover, Claim 1 gives us that
+        \begin{equation}
+            \sup\left( T \right)\leq\lambda_{\op}\left( G \right)
+        \end{equation}
+        for any bounded open set containing $A$. 
+
+        Now, let us consider the set of nonnegative numbers
+        \begin{equation*}
+            S = \left\lbrace \lambda_{\op}\left( G \right): G\text{ is a bounded open set containing $A$} \right\rbrace.
+        \end{equation*}
+        This is nonempty and bounded below (by $0$), thus it makes sense to consider the quantity $\inf\left( S \right)$. The inequality [1.32] implies
+        \begin{equation*}
+            \sup\left( T \right)\leq\inf\left( S \right).
+        \end{equation*}
+        Hence, we are left to prove the opposite inequality
+        \begin{equation}
+            \inf\left( S \right)\leq\sup\left( T \right).
+        \end{equation}
+        In order to establish [1.33], we will resort to the old trick of showing that
+        \begin{equation}
+            \forall n\in\N\left[ \inf\left( S \right)\leq\sup\left( T \right)+\frac{1}{n} \right].
+        \end{equation}
+
+        Now, we know that for every $n\in\N$ we can find a compact set $K_n\subseteq A$ and a bounded open set $G_n\subseteq\R$ containing $A$, such that $\lambda_{\op}\left( G_n \right)-\lambda_{\cp}\left( K_n \right)$. This uses the hypothesis on $A$ which is provided in [1.29], with $\frac{1}{n}$ playing the role of $\epsilon$. We thus have:
+        \begin{flalign*}
+            && \inf\left( S \right)&\leq\lambda_{\op}\left( G_n \right) && \\ 
+            && & \leq\lambda_{\cp}\left( K_n \right)+\frac{1}{n} && \\
+            && & \leq\sup\left( T \right)+\frac{1}{n},
+        \end{flalign*}
+        and [1.34] follows.
+    \end{proof}
+
+    \clearpage
+
+    \begin{definition}{\textbf{Lebesgue Measure} of a Bounded Lebesgue Measurable Set}
+        Let $A\subseteq\R$ be bounded Lebesgue measurable. Then the quantity appearing in either side of [1.31] is called the \emph{Lebesgue measure} of $A$.
+    \end{definition}
+
+    \np In our further discussions it will come in handy to know that one can use a sequential approach to the definition of $\mM_{\bdd}$ and the map $\lambda_{\bdd}$, as follows.
+
+    \begin{prop}{}
+        Let $A\subseteq\R$ be bounded. Suppose there exist a sequence $\left( G_{n} \right)^{\infty}_{n=1}$ of bounded open subsets of $\R$ and a sequence $\left( K_{n} \right)^{\infty}_{n=1}$ of compact subsets of $\R$ such that $K_n\subseteq A\subseteq G_n$ for all $n\geq 1$, and such that
+        \begin{equation}
+            \lim_{n\to\infty}\lambda_{\op}\left( G_n \right)-\lambda_{\cp}\left( K_n \right)=0.
+        \end{equation}
+        Then
+        \begin{enumerate}
+            \item $A\in\mM_{\bdd}$; and
+            \item both $\left( \lambda_{\op}\left( G_n \right) \right)^{\infty}_{n=1}, \left( \lambda_{\cp}\left( K_n \right) \right)^{\infty}_{n=1}$ are convergent, to the same limit $\lambda_{\bdd}\left( A \right)$.
+        \end{enumerate}
+    \end{prop}
+
+    \begin{proof}
+        \begin{enumerate}
+            \item Suppose $\epsilon>0$ is given. Then we can find $n\in\N$ such that $\lambda_{\op}\left( G_n \right)-\lambda_{\cp}\left( K_n \right)<\epsilon$ by [1.35]. This means $G_n, K_n$ are such that $G_n$ is bounded and open, $K_n$ is compact, $K_n\subseteq A\subseteq G_n$, and $\lambda_{\op}\left( G_n \right)-\lambda_{\cp}\left( K_n \right)<\epsilon$. Thus $A$ is Lebesgue measurable.
+
+            \item In [1.31] we have a description of $\lambda_{\bdd}\left( A \right)$ in the form of an infimum, which implies that $\lambda_{\op}\left( G_n \right)\geq\lambda_{\bdd}\left( A \right)$ for all $n\geq 1$. In [1.31] we also have a description of $\lambda_{\bdd}\left( A \right)$ in the form of a supremum, which implies that $\lambda_{\cp}\left( K_n \right)\leq\lambda_{\bdd}\left( A \right)$ for every $n\geq 1$. Upon processing a bit these inequalities, we find that
+                \begin{equation}
+                    \forall n\in\N\left[ \lambda_{\bdd}\left( A \right)\leq\lambda_{\op}\left( G_n \right)\leq\lambda_{\bdd}\left( A \right)+\left( \lambda_{\op}\left( G_n \right)-\lambda_{\cp}\left( K_n \right) \right)\right].
+                \end{equation}
+                But our hypothesis [1.35] implies that $\lim_{n\to\infty}\lambda_{\bdd}\left( A \right)+\left( \lambda_{\op}\left( G_n \right)-\lambda_{\cp}\left( K-n \right) \right)=\lambda_{\bdd}\left( A \right)$. Hence by applying the squeeze theorem to [1.36], we obtain that $\left( \lambda_{\op}\left( G-n \right) \right)^{\infty}_{n=1}$ is convergent, with limit equal to $\lambda_{\bdd}\left( A \right)$.
+
+                Finally, we write
+                \begin{equation}
+                    \forall n\in\N\left[ \lambda_{\cp}\left( K_n \right)=\lambda_{\op}\left( G_n \right)-\left( \lambda_{\op}\left( G_n \right)-\lambda_{\cp}\left( K_n \right) \right) \right].
+                \end{equation}
+                By letting $n\to\infty$ in [1.37] we find that $\lim_{n\to\infty}\lambda_{\cp}\left( K_n \right)$ exists and is equal to $\lambda_{\bdd}\left( A \right)$ as well.
+        \end{enumerate}
+    \end{proof}
+
+    \begin{definition}{$G_{\delta}$ Set}
+        A set $A\subseteq\R$ is said to be $G_{\delta}$ when it is a countable union of open subsets of $\R$.
+    \end{definition}
+
+    \np Here are some basic properties of $G_{\delta}$ sets.
+    \begin{enumerate}
+        \item If $A\subseteq\R$ is $G_{\delta}$, then it can be written as $A=\bigcap^{\infty}_{n=1}G_n$ where the $G_n$'s are open and are also assumed to form a decreasing chain $G_1\supseteq G_2\supseteq\cdots$. This fact has an immediate proof. Start with some arbitrary writing $A=\bigcap^{\infty}_{n=1}U_n$ where $U_n$'s are open, and put $G_1=U_1, G_2=U_1\cap U_2,\ldots$. Then the $G_n$'s are open with $\bigcap^{\infty}_{n=1}G_n=A$, and will also form a decreasing chain.
+
+        \item Every open $G\subseteq\R$ is $G_{\delta}$. This is clear, as we can write $G=\bigcap^{\infty}_{n=1}G_N$ where we put $G_n=G$ for every $n\in\N$.
+
+        \item Every closed $F\subseteq\R$ is $G_{\delta}$. The standard method used to write nonempty closed $F\subseteq\R$ as a countable intersection of open sets $\bigcap^{\infty}_{n=1}G_n$ is by putting
+            \begin{equation}
+                G_n=\bigcup^{}_{x\in F}\left( x-\frac{1}{n},x+\frac{1}{n} \right)
+            \end{equation}
+            for all $n\in\N$.
+
+            The following observation can be made in connection to the formula [1.38]: note that if $F$ is bounded (hence compact), then each open set $G_n$ provided by [1.38] are bounded as well.
+    \end{enumerate}
+    
+    \begin{definition}{$F_{\sigma}$ Set}
+        A set $B\subseteq\R$ is said to be $F_{\sigma}$ when it can be written as a countable union of closed subsets of $\R$.
+    \end{definition}
+
+    \np Recall that a subset of $\R$ is $F_{\sigma}$ if and only if its complement is $G_{\delta}$. Based on this, we obtain the counterparts of the properties of $G_{\delta}$ sets that we listed above.
+    \begin{enumerate}
+        \item If $B\subseteq\R$ is $F_{\sigma}$, then it can be written as $B=\bigcup^{\infty}_{n=1}F_n$ where the $F_n$'s are closed and are also assumed and also assumed to form an increasing chain $F_1\subseteq F_2\subseteq\cdots$.
+        \item Every closed set is $F_{\sigma}$.
+        \item Every open set is $F_{\sigma}$.
+    \end{enumerate}
+
+    \np Now back to our goal, of proving that the length-leasuring function $\lambda_{\bdd}$ on $\mM_{\bdd}$ fits with the $\lambda_{\op},\lambda_{\cp}$ from the preceding lectures.
+
+    \begin{prop}{}
+        Let $G$ be a bounded open subset of $\R$. Then $G\in\mM_{\bdd}$ and $\lambda_{\bdd}=\lambda_{\op}\left( G \right)$.
+    \end{prop}
+
+    \begin{proof}
+        We know that $G$ is $F_{\sigma}$, hence we can write $G=\bigcup^{\infty}_{n=1}F_n$ where $\left( F_{n} \right)^{\infty}_{n=1}$ is an increasing chain of closed subsets of $\R$. From the fact that $G$ is bounded it follows that every $F_n$ is bounded as well -- hence $F_n$ is a compact set. Let us also record the observation that the set-differences $\left( G\setminus F_{n} \right)^{\infty}_{n=1}$ form a decreasing chain of bounded open sets, with
+        \begin{equation}
+            \bigcap^{\infty}_{n=1}G\setminus F_n = G\setminus \left( \bigcup^{\infty}_{n=1}F_n \right)G\setminus G=\emptyset.
+        \end{equation}
+        Quite importantly, we can invoke the continuity of $\lambda_{\op}$ along decreasing chains of open sets (Proposition 1.12) in connection to [1.39], so that
+        \begin{equation}
+            \lim_{n\to\infty}\lambda_{\op}\left( G\setminus F_n \right)=0.
+        \end{equation}
+        We can then put $K_n=F_n, G_n=G$ for all $n\in\N$, and this will gives a sequence of compact sets $\left( K_{n} \right)^{\infty}_{n=1}$ and a sequence of bounded open sets $\left( G_{n} \right)^{\infty}_{n=1}$ such that $K_n\subseteq G\subseteq G_n$ for all $n\in\N$, and such that
+        \begin{equation*}
+            \lim_{n\to\infty}\lambda_{\op}\left( G_n \right)-\lambda_{\cp}\left( K_n \right) = \lim_{n\to\infty}\lambda_{\op}\left( G_n\setminus K_n \right) = \lim_{n\to\infty}\lambda_{\op}\left( G\setminus F_n \right)=0.
+        \end{equation*}
+        Hence the criterion from Proposition 1.18 can be applied, so that $G\in\mM_{\bdd}$ and that $\lambda_{\bdd}\left( G \right)=\lim_{n\to\infty}\lambda_{\op}\left( G_n \right)$. But $\lambda_{\op}\left( G_n \right)=\lambda_{\op}\left( G \right)$ for all $n\in\N$, hence we arrive to the desired conclusion that $\lambda_{\bdd}\left( G \right)=\lambda_{\op}\left( G \right)$.
+    \end{proof}
+
+    \np In the same vein as for the preceding proposition, we have the following.
+
+    \begin{prop}{}
+        Let $K\subseteq\R$ be compact. Then $K\in\mM_{\bdd}$ and $\lambda_{\bdd}\left( K \right)=\lambda_{\cp}\left( K \right)$.
+    \end{prop}
+
+    \placeqed[Exercise]
+
+    \np When looking for an example of a bounded subset of $\R$ which is neither open nor compact, one of the first candidates that comes to mind is $A=\Q\cap\left[ 0,1 \right]$. Is this Lebesgue measurable? We can show right away that it is. In fact, the rule of thumb is that all the \textit{natural} subsets of $\R$ are Lebesgue measurable; as we will see, it takes some effort to provide an example of non-measurable set.
+
+    To be precise, what happens is that $\Q\cap\left[ 0,1 \right]\in\mM_{\bdd}$ and $\lambda_{\bdd}\left( Q\cap\left[ 0,1 \right] \right)=0$. The sets of this kind are called \textit{negligible}. One can detect them by using the following criterion.
+
+    \begin{prop}{}
+        Let $A\subseteq\R$ be bounded. Suppose there exists a sequence $\left( G_{n} \right)^{\infty}_{n=1}$ of bounded open subsets of $\R$ such that $A\subseteq G_n$ for all $n\in\N$, and such that $\lim_{n\to\infty}\lambda_{\op}\left( G_n \right)=0$. Then it follows that $A\in\mM_{\bdd}$ and $\lambda_{\bdd}\left( A \right)=0$.
+    \end{prop}
+
+    \begin{proof}
+        This follows from Proposition 1.18 where we use the given $G_n$'s and also consider $K_n=\emptyset$ for all $n\in\N$.
+    \end{proof}
+
+    \clearpage
+
+    \np By using Proposition 1.21, it is easy to check that $\Q\cap\left[ 0,1 \right]$ is negligible. This actually happens just because we are dealing with a countable set. So instead of $\Q\cap\left[ 0,1 \right]$, let us consider any bounded countable subset $A\subseteq\R$ in the following exercise.
+
+    \begin{exercise}{}
+        Let $A\subseteq\R$ be bounded and countable.
+        \begin{enumerate}
+            \item Prove that for every $\epsilon>0$, there is bounded open $G\subseteq\R$ containing $A$ with $\lambda_{\op}\left( G \right)<\epsilon$.
+            \item By using (a) and Proposition 1.21, prove that $A$ is negligible. That is, $A\in\mM_{\bdd}$ and $\lambda_{\bdd}\left( A \right)=0$.
+        \end{enumerate}
+    \end{exercise}
+
+    \begin{proof}
+        \begin{enumerate}
+            \item Since $A$ is countable, fix an enumeration of the elements of $A$, say $\left\lbrace a_n \right\rbrace^{}_{n\in\N}$. Now consider the union
+                \begin{equation*}
+                    G = \bigcup^{}_{n\in\N} \left( a_n-\frac{\epsilon}{2^{n+2}}, a_n+\frac{\epsilon}{2^{n+2}} \right)
+                \end{equation*}
+                which contains $A$. For each $n\in\N$, the interval $\left( a_n-\frac{\epsilon}{2^{n+2}}, a_n+\frac{\epsilon}{2^{n+2}} \right)$ has length $\frac{\epsilon}{2^{n+1}}$, so that
+                \begin{equation*}
+                    \lambda_{\op}\left( G \right) \leq \sum^{}_{n\in\N} \frac{\epsilon}{2^{n+1}} = \frac{\epsilon}{2} < \epsilon.
+                \end{equation*}
+
+            \item For each $n\in\N$, let $G_n$ be a bounded open subset of $\R$ containing $A$ with $\lambda_{\op}\left( G_n \right)<\frac{1}{n}$, which exists by (a). Then $\lim_{n\to\infty}\lambda_{\op}\left( G_n \right) = \lim_{n\to\infty} \frac{1}{n} = 0$, so that we can invoke Proposition 1.21 to conclude that $A\in\mM_{\bdd}$ and that $\lambda_{\bdd}\left( A \right)=0$.
+        \end{enumerate}
+    \end{proof}
+
+    \subsection{Properties of $\mM_{\bdd}$ and of $\lambda_{\bdd}$}
+    
+    We identified a collection $\mM_{\bdd}$ of \textit{bounded measurable subsets} of $\R$. Moreover, we introduced a length-measuring function $\lambda_{\bdd}:\mM_{\bdd}\to\left[ 0,\infty \right)$, and we found that
+    \begin{enumerate}
+        \item every bounded open subset $A$ of $\R$ belongs to $\mM_{\bdd}$ with $\lambda_{\bdd}\left( A \right) = \lambda_{\op}\left( A \right)$; and
+        \item every compact subset $K$ of $\R$ belongs to $\mM_{\bdd}$ with $\lambda_{\bdd}\left( K \right) = \lambda_{\cp}\left( K \right)$.
+    \end{enumerate}
+    We will see that $\mM_{\bdd}$ is closed under certain set-operations. More precisely, we will establish that bounded measurable subsets of $\R$ forms what is called a \textit{ring} of subsets of $\R$. We will also observe an additivity property of the length-measuring function $\lambda_{\bdd}$>
+
+    Recall that we looked at the collection $\mT$ of open subsets of $\R$, and we discovered the shortcoming that $\mT$ is not closed under set-difference. One of the things we will find is that $\mM_{\bdd}$ is closed under set-difference:
+    \begin{equation*}
+        \forall A_1,A_1\in\mM_{\bdd}\left[ A_1\setminus A_2\in\mM_{\bdd} \right].
+    \end{equation*}
+    This is a step towards resolving our issue about set-differences of open sets: if $G_1,G_2$ are bounded open sets, then $G_1\setminus G_2$ may no longer be open, but it will still be in $\mM_{\bdd}$. This provides us with a notion of length for $G_1\setminus G_2$, namely it is the number $\lambda_{\bdd}\left( G_1\setminus G_2 \right)$.
+
+    \begin{definition}{\textbf{Ring} of Sets}
+        Let $X$ be a nonempty set and let $\mR$ be a collection of subsets of $X$. We say $\mR$ is a \emph{ring} of subsets of $X$ to mean that
+        \begin{enumerate}
+            \item $\emptyset\in\mR$;
+            \item for all $A_1,A_2\in\mR$, $A_1\cup A_2\in\mR$; and\hfill\textit{closure under union}
+            \item for all $A_1,A_2\in\mR$, $A_1\setminus A_2\in\mR$.\hfill\textit{closure under set-difference}
+        \end{enumerate}
+    \end{definition}
+
+    Let $X$ be a nonempty set and let $\mR$ be a ring of subsets of $X$.
+    \begin{enumerate}
+        \item $\mR$ is closed under intersection. This is found by writing that
+            \begin{equation*}
+                A_1\cap A_2 = A_1\setminus \left( A_1\setminus A_2 \right)
+            \end{equation*}
+            for any $A_1,A_2\in\mR$.
+        \item By induction, $\mR$ is closed under any finite union or intersection.
+    \end{enumerate}
+    In conclusion, we can do any kind of set-operations we want, involving \textit{finitely many} sets from $\R$, and we can be certain that the result of these operations will still belong to $\mR$.
+
+    \np In the process of constructing the Lebesgue measure we constantly have to fall back on elementary statements about the length-measuring function $\lambda_{\op}$ for open sets. This happens because $\lambda_{\op}$ is the fundamental notion we are building on.
+
+    \begin{exercise}{}
+        Consider a bounded open interval $\left( a,b \right)$ with $a<b$ in $\R$. Suppose $G_1,G_2$ are open subsets of $\R$ such that $G_1\cup G_2=\left( a,b \right)$. Prove that
+        \begin{equation*}
+            b-a \leq \lambda_{\op}\left( G_1 \right)+\lambda_{\op}\left( G_2 \right).
+        \end{equation*}
+    \end{exercise}
+
+    \begin{proof}
+        It suffices to check that
+        \begin{equation*}
+            b'-a' \leq \lambda_{\op}\left( G_1 \right)+\lambda_{\op}\left( G_2 \right)
+        \end{equation*}
+        for all $a',b'\in\R$ such that $a<a'<b'<b$. So choose such $a',b'$. Now note that $\left[ a',b' \right]\subseteq\left( a,b \right)=G_1\cup G_2$. This means, if we consider the decompositions of $G_1,G_2$ into interval components,
+        \begin{equation*}
+            G_1 = \bigcup^{}_{i\in I}G_{1,i}, G_2 = \bigcup^{}_{j\in J}G_{2,j},
+        \end{equation*}
+        respectively, then $\left( \bigcup^{}_{i\in I}G_{1,i} \right)\cup\left( \bigcup^{}_{j\in J}G_{2,j} \right)$ is (the union of) an open cover for $\left[ a',b' \right]$. Since $\left[ a',b' \right]$ is compact, we can choose a finite subcover $\left\lbrace G_{1,t} \right\rbrace^{n}_{t=1}\cup\left\lbrace G_{2,s} \right\rbrace^{m}_{s=1}$. This means
+        \begin{equation*}
+            b'-a' = \lambda_{\cp}\left( \left[ a',b' \right] \right) \leq \lambda_{\op}\left( \left( \bigcup^{n}_{t=1}G_{1,t} \right)\cup\left( \bigcup^{n}_{s=1}G_{2,s} \right) \right) \leq \left( \sum^{n}_{t=1}\lambda_{\op}\left( G_{1,t} \right) \right) + \left( \sum^{m}_{s=1}\lambda_{\op}\left( G_{2,s} \right) \right) \leq \lambda_{\op}\left( G_1 \right)+\lambda_{\op}\left( G_2 \right),
+        \end{equation*}
+        as required.
+    \end{proof}
+
+    \begin{prop}{}
+        Let $G_1,G_2$ be two bounded open subsets of $\R$ and consider their union $G_1\cup G_2$, which is a bounded open set as well. Then
+        \begin{equation*}
+            \lambda_{\op}\left( G_1\cup G_2 \right)\leq\lambda_{\op}\left( G_1 \right)+\lambda_{\op}\left( G_2 \right).
+        \end{equation*}
+    \end{prop}
+
+    \begin{proof}
+        Consider the decomposition into interval components for the open sets $G_1\cup G_2$. Since $G_1\cup G_2$ is bounded, this decomposition has the form
+        \begin{equation*}
+            G_1\cup G_2 = \bigcup^{}_{i\in I}C_i
+        \end{equation*}
+        with for all $i\in I$, $C_i=\left( a_i,b_i \right)$ for some $a_i,b_i\in\R$. For every $i\in I$, we look at the open sets
+        \begin{equation*}
+            G_i^{\left( 1 \right)} = G_1\cap C_i, G_i^{\left( 2 \right)} = G_2\cap C_i.
+        \end{equation*}
+        Observe that $G_i^{\left( 1 \right)}\cup G_{i}^{\left( 2 \right)} = \left( G_1\cap C_i \right)\cup\left( G_2\cap C_i \right)=\left( G_1\cup G_2 \right)\cap C_i = C_i = \left( a_i,b_i \right)$, so Exercise 1.8 applies to this situation and gives us the inequality
+        \begin{equation}
+            \lambda_{\op}\left( G_i^{\left( 1 \right)} \right)+\lambda_{\op}\left( G_i^{\left( 2 \right)} \right)\geq b_i-a_i
+        \end{equation}
+        for all $i\in I$. But we know that $I$ is countable and quantities $\lambda_{\op}\left( G_i^{\left( 1 \right)} \right),\lambda_{\op}\left( G_i^{\left( 2 \right)} \right),b_i-a_i$ are nonnegative, so that [1.41] implies
+        \begin{equation}
+            \left( \sum^{}_{i\in I}\lambda_{\op}\left( G_i^{\left( 1 \right)} \right) \right) + \left( \sum^{}_{i\in I}\lambda_{\op}\left( G_i^{\left( 2 \right)} \right) \right) \geq \sum^{}_{i\in I} \left( b_i-a_i \right).
+        \end{equation}
+        
+        We are left to observe what is the right interpretation of the three sums over $I$ that have appeared in [1.42]. First of all, the very definition of $\lambda_{\op}$ gives us that
+        \begin{equation}
+            \lambda_{\op}\left( G_1\cup G_2 \right)=\sum^{}_{i\in I}\left( b_i-a_i \right).
+        \end{equation}
+        Hence the right-hand side of [1.42] we have the length $\lambda_{\op}\left( G_1\cup G_2 \right)$.
+
+        Let us next focus on the collection of open sets $\left\lbrace G_i^{\left( 1 \right)} \right\rbrace^{}_{i\in I}$. We observe that these sets are pairwise disjoint, since for every distinct $i,j\in I$ we have
+        \begin{equation*}
+            G_i^{\left( 1 \right)}\cap G_j^{\left( 1 \right)} = \left( G_1\cap C_i \right)\cap \left( G_1\cap C_j \right) = G_1\cap \left( C_i\cap C_j \right) = G_1\cap\emptyset = \emptyset.
+        \end{equation*}
+        So we can use on this collection Proposition 1.2, which says that
+        \begin{equation*}
+            \sum^{}_{i\in I}\lambda_{\op}\left( G_i^{\left( 1 \right)} \right)=\lambda_{\op}\left( \bigcup^{}_{i\in I}G_i^{\left( 1 \right)} \right).
+        \end{equation*}
+        But
+        \begin{equation*}
+            \bigcup^{}_{i\in I}G_i^{\left( 1 \right)} = \bigcup^{}_{i\ni I}\left( G_1\cap C_i \right)=G_1\cap\left( \bigcup^{}_{i\in I}C_i \right)=G_1\cap\left( G_1\cup G_2 \right)=G_1.
+        \end{equation*}
+        Hence the conclusion we draw here is that we have
+        \begin{equation}
+            \sum^{}_{i\in I}\lambda_{\op}\left( G_i^{\left( 1 \right)} \right) = \lambda_{\op}\left( G_1 \right).
+        \end{equation}
+        A similar calculation yields the formula
+        \begin{equation}
+            \sum^{}_{i\in I}\lambda_{\op}\left( G_i^{\left( 2 \right)} \right) = \lambda_{\op}\left( G_2 \right).
+        \end{equation}
+        Combining [1.42], [1.43], [1.44], [1.45] gives the desired result.
+    \end{proof}
+
+    \begin{cor}{Subadditivity of $\lambda_{\op}$}
+        For any $k\in\N$ and any bounded open sets $G_1,\ldots,G_k\subseteq\R$, we have
+        \begin{equation*}
+            \lambda_{\op}\left( \bigcup^{k}_{j=1}G_j \right) \leq \sum^{k}_{j=1}\lambda_{\op}\left( G_j \right).
+        \end{equation*}
+    \end{cor}	
+
+    \placeqed[Use Induction!]
+
+    \np We now turn to the verification that $\mM_{\bdd}$ is a ring of subsets of $\R$. That is, we verify that for every $A_1,A_2\in\mM_{\bdd}$, both $A_1\cup A_2$ and $A_1\setminus A_2$ are in $\mM_{\bdd}$ as well. 
+
+    \begin{lemma}{}
+        Let $K_1,\ldots,K_n\subseteq\R$ be compact and let $G_1,\ldots,G_n\subseteq\R$ be bounded and open such hat $K_j\subseteq G_j$ for all $j\in\left\lbrace 1,\ldots,n \right\rbrace$. Consider the compact set $K=\bigcup^{n}_{j=1}K_j$ and the bounded open set $G=\bigcup^{n}_{j=1}G_j$, where $K\subseteq G$. Then
+        \begin{enumerate}
+            \item $G\setminus K\subseteq\bigcup^{n}_{j=1}G_j\setminus K_j$; and
+            \item $\lambda_{\op}\left( G\setminus K \right)\leq\sum^{n}_{j=1}\lambda_{\op}\left( G_j\setminus K_j \right)$.
+        \end{enumerate}
+    \end{lemma}
+
+    \begin{proof}
+        \begin{enumerate}
+            \item We have to prove that every point $x\in G\setminus K$ belongs to the union $\bigcup^{n}_{j=1}G_j\setminus K_j$. So pick a point $x\in G\setminus K$. We have that $x\in G$ and $x\notin K$. The latter condition amounts to $x\notin K_1\cup\cdots\cup K_n$, and is thus saying that $x\notin K_j$ for all $j\in\left\lbrace 1,\ldots,n \right\rbrace$. On the other hand, since $x\in G=\bigcup^{n}_{j=1}G_j$, there exists an $j_0\in\left\lbrace 1,\ldots,n \right\rbrace$ such that $x\in G_{j_0}$. For this $j_0$ we find that $x\in G_{j_0}$ and $x\notin K_{j_0}$, hence that
+                \begin{equation*}
+                    x\in G_{j_0}\setminus K_{j_0} \subseteq \bigcup^{n}_{j=1}G_j\setminus K_j.
+                \end{equation*}
+            \item We have that $\lambda_{\op}\left( G\setminus K \right)\leq\lambda_{\op}\left( \bigcup^{n}_{j=1}G_j\setminus K_j \right)\leq\sum^{n}_{j=1}\lambda_{\op}\left( G_j\setminus K_j \right)$.
+        \end{enumerate}
+    \end{proof}
+
+    \clearpage
+    \begin{prop}{$\mM_{\bdd}$ Is Closed under Union}
+        Let $A_1,A_2\in\mM_{\bdd}$. Then $A_1\cup A_2\in\mM_{\bdd}$.
+    \end{prop}
+
+    \begin{proof}
+        We need to show that for every $\epsilon>0$, there exists a compact set $K\subseteq\R$ and a bounded open set $G\subseteq\R$ such that
+        \begin{equation}
+            K\subseteq A_1\cup A_2\subseteq G, \lambda_{\op}\left( G\setminus K \right)<\epsilon.
+        \end{equation}
+        So fix $\epsilon>0$. Using the hypothesis that $A_1,A_2\in\mM_{\bdd}$ we can find compact sets $K_1,K_2\subseteq\R$ and bounded open sets $G_1,G_2\subseteq\R$ such that
+        \begin{equation}
+            K_j\subseteq A_j\subseteq G_j, \lambda_{\op}\left( G_j\setminus K_j \right)<\frac{\epsilon}{2}
+        \end{equation}
+        for all $j\in\left\lbrace 1,2 \right\rbrace$. Unsurprisingly, we now put $K=K_1\cup K_2$ and $G=G_1\cup G_2$. It is clear that $K$ is compact and $G$ is bounded and open, with $K\subseteq A_1\cup A_2\subseteq G$. Moreover, Lemma 1.23 implies that
+        \begin{equation*}
+            \lambda_{\op}\left( G\setminus K \right)\leq\lambda_{\op}\left( G_1\setminus K_1 \right)+\lambda_{\op}\left( G_2\setminus K_2 \right)<\frac{\epsilon}{2}+\frac{\epsilon}{2} = \epsilon.
+        \end{equation*}
+        Thus [1.46] is obtained.
+    \end{proof}
+
+    \begin{prop}{$\mM_{\bdd}$ Is Closed under Set-difference}
+        Let $A_1,A_2\in\mM_{\bdd}$. Then $A_1\setminus A_2\in\mM_{\bdd}$.
+    \end{prop}
+
+    \begin{proof}[Proof Sketch]
+        We follow the same plan as in the proof of Proposition 1.24. Given an $\epsilon>0$, we find $K_1,K_2,G_1,G_2$ as indicated in [1.47], and we now look at the inclusion
+        \begin{equation*}
+            K_1\setminus G_2\subseteq A_1\setminus A_2\subseteq G_1\setminus K_2.
+        \end{equation*}
+        We have thus caught $A_1\setminus A_2$ in between the compact set $K'=K_1\setminus G_2$ and the bounded open set $G'=G_2\setminus K_1$. Then by playing out the analogue of the verifications form Lemma 1.23, we find that
+        \begin{equation*}
+            G'\setminus K'\subseteq\left( G_1\setminus K_1 \right)\cup\left( G_2\setminus K_2 \right),
+        \end{equation*}
+        with the consequence that $\lambda_{\op}\left( G'\setminus K' \right)\leq\lambda_{\op}\left( G_1\setminus K_1 \right)+\lambda_{\op}\left( G_2\setminus K_2 \right)<\epsilon$.
+    \end{proof}
+
+    \begin{cor}{$\mM_{\bdd}$ Is a Ring of Subsets of $\R$}
+        $\mM_{\bdd}$ is a ring of subsets of $\R$.
+    \end{cor}	
+
+    \placeqed[Do We Need a Proof?]
+
+    \np We now put into evidence an addition to Proposition 1.24, which kicks in if we make the extra assumption that the sets $A_1,A_2\in\mM_{\bdd}$ we are dealing with are disjoint. Here again there is an elementary statement to fall back one -- about lengths of compact sets, this time.
+
+    \begin{exercise}{}
+        Let $K_1,K_2$ be compact subsets of $\R$ such that $K_1\cap K_2=\emptyset$. Consider the union $K_1\cup K_2$, which is a compact set as well. Prove that $\lambda_{\cp}\left( K_1\cup K_2 \right)=\lambda_{\cp}\left( K_1 \right)+\lambda_{\cp}\left( K_2 \right)$.
+    \end{exercise}
+
+    \begin{proof}
+        We can choose an interval $\left( a,b \right)$ that contains both $K_1,K_2$, so that we may write
+        \begin{equation*}
+            \begin{aligned}
+                \lambda_{\cp}\left( K_1 \right) & = \left( b-a \right)-\lambda_{\op}\left( \left( a,b \right)\setminus K_1 \right) \\
+                \lambda_{\cp}\left( K_1\cup K_2 \right) & = \left( b-a \right)-\lambda_{\op}\left( \left( a,b \right)\setminus \left( K_1\cup K_2 \right) \right)
+            \end{aligned} .
+        \end{equation*}
+        We remark that the above discussion makes sense due to Lemma 1.9. But note that, this means
+        \begin{flalign*}
+            && \lambda_{\cp}\left( K_1\cup K_2 \right) & = \left( b-a \right) - \lambda_{\op}\left( \left( a,b \right)\setminus \left( K_1\cup K_2 \right) \right) = \left( b-a \right) - \lambda_{\op}\left( \left(\left( a,b \right)\setminus K_1\right)\setminus K_2 \right)&& \\
+            && & = \left( b-a \right) - \left( \lambda_{\op}\left( \left( a,b \right)\setminus K_1 \right) - \lambda_{\cp}\left( K_2 \right) \right) = \left( \left( b-a \right)-\lambda_{\op}\left( \left( a,b \right)\setminus K_1 \right) \right)+\lambda_{\cp}\left( K_2 \right) = \lambda_{\cp}\left( K_1 \right)+\lambda_{\cp}\left( K_2 \right).
+        \end{flalign*}
+    \end{proof}
+
+    \clearpage
+    \begin{prop}{}
+        Let $A_1,A_2\in\mM_{\bdd}$ be disjoint. Then
+        \begin{equation*}
+            \lambda_{\bdd}\left( A_1\cup A_2 \right) = \lambda_{\bdd}\left( A_1 \right)+\lambda_{\bdd}\left( A_2 \right).
+        \end{equation*}
+    \end{prop}
+
+    \begin{proof}
+        We use the sequential approach to $\lambda_{\bdd}$ stated in Proposition 1.18.
+
+        For every $n\in\N$, let us consider some compact sets $K_n^{\left( 1 \right)},K_n^{\left( 2 \right)}$ and bounded open sets $G_n^{\left( 1 \right)},G_n^{\left( 2 \right)}$ such that
+        \begin{equation*}
+            K_n^{\left( j \right)}\subseteq A\subseteq G_n^{\left( j \right)}, \lambda_{\op}\left( G_n^{\left( j \right)}\setminus K_n^{\left( j \right)} \right)<\frac{1}{n}
+        \end{equation*}
+        for all $j\in\left\lbrace 1,2 \right\rbrace$. Then by Proposition 1.18,
+        \begin{equation}
+            \lim_{n\to\infty}\lambda_{\cp}\left( K_n^{\left( j \right)} \right)=\lambda_{\bdd}\left( A_j \right)
+        \end{equation}
+        for all $j\in\left\lbrace 1,2 \right\rbrace$. Proceeding exactly as in the proof of Proposition 1.24, we find that for all $n\in\N$, we have
+        \begin{equation*}
+            K_n\subseteq A_1\cup A_2\subseteq G_n, \lambda_{\op}\left( G_n\setminus K_n \right)<\frac{2}{n},
+        \end{equation*}
+        where $K_n=K_n^{\left( 1 \right)}\cup K_n^{\left( 2 \right)}$ and $G_n=G_n^{\left( 1 \right)}\cup G_n^{\left( 2 \right)}$. By invoking Proposition 1.18 again,
+        \begin{equation}
+            \lim_{n\to\infty}\lambda_{\cp}\left( K_n \right) = \lambda_{\bdd}\left( A_1\cup A_2 \right).
+        \end{equation}
+        Now by using the hypothesis $A_1\cap A_2=\emptyset$, we note that for all $n\in\N$, $K_n^{\left( 1 \right)}\cap K_n^{\left( 2 \right)}=\emptyset$ as well, so that
+        \begin{equation*}
+            \lambda_{\cp}\left( K_n^{\left( 1 \right)}\cup K_n^{\left( 2 \right)} \right) = \lambda_{\cp}\left( K_n^{\left( 1 \right)} \right)=\lambda_{\cp}\left( K_n^{\left( 2 \right)} \right)
+        \end{equation*}
+        by using Exercise 1.9. This implies that
+        \begin{equation}
+            \lim_{n\to\infty}\lambda_{\cp}\left( K_n \right) = \lim_{n\to\infty}\lambda_{\cp}\left( K_n^{\left( 1 \right)}\cup K_n^{\left( 2 \right)} \right) = \lim_{n\to\infty}\lambda_{\cp}\left( K_n^{\left( 1 \right)} \right)+\lambda_{\cp}\left( K_n^{\left( 2 \right)} \right) = \lambda_{\bdd}\left( A_1 \right)+\lambda_{\bdd}\left( A_2 \right)
+        \end{equation}
+        by using [1.48]. Combining [1.48], [1.50] gives the desired equality.
+    \end{proof}
+
+    \subsection{Measurable Subsets of $\R$}
+    
+    We now take the step of introducing the full $\sigma$-algebra $\mM$ of (possibly unbounded) Lebesgue measurable subsets of $\R$. Recall that we examined the length-measuring function $\lambda_{\op}:\mT\to\left[ 0,\infty \right]$, and we found it to have some good properties. But, nevertheless, $\mT$ is not a $\sigma$-algebra, hence $\lambda_{\op}$ is not a \textit{positive measure} used in Lebesgue integration theory. We are now about to get the fix for that: $\mT$ will be included in $\mM$, which is a $\sigma$-algebra, and $\lambda_{\op}$ will be extended to a positive measure $\lambda:\mM\to\left[ 0,\infty \right]$.
+
+    We introduce the Lebesgue measure $\lambda:\mM\to\left[ 0,\infty \right]$ as an upgrade of the length-measuring function $\lambda_{\bdd}:\mM_{\bdd}\to\left[ 0,\infty \right)$ studied during the preceding couple of subsections. More precisely, we go as follows.
+
+    \begin{definition}{\textbf{Lebesgue Measurable} Set, \textbf{Lebesgue Measure} of a Lebesgue Measurable Set}
+        Let $M\subseteq\R$. If $M\cap A\in\mM_{\bdd}$ for all $A\in\mM_{\bdd}$, then we say $M$ is \emph{Lebesgue measurable}. We shall denote the collection of Lebesgue measurable sets by $\mM$.
+
+        For a Lebesgue measurable set $M\in\mM$, we define
+        \begin{equation*}
+            \lambda\left( M \right) = \sup_{A\in\mM_{\bdd}}\lambda_{\bdd}\left( M\cap A \right),
+        \end{equation*}
+        which we call the \emph{Lebesgue measure} of $M$.
+    \end{definition}
+
+    \np The first thing we check is that the map $\lambda:\mM\to\left[ 0,\infty \right]$ introduced in Def'n 1.16 extends of the map $\lambda_{\bdd}:\mM_{\bdd}\to\left[ 0,\infty \right)$.
+
+    \clearpage
+    \begin{prop}{}
+        $\mM\supseteq\mM_{\bdd}$.
+    \end{prop}
+
+    \begin{proof}
+        Given $M\in\mM_{\bdd}$, $M\cap A\in\mM_{\bdd}$ for all $A\in\mM_{\bdd}$ since $\mM_{\bdd}$ is a ring of sets.
+    \end{proof}
+
+    \begin{prop}{}
+        For all $M\in\mM_{\bdd}$, $\lambda\left( M \right)=\lambda_{\bdd}\left( M \right)$.
+    \end{prop}
+
+    \begin{proof}
+        Let $M\in\mM_{\bdd}$. We have to check that
+        \begin{equation}
+            \sup_{A\in\mM_{\bdd}}\lambda_{\bdd}\left( M\cap A \right) = \lambda_{\bdd}\left( M \right).
+        \end{equation}
+        We prove [1.51] by double inequality.
+
+        In view of the definition of a supremum as the least upper bound, we check that $\lambda_{\bdd}\left( M \right)$ is an upper bound for $\lambda_{\bdd}\left( M\cap A \right)$ where $A$ runs in $\mM_{\bdd}$. So let us choose $A\in\mM_{\bdd}$, for which we verify $\lambda_{\bdd}\left( M\cap A \right)\leq\lambda_{\bdd}\left( M \right)$. We look at the standard decomposition
+        \begin{equation*}
+            M = \left( M\cap A \right)\cup \left( M\setminus A \right)
+        \end{equation*}
+        where $M\cap A$ and $M\setminus A$ are disjoint. Since $M,A\in\mM_{\bdd}$ and $\mM_{\bdd}$ is a ring of sets, $M\cap A, M\setminus A\in\mM_{\bdd}$. This means that
+        \begin{equation*}
+            \lambda_{\bdd}\left( M\cap A \right)+\lambda_{\bdd}\left( M\setminus A \right) = \lambda_{\bdd}\left( M \right),
+        \end{equation*}
+        from which the inequality $\lambda_{\bdd}\left( M\cap A \right)\leq\lambda_{\bdd}\left( M \right)$ follows. 
+
+        On the other hand, by noting that $M\in\mM_{\bdd}$, we have that $\lambda_{\bdd}\left( M \right)=\lambda_{\bdd}\left( M\cap M \right) \leq \sup_{A\in\mM_{\bdd}}\lambda_{\bdd}\left( M\cap A \right)$. This proves the other inequality.
+
+        Thus [1.51] is established.
+    \end{proof}
+
+    \begin{cor}{}
+        Let $K\subseteq\R$ be compact. Then $K\in\mM$ and $\lambda\left( K \right)=\lambda_{\cp}\left( K \right)$.
+    \end{cor}	
+
+    \placeqed[See Proposition 1.27, 1.28]
+
+    \begin{exercise}{}
+        Let $A,B\in\mM_{\bdd}$ be such that $A\subseteq B$. Prove that $\lambda_{\bdd}\left( A \right)\leq\lambda_{\bdd}\left( B \right)$.
+    \end{exercise}
+
+    \begin{proof}
+        Note that
+        \begin{equation*}
+            \lambda_{\bdd}\left( B \right) = \lambda_{\bdd}\left( \left( B\setminus A \right)\cup \left( B\cap A \right) \right) = \lambda_{\bdd}\left( B\setminus A \right) + \lambda_{\bdd}\left( B\cap A \right) = \lambda_{\bdd}\left( B\setminus A \right)+\lambda_{\bdd}\left( A \right),
+        \end{equation*}
+        from where the desired inequality follows.
+    \end{proof}
+
+    \np For a \textit{bounded} open set $G$, there is no problem to get the analogue of Corollary 1.28.1. We say that $G$ belongs to $\mM_{\bdd}$ and has $\lambda_{\bdd}\left( G \right)=\lambda_{\op}\left( G \right)$, thus Propositoin 1.28 assures us that $G\in\mM$ and $\lambda\left( G \right)=\lambda_{\op}$. But we don't want to only look at bounded open sets -- the unbounded open sets would better be Lebesgue measurable too. 
+
+    Here is a criterion that simplifies a bit the verification of the condition from tne definition of Lebesgue measurability.
+
+    \begin{prop}{}
+        Let $M\subseteq\R$ such that
+        \begin{equation}
+            \forall n\in\N \left[ M\cap\left( -n,n \right)\in\mM_{\bdd}\right].
+        \end{equation}
+        Then $M\in\mM$, and its Lebesgue measure can be obtained as
+        \begin{equation}
+            \lambda\left( M \right) = \lim_{n\to\infty}\lambda_{\bdd}\left( M\cap\left( -n,n \right) \right).
+        \end{equation}
+    \end{prop}
+
+    \clearpage
+    \begin{proof}
+        We divide the argument into several claims.
+        \begin{itemize}
+            \item \textit{Claim 1. For every $A\in\mM_{\bdd}$, $M\cap A\in\mM_{\bdd}$.}
+
+                \begin{subproof}
+                    Let $A\in\mM_{\bdd}$. Using the fact that $A$ is bounded, we pick $n\in\N$ such that $A\subseteq\left( -n,n \right)$. Then $A\cap\left( -n,n \right)=A$, hence we can write
+                    \begin{equation*}
+                        M\cap A = M\cap\left( \left( -n,n \right)\cap A \right)=\left( M\cap\left( -n,n \right) \right)\cap A.
+                    \end{equation*}
+                    In this way, $M\cap A$ gets to be written as the intersection of two sets that are known to be in $\mM_{\bdd}$, namely $A$ and $M\cap\left( -n,n \right)$. Since $\mM_{\bdd}$ is closed under finite intersections, we conclude that $M\cap A\in\mM_{\bdd}$, as required.
+                \end{subproof}
+
+            \item \textit{Claim 2. The sequence $\left( \lambda_{\bdd}\left( M\cap\left( -n,n \right) \right) \right)^{\infty}_{n=1}$ is an increasing sequence of numbers in $\left[ 0,\infty \right)$.}
+
+                \begin{subproof}
+                    The statement to be checked here is that
+                    \begin{equation*}
+                        \forall n\in\N\left[ \lambda_{\bdd}\left( M\cap\left( -n,n \right) \right)\leq\lambda_{\bdd}\left( M\cap \left( -n-1,n+1 \right) \right) \right].
+                    \end{equation*}
+                    This holds simply because $M\cap\left( -n,n \right)\subseteq M\cap\left( -n-1,n+1 \right)$, and by invoking Exercise 1.10.
+                \end{subproof}
+        \end{itemize} 
+        It is an immediate consequence of Claim 2 that $\left( \lambda_{\bdd}\left( M\cap\left( -n,n \right) \right) \right)^{\infty}_{n=1}$ has a limit $l\in\left[ 0,\infty \right]$. We now show that $l=\lambda\left( M \right)$ by using double inequalities.
+        \begin{itemize}
+            \item \textit{Claim 3. $l\leq\lambda\left( M \right)$.}
+
+                \begin{subproof}
+                    In view of how $l$ is defined, it suffices to show that
+                    \begin{equation}
+                        \forall n\in\N\left[ \lambda_{\bdd}\left( M\cap\left( -n,n \right) \right)\leq\lambda\left( M \right) \right].
+                    \end{equation}
+                    The definition of $\lambda\left( M \right)$ in Def'n 1.16 ensures that $\lambda\left( M \right)\leq\lambda_{\bdd}\left( M\cap A \right)$ for all $A\in\mM_{\bdd}$. But on the left-hand side of [1.54] we have precisely a quantity $\lambda_{\bdd}\left( M\cap A \right)$ with $A=\left( -n,n \right)$.
+                \end{subproof}
+
+            \item \textit{Claim 4. $l\geq\lambda\left( M \right)$.}
+
+                \begin{subproof}
+                    In view of the definition of $\lambda\left( M \right)$ as a supremum (i.e. \textit{least} upper bound), it suffices to check that $l$ is an upper bound for those quantities. Or more precisely, it suffices to check that
+                    \begin{equation}
+                        \forall A\in\mM_{\bdd}\left[ l\geq\lambda_{\bdd}\left( M\cap A \right) \right].
+                    \end{equation}
+                    So let us fix $A\in\mM_{\bdd}$, for which we will verify that [1.55] holds. Since $A$ is bounded, there is $n\in\N$ such that $A\subseteq\left( -n,n \right)$. So then we have
+                    \begin{equation*}
+                        l\geq\lambda_{\bdd}\left( M\cap\left( -n,n \right) \right)\geq\lambda_{\bdd}\left( M\cap A \right),
+                    \end{equation*}
+                    where for the first inequality we use the fact that the limit of an increasing sequence is at least every term of the sequence and for the second inequality we invoke Exercise 1.10, in connection to the inclusion $M\cap A\subseteq M\cap\left( -n,n \right)$.
+                \end{subproof}
+        \end{itemize} 
+        Combining Claim 2, 3, 4 gives [1.53].
+    \end{proof}
+
+    \np The criterion provided by Propostiion 1.29 is very suitable for arguing that every open set $G$ is Lebesgue measurable, and that $\lambda\left( G \right)=\lambda_{\op}\left( G \right)$. But here there is a background property of $\lambda_{\op}$ that has to be mentioned. We add this to our list of such properties, and record it in the next exercise.
+
+    \begin{exercise}{}
+        Let $\left( G_{n} \right)^{\infty}_{n=1}$ be an increasing chain of open subsets of $\R$ and consider their union $G=\bigcup^{\infty}_{n=1}G_n$. Based on the facts about $\lambda_{\op}$ in Subsection 1, 2, 3, prove that $\lim_{n\to\infty}\lambda_{\op}\left( G_n \right)=\lambda_{\op}\left( G \right)$.
+    \end{exercise}
+
+    \placeqed[tl;dr]
+
+    \np Armed with Exercise 1.11, here is then our desired statement about open sets.
+
+    \clearpage
+    \begin{prop}{}
+        Let $G$ be an open subset of $\R$. Then $G\in\mM$ and $\lambda\left( G \right)=\lambda_{\op}\left( G \right)$.
+    \end{prop}
+
+    \begin{proof}
+        For all $n\in\N$, we have that $G\cap\left( -n,n \right)$ is a bounded open set, and in particular it belongs to $\mM_{\bdd}$. The hypothesis of Proposition 1.29 is thus satisfied, and the said proposition gives us that $G\in\mM$ and that
+        \begin{equation}
+            \lambda\left( G \right) = \lim_{n\to\infty}\lambda_{\bdd}\left( G\cap\left( -n,n \right) \right).
+        \end{equation}
+        We now move to proving the equality $\lambda\left( G \right)=\lambda_{\op}\left( G \right)$. Since $\lambda_{\bdd}$ extends $\lambda_{\op}$ on bounded open sets, we have $\lambda_{\bdd}\left( G\cap\left( -n,n \right) \right)=\lambda_{\op}\left( G\cap\left( -n,n \right) \right)$ for all $n\in\N$. Hence [1.56] can also be written in the form
+        \begin{equation}
+            \lambda\left( G \right) = \lim_{n\to\infty}\lambda_{\op}\left( G\cap\left( -n,n \right) \right).
+        \end{equation}
+        But the limit on the right-hand side of [1.57] is equal to $\lambda_{\op}\left( G \right)$, as we see by applying Exercise 1.11 to the increasing chain of open sets
+        \begin{equation*}
+            G\cap\left( -1,1 \right)\subseteq G\left( -2,2 \right)\subseteq\cdots
+        \end{equation*}
+        which has $\bigcup^{\infty}_{n=1}\left( G\cap\left( -n,n \right) \right)=G\cap\left( \bigcup^{\infty}_{n=1}\left( -n,n \right) \right)=G\cap\R=G$. Thus $\lambda\left( G \right)=\lambda_{\op}\left( G \right)$, as required.
+    \end{proof}
+
+    \np We now put into evidence the fact that $\mM$ is an \textit{algebra} of subsets of $\R$.
+
+    \begin{definition}{\textbf{Algebra} of Sets}
+        Let $X$ be a set. We say a collection $\mA$ of subsets of $X$ is an \emph{algebra} of subsets of $X$ if $X\in\mA$ and $\mA$ is a ring of subsets of $X$.
+    \end{definition}
+
+    \np This comes a bit short of the declared goal of proving that $\mM$ is a $\sigma$-algebra of subsets of $\R$ -- we wil lfix this shortcoming on the next subsection.
+
+    \begin{prop}{}
+        $\mM$ is an algebra of subsets of $\R$.
+    \end{prop}
+
+    \begin{proof}
+        \begin{enumerate}
+            \item Since $\emptyset,\R$ are open, $\emptyset,\R\in\mM$.
+            \item Let $M\in\mM$. Given any $A\in\mM_{\bdd}$, we can write $\left( \R\setminus M \right)\cap A = A\setminus\left( M\cap A \right)$. The set $A\setminus \left( M\cap A \right)$ is in $\lambda_{\bdd}$, since $\mM_{\bdd}$ is a ring of sets.
+
+                We thus found that $\left( \R\setminus M \right)\cap A\in\mM_{\bdd}$ for all $A\in\mM_{\bdd}$. This means that $\R\setminus M\in\mM$. 
+
+                In particular, given any $N\in\mM$, $M\setminus N = \left( \R\setminus N \right)\cap M\in\mM$ by (d).
+
+            \item Let $M_1,M_2\in\mM$. Then for all $A\in\mM_{\bdd}$,
+                \begin{equation*}
+                    \left( M_1\cup M_2 \right)\cap A = \left( M_1\cap A \right)\cup \left( M_2\cap A \right)\in\mM_{\bdd}.
+                \end{equation*}
+                This means $M_1\cup M_2\in\mM$.
+
+            \item Let $M_1,M_2\in\mM$. Then for all $A\in\mM_{\bdd}$,
+                \begin{equation*}
+                    \left( M_1\cap M_2 \right)\cap A = \left( M_1\cap A \right)\cap \left( M_2\cap A \right)\in\mM_{\bdd}.
+                \end{equation*}
+                This means $M_1\cap M_2\in\mM$.
+        \end{enumerate}
+        Since $\mM$ is a collection of subsets of $\R$ that has $\emptyset,\R$ and is closed under union and set-difference, $\mM$ is an algebra of subsets of $\R$.
+    \end{proof}
+
+    \np We noteiced that every compact subset of $\R$ belongs to $\mM$ (Corollary 1.28.1), but we did not say anything about general \textit{closed} subsets of $\R$, which may be unbounded. At this point it has, however, become clear that every closed set $F\subseteq\R$ belongs to $\mM$. Indeed, the complement $G=\R\setminus F$ is an open set, so we argue like this:
+    \begin{flalign*}
+        && & G\in\mM && \text{by Proposition 1.30} \\
+        && & \implies \R\setminus G\in\mM && \text{by Proposition 1.31} \\
+        && & \implies F\in\mM.
+    \end{flalign*}
+    Let also record the fact that the additivity property we had obtained for $\lambda_{\bdd}$ in Proposition 1.26 can be upgraded to the framework of $\lambda$ on $\mM$.
+
+    \begin{prop}{}
+        Let $M_1,M_2\in\mM$ be disjoint. Consider the union $M_1\cup M_2$, which is still in $\mM$ by Proposition 1.31. Then
+        \begin{equation}
+            \lambda\left( M_1\cup M_2 \right)=\lambda\left( M_1 \right)+\lambda\left( M_2 \right).
+        \end{equation}
+    \end{prop}
+
+    \begin{proof}
+        This is an easy application of the limit trick observed in Proposition 1.29, combined with the additivity property we already know for $\lambda_{\bdd}$. Indeed,
+        \begin{equation}
+            \forall n\in\N\left[ \left( M_1\cup M_2 \right)\cap\left( -n,n \right)=\left( M_1\cap\left( -n,n \right) \right)\cup \left( M_2\cap \left( -n,n \right) \right) \right],
+        \end{equation}
+        where $M_1\cap\left( -n,n \right)$ and $M_2\cap\left( -n,n \right)$ are two pairwise disjoint sets from $\mM_{\bdd}$. Upon applying Proposition 1.26 to this situation, we find that
+        \begin{equation}
+            \forall n\in\N\left[ \lambda_{\bdd}\left( M_1\cup M_2 \right)\cap\left( -n,n \right)=\lambda_{\bdd}\left( M_1\cap\left( -n,n \right) \right)+\lambda_{\bdd}\left( M_2\cap\left( -n,n \right) \right) \right].
+        \end{equation}
+        When we make $n\to\infty$ in [1.60], Proposition 1.29 implies [1.50], the desired equality.
+    \end{proof}
+
+    \np In order to reach our declared goal of proving that $\mM$ is a $\sigma$-algebra and that $\lambda:\mM\to\left[ 0,\infty \right]$ is a positive measure, we have to strengthen the results of Proposition 1.31, 1.32 so that they cover \textit{countable} unions, which is the topic of the next subsection.
+
+    \subsection{$\lambda$ Is a Positive Measure}
+    
+    In the preceeding subsections we introduced the collection $\mM$ of Lebesgue measurable subsets of $\R$, and for every $M\in\mM$ we defined its Lebesgue measure $\lambda\left( M \right)$ as the supremum of the lengths of all its bounded truncations:
+    \begin{equation*}
+        \lambda\left( M \right) = \sup\left\lbrace \lambda_{\bdd}\left( M\cap A \right): A\in\mM_{\bdd} \right\rbrace\in\left[ 0,\infty \right].
+    \end{equation*}
+    We saw that $\lambda\left( M \right)$ can in fact be also obtained as a plain limit:
+    \begin{equation*}
+        \lambda\left( M \right) = \lim_{n\to\infty}\lambda_{\bdd}\left( M\cap\left( -n,n \right) \right).
+    \end{equation*}
+    We also noted that $\mM$ is an algebra of subsets of $\R$, and that $\lambda$ is an additive function on $M$. This has the following consequence.
+
+    \begin{prop}{}
+        Let $M,N\in\mM$ be such that $M\subseteq N$. Then $\lambda\left( M \right)\leq\lambda\left( N \right)$.
+    \end{prop}
+
+    \begin{proof}
+        Let $M'=N\setminus M$. Then $M'\in\mM$ since $\mM$ is closed under intersection, so that the additivity of $\lambda$ implies
+        \begin{equation*}
+            \lambda\left( N \right) = \lambda\left( M' \right) + \lambda\left( M \right).
+        \end{equation*}
+        Then the fact that $\lambda$ is nonnegative implies $\lambda\left( N \right)\geq\lambda\left( M \right)$, as required.
+    \end{proof}
+
+    \clearpage
+    \np The following are what we want to show in this subsection.
+    \begin{enumerate}
+        \item We want to prove that $\mM$ is closed under countable union. This will allow us to conclude that $\mM$ is a $\sigma$-algebra.
+        \item We want to prove that if $\mC\subseteq\mM$ is a countable collection of pairwise disjoint Lebesgue measurable sets, then
+            \begin{equation*}
+                \lambda\left( \bigcup^{}_{}\mC \right) = \sum^{}_{M\in\mC}\lambda\left( M \right).
+            \end{equation*}
+            This will allow us to conclude that $\lambda$ is a positive measure.
+    \end{enumerate}
+    It turns out that the key towards obtaining the above needed properties (a) and (b) is actually lying at the preceding level of our development, where we looked at the length-measuring function $\lambda_{\bdd}:\mM_{\bdd}\to\left[ 0,\infty \right)$. So we first consider some \textit{preparations} for proving (a) and (b), which go at the level of $\mM_{\bdd}$.
+
+    \np Note that $\lambda_{\bdd}$ definitely is not closed under infinitely countable union, since we cannot control the boundedness of such a union. However, we will see that good properties can be obtained when we \textit{force} the boundedenss of the union, by putting it among our hypotheses. We start by making precise the setting that we want to use.
+
+    Throughout this subsection we fix a countable collection $\left\lbrace A_n \right\rbrace^{\infty}_{n=1}$ of pairwise disjoint sets from $\mM_{\bdd}$. We assume, moreover, there exists $r>0$ such that $A_n\subseteq\left( -r,r \right)$ for all $n\geq 1$. 
+
+    We consider the union $A=\bigcup^{\infty}_{n=1}A_n$. It is clear that $A\subseteq\left( -r,r \right)$; thus it is a bounded set, but it is not so clear whether $A\in\mM_{\bdd}$. The goal is to verify that $A\in\mM_{\bdd}$, and moreover we have the \textit{correct} value for $\lambda_{\bdd}\left( A \right)$. The key point is provided by the following lemma.
+
+    \begin{lemma}{}
+        Let $\epsilon>0$. Then there is $p_0\in\N$ such that there are compact sets $K_1,\ldots,K_{p_0}$ and an open set $U$ such that
+        \begin{enumerate}
+            \item $K_1\subseteq A_1, \ldots, K_{p_0}\subseteq A_{p_0}$;
+            \item $A\subseteq U\subseteq\left( -r,r \right)$; and
+            \item $\lambda_{\op}\left( U \right)<\epsilon+\lambda_{\cp}\left( \bigcup^{p_0}_{j=1}K_j \right)$.
+        \end{enumerate}
+    \end{lemma}
+
+    \begin{proof}
+        Every individual set $A_n$ can be approximated in the way indicated in the definition of $\mM_{\bdd}$ (Def'n 1.11): given any $\epsilon'>0$, there are a bounded open set $G_n$ containing $A_n$ and a compact set $K_n$ contained $A_n$, with
+        \begin{equation*}
+            \lambda_{\op}\left( G_n \right)-\lambda_{\cp}\left( K_n \right)<\epsilon'.
+        \end{equation*}
+        We write down a sequence of such approximations, where for each of them we use a suitable fraction $\epsilon'$ of the $\epsilon$ given in the statement. That is, for every $n\geq 1$, we find a compact set $K_n$ and a bounded open set $G_n$ such that
+        \begin{equation}
+            K_n\subseteq A_n\subseteq G_n, \lambda_{\op}\left( G_n \right)<\lambda_{\cp}\left( K_n \right)+\frac{\epsilon}{2^{n+1}}.
+        \end{equation}
+        By replacing $G_n$ with $G_n\cap\left( -r,r \right)$ (which is still a bounded open set containing $A_n$, and has $\lambda\left( G_n\cap\left( -r,r \right) \right)\leq\lambda\left( G_n \right)$) we may assume that $G_n\subseteq\left( -r,r \right)$ for all $n\geq 1$. 
+
+        We then split the rest of the proof into few claims.
+        \begin{itemize}
+            \item \textit{Claim 1. Let $U=\bigcup^{\infty}_{n=1}G_n$. Then $U$ is an open subset of $\R$ such that $A\subseteq U\subseteq\left( -r,r \right)$.}
+
+                \begin{subproof}
+                    $U$ is open as a union of open sets and $U\subseteq\left( -r,r \right)$ since each $G_n$ is a subset of $\left( -r,r \right)$. The inclusion $A\subseteq U$ is obtained by noting that $A_n\subseteq G_n$ for all $n\in\N$.
+                \end{subproof}
+
+            \item \textit{Claim 2. For every $p\in\N$, consider the open set $U_p=\bigcup^{p}_{n=1}G_n\subseteq U$. Then there is $p_0\in\N$ such that
+                    \begin{equation*}
+                        \lambda_{\op}\left( U_{p_0} \right)>\lambda_{\op}\left( U \right)-\frac{\epsilon}{2}.
+                    \end{equation*}
+                }
+
+                \begin{subproof}
+                    It is immediate that $U_1\subseteq U_2\subseteq\cdots$ and that $\bigcup^{\infty}_{n=1}U_n=U$. We are dealing with an increasing chain of open sets, so by Exercise 1.11 we have
+                    \begin{equation}
+                        \lim_{n\to\infty}\lambda_{\op}\left( U_n \right) = \lambda_{\op}\left( U \right).
+                    \end{equation}
+                    In [1.62], the limit $\lambda_{\op}\left( U \right)$ is finite -- indeed, from $U\subseteq\left( -r,r \right)$ it follows that $\lambda_{\op}\left( U \right)\leq 2r$. So then by the definition of limits there is a $p_0\in\N$ such that the claim holds.
+                \end{subproof}
+        \end{itemize} 
+        It remains to show that the compact sets $K_1,\ldots,K_{p_0}$ and the open set $U$ satisfy the conditions listed in the statement. Note that (a), (b) are satisfied due to how $K_1,\ldots,K_{p_0}$ and $U$ were constructed. We are left to verify that our \textit{splitting} of $\epsilon$ was made judiciously enough in order to imply that (c) holds.
+
+        Consider Lemma 1.23, which was used in the proof that $\mM_{\bdd}$ is a ring of sets. We apply this lemma in connection to the inclusions $K_1\subseteq G_1,\ldots,K_{p_0}\subseteq G_{p_0}$ to find that
+        \begin{equation}
+            \lambda_{\op}\left( \left( \bigcup^{p_0}_{n=1}G_n \right)\setminus\left( \bigcup^{p_0}_{n=1}K_n \right) \right)\leq \sum^{p_0}_{n=1} \lambda_{\op}\left( G_n\setminus K_n \right).
+        \end{equation}
+        On the right-hand side of [1.63], every $\lambda_{\op}\left( G_n\setminus K_n \right)$ can be replaced with $\lambda_{\op}\left( G_n \right)-\lambda_{\cp}\left( K_n \right)$, and is therefore less than $\frac{\epsilon}{2^{n+1}}$, deu to how $K_n$ and $G_n$ were chosen at the beginning of the proof. So then [1.63] can be continued with
+        \begin{equation}
+            \lambda_{\op}\left( \left( \bigcup^{p_0}_{n=1}G_n \right)\setminus\left( \bigcup^{p_0}_{n=1}K_n \right) \right)\leq \sum^{p_0}_{n=1} \frac{\epsilon}{2^{n=1}} < \frac{\epsilon}{2}.
+        \end{equation}
+        Now, on the left-hand side of [1.64], we have $\bigcup^{p_0}_{n=1}G_n = U_{p_0}$ and we can replace $\lambda_{\op}\left( U_{p_0}\setminus \bigcup^{p_0}_{n=1}K_n \right)$ with $\lambda_{\op}\left( U_{p_0} \right)-\lambda_{\cp}\left( \bigcup^{p_0}_{n=1}K_n \right)$. So [1.64] amounts to $\lambda_{\op}\left( U_{p_0} \right)-\lambda_{\cp}\left( \bigcup^{p_0}_{n=1}K_n \right)$, and we ahve thus obtained the inequality
+        \begin{equation}
+            \lambda_{\op}\left( U_{p_0} \right) < \lambda_{\cp}\left( \bigcup^{p_0}_{n=1}K_n \right)+\frac{\epsilon}{2}.
+        \end{equation}
+        Finally, by putting together [1.65] with the inequality from Claim 2, we find that
+        \begin{equation*}
+            \lambda_{\op}\left( U \right)<\lambda_{\op}\left( U_{p_0} \right)+\frac{\epsilon}{2}<\lambda_{\cp}\left( \bigcup^{p_0}_{n=1}K_n \right)+\epsilon,
+        \end{equation*}
+        which is what the condition (c) was asking for.
+    \end{proof}
+
+    \begin{prop}{}
+        $A\in\mM_{\bdd}$ with
+        \begin{equation*}
+            \lambda_{\bdd}\left( A \right)=\sum^{\infty}_{n=1}\lambda_{\bdd}\left( A_n \right).
+        \end{equation*}
+    \end{prop}
+
+    \begin{proof}
+        To show that $A\in\mM_{\bdd}$, we have to prove that for every $\epsilon>0$, there are a compact set $K$ and a bounded open set $G$ such that $K\subseteq A\subseteq G$ and that $\lambda_{\op}\left( G \right)<\lambda_{\cp}\left( K \right)+\epsilon$. This is found by using Lemma 1.34: in the notation of the lemma, the needed open set is $U$ and the needed compact set is $\bigcup^{p_0}_{n=1}K_n$. This verifies $A\in\mM_{\bdd}$.
+
+        Now, denote $l=\sum^{\infty}_{n=1}\lambda_{\bdd}\left( A_n \right)$. We then have
+        \begin{equation*}
+            l = \lim_{p\to\infty} \sum^{p}_{n=1}\lambda_{\bdd}\left( A_n \right) = \sup_{p\in\N} \sum^{p}_{n=1}\lambda_{\bdd}\left( A_n \right),
+        \end{equation*}
+        hence the inequality $\lambda_{\bdd}\left( A \right)\geq l$ will follow if we can prove that
+        \begin{equation}
+            \forall p\in\N \left[ \lambda_{\bdd}\left( A \right)\geq \sum^{p}_{n=1}\lambda_{\bdd}\left( A_n \right)\right].
+        \end{equation}
+        But the inequality [1.66] follows easily from known properties of $\lambda_{\bdd}$:
+        \begin{flalign*}
+            && \sum^{p}_{n=1}\lambda_{\bdd}\left( A_n \right) & = \lambda_{\bdd}\left( \bigcup^{p}_{n=1}A_n \right) && \text{since $\lambda_{\bdd}$ is additive}\\ 
+            && & \leq \lambda_{\bdd}\left( A \right) && \text{since $\lambda_{\bdd}$ is increasing}
+        \end{flalign*}
+        for all $p\in\N$. This concludes that $\lambda_{\bdd}\left( A \right)\geq l$.
+
+        It remains to show that $\lambda_{\bdd}\left( A \right)\leq l$. For this inequality, it is convenient to resort to the trick of \textit{leaving an $\epsilon$ of a room}: it is sufficient to prove that
+        \begin{equation}
+            \forall\epsilon>0\left[ \lambda_{\bdd}\left( A \right)<l+\epsilon \right].
+        \end{equation}
+        We then fix $\epsilon>0$, for which we verify $\lambda_{\bdd}\left( A \right)<l+\epsilon$. In connection to this $\epsilon$, we appeal to Lemma 1.34, and we take in the compact sets $K_1,\ldots,K_{p_0}$ and the bounded open set $U$ provided by the lemma.
+        \begin{flalign*}
+            && \lambda_{\bdd}\left( A \right) & \leq \lambda_{\bdd}\left( U \right) && \text{since $\lambda_{\bdd}$ is increasing} \\
+            && & = \lambda_{\op}\left( U \right) && \\
+            && & < \epsilon + \lambda_{\cp}\left( K_1\cup\cdots\cup K_{p_0} \right) && \text{by definition of $K_1,\ldots,K_{p_0}$} \\
+            && & = \epsilon + \lambda_{\bdd}\left( K_1\cup\cdots\cup K_{p_0} \right) && \\
+            && & = \epsilon + \sum^{p_0}_{n=1}\lambda_{\bdd}\left( K_n \right) && \text{since $\lambda_{\bdd}$ is additive} && \\
+            && & \leq \epsilon + \sum^{p_0}_{n=1} \lambda_{\bdd}\left( A_n \right) && \text{since $\lambda_{\bdd}$ is increasing} && \\
+            && & = \epsilon+l.
+        \end{flalign*}
+
+        We have now verified both inequalities $\lambda_{\bdd}\left( A \right)\geq l$ and $\lambda_{\bdd}\left( A \right)\leq l$, and this concludes the proof.
+    \end{proof}
+
+    \np We now return to our goal of proving that $\mM$ is a $\sigma$-algebra of subsets of $\R$.
+
+    \begin{lemma}{}
+        Let $\left\lbrace M_n \right\rbrace^{\infty}_{n=1}$ be a collection of pairwise disjoint sets from $\mM$. Then $\bigcup^{\infty}_{n=1}M_n\in\mM$.
+    \end{lemma}
+
+    \begin{proof}
+        Denote $M=\bigcup^{\infty}_{n=1}M_n$. In order to prove that $M\in\mM$, it suffices to check that (by Proposition 1.29)
+        \begin{equation}
+            \forall k\in\N\left[ M\cap\left( -k,k \right)\in\mM_{\bdd} \right].
+        \end{equation}
+        We thus fix $k\in\N$, for which we verify that $M\cap\left( -k,k \right)\in\mM_{\bdd}$.
+
+        Define $A_n=M_n\cap\left( -k,k \right)$ for all $n\in\N$. Every $A_n$ belongs to $\mM_{\bdd}$ and is obviously contained in $\left( -k,k \right)$. Moreover, for distinct indices $m,n\in\N$ we have that $A_m\cap A_n=\emptyset$, due to the fact that $A_m\subseteq M_m, A_n\subseteq A_n$, and we have as hypothesis that $M_m\cap M_n=\emptyset$. It follows that Proposition 1.35 can be applied to the collection $\left\lbrace A_n \right\rbrace^{\infty}_{n=1}$: it gives us the conclusion that $\bigcup^{\infty}_{n=1}A_n\in\mM_{\bdd}$. But
+        \begin{equation*}
+            \bigcup^{\infty}_{n=1}A_n = \bigcup^{\infty}_{n=1} \left( M_n\cap \left( -k,k \right) \right) = \left( -k,k \right)\cap \bigcup^{\infty}_{n=1}M_n = M\cap\left( -k,k \right).
+        \end{equation*}
+        So we have obtained that $M\cap\left( -k,k \right)\in\mM_{\bdd}$, as required.
+    \end{proof}
+
+    \begin{prop}{}
+        Let $\left\lbrace M_n \right\rbrace^{\infty}_{n=1}$ be a collection of sets in $\mM$. Then $\bigcup^{\infty}_{n=1}M_n\in\mM$.
+    \end{prop}
+
+    \begin{proof}
+        Unlike what we had in Lemma 1.36, here there is no assumption that the sets $M_n$ would be pairwise disjoint. But we can nevertheless fall back on Lemma 1.36 by using the following trick: consider the collection $\left\lbrace M_n' \right\rbrace^{\infty}_{n=1}$ defined by
+        \begin{equation*}
+            M_n' = M_n\setminus \bigcup^{n-1}_{m=1}M_m
+        \end{equation*}
+        for all $n\in\N$. The fact that $\mM$ is an algebra of sets ensures that $M_n'\in\mM$ for all $n\in\N$. On the other hand, basic verifications involving set operations show us that $\bigcup^{\infty}_{n=1}M_n'=\bigcup^{\infty}_{n=1}M_n$ and that $M_n'\cap M_m'=\emptyset$ for all distinct $m,n\in\N$. Thus Lemma 1.36 applies to the collection $\left\lbrace M_n' \right\rbrace^{\infty}_{n=1}$, and concludes that $\bigcup^{\infty}_{n=1}M_n=\bigcup^{\infty}_{n=1}M_n'\in\mM$.
+    \end{proof}
+
+    \begin{cor}{}
+        $\mM$ is a $\sigma$-algebra of subsets of $\R$.
+    \end{cor}	
+
+    \placeqed[See Proposition 1.31, 1.37]
+
+    \np Lastly, we are going to show that $\lambda$ is a positive measure.
+
+    \begin{lemma}{}
+        Let $\left\lbrace M_n \right\rbrace^{\infty}_{n=1}$ be a collection of pairwise disjoint sets from $\mM$ and let $l=\sum^{\infty}_{n=1}\lambda\left( M_n \right)\in\left[ 0,\infty \right]$. On the other hand, consider the set $M=\bigcup^{\infty}_{n=1}M_n$, which is still in $\mM$. We have the inequality
+        \begin{equation}
+            l\leq\lambda\left( M \right).
+        \end{equation}
+    \end{lemma}
+
+    \begin{proof}
+        Let us write explicitly that
+        \begin{equation*}
+            l = \lim_{p\to\infty} \sum^{p}_{n=1}\lambda\left( M_n \right) = \sup_{p\in\N} \sum^{p}_{n=1}\lambda\left( M_n \right).
+        \end{equation*}
+        Since the supremum is a \textit{least} upper bound, we see that [1.67] will follow as soon as we prove that
+        \begin{equation}
+            \forall p\in\N\left[ \sum^{p}_{n=1}\lambda\left( M_n \right)\leq\lambda\left( M \right) \right].
+        \end{equation}
+        And indeed, for each $p\in\N$, the inequality in [1.68] follows from Proposition 1.33. 
+    \end{proof}
+
+    \begin{lemma}{}
+        Consider the setting from Lemma 1.38. We also have:
+        \begin{equation}
+            l\geq\lambda\left( M \right).
+        \end{equation}
+    \end{lemma}
+
+    \begin{proof}
+        Since $\lambda\left( M \right)=\lim_{k\to\infty}\lambda_{\bdd}\left( M\cap\left( -k,k \right) \right)$, it suffices to prove that
+        \begin{equation}
+            \forall k\in\N\left[ \lambda_{\bdd}\left( M\cap\left( -k,k \right) \right)\leq l \right].
+        \end{equation}
+        We fix $k\in\N$ for which we verify that $\lambda_{\bdd}\left( M\cap\left( -k,k \right) \right)\leq l$ holds. 
+
+        Let us resort again to the tick of the \textit{$\epsilon$ of room}. For the $k$ that we fixed, the desired inequality will follow if we can show that
+        \begin{equation}
+            \forall\epsilon>0\left[ \lambda_{\bdd}\left( M\cap\left( -k,k \right) \right)-\epsilon<l \right].
+        \end{equation}
+        Hence, in addition to the fixed $k$, let us also fix $\epsilon>0$, and go for the proof of [1.73].
+
+        Observe that $M\cap\left( -k,k \right)=\left( -k,k \right)\cap\bigcup^{\infty}_{n=1}M_n = \bigcup^{\infty}_{n=1}\left( M_n\cap\left( -k,k \right) \right)$, where the sets $M_n\cap\left( -k,k \right)$ are in $\mM_{\bdd}$, pairwise disjoint, and contained in $\left( -k,k \right)$. Hence we are precisely in the situation where Proposition 1.35 can be applied. The said proposition tells us that
+        \begin{equation}
+            \lambda_{\bdd}\left( M\cap\left( -k,k \right) \right)=\sum^{\infty}_{n=1}\lambda_{\bdd}\left( M_n\cap\left( -k,k \right) \right)=\lim_{p\to\infty} \sum^{p}_{n=1}\lambda_{\bdd}\left( M_n\cap\left( -k,k \right) \right).
+        \end{equation}
+        In [1.74] we are dealing with a finite limit of an increasing sequence in $\left[ 0,\infty \right)$, so there is no problem to find a $p_0\in\N$ such that
+        \begin{equation*}
+            \sum^{p_0}_{n=1}\lambda_{\bdd}\left( M_n\cap\left( -k,k \right) \right)>\lambda\left( M\cap\left( -k,k \right) \right)-\epsilon.
+        \end{equation*}
+        Using this $p_0$ we write that
+        \begin{equation*}
+            l = \sum^{\infty}_{n=1}\lambda\left( M_n \right)\geq\sum^{p_0}_{n=1} \geq \sum^{p_0}_{n=1}\lambda_{\bdd}\left( M_n\cap\left( -k,k \right) \right)>\lambda\left( M\cap\left( -k,k \right) \right)-\epsilon,
+        \end{equation*}
+        and this leads to the inequality [1.73] we had been left to prove.
+    \end{proof}
+
+    \begin{cor}{}
+        The map $\lambda:\mM\to\left[ 0,\infty \right]$ is $\sigma$-additive, and thus a positive measure.
+    \end{cor}	
+
+    \placeqed[See Corollary 1.37.1, Lemma 1.38, 1.39]
 
 
 

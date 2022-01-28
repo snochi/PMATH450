@@ -1,0 +1,210 @@
+\documentclass[pmath450]{subfiles}
+
+%% ========================================================
+%% document
+
+\begin{document}
+
+    \section{Measurable Functions}
+
+    \subsection{Non-measurable Sets}
+
+    As a result of the effort made in the preceding section, we now have in hand
+    \begin{enumerate}
+        \item a collection $\mM$ of \textit{Lebesgue measurable} subsets of $\R$; and
+        \item a length-measuring map $\lambda:\mM\to\left[ 0,\infty \right]$, called \textit{Lebesgue measure}.
+    \end{enumerate}
+    Moreover, we checked that $\mM$ is a $\sigma$-algebra and that $\lambda$ is a positive measure. In connection to these general notions, here is a bit of additional terminology which is part of the measure and integration theory.
+
+    \begin{definition}{\textbf{Measurable Space}, \textbf{Measure Space}}
+        Let $X$ be a nonempty set.
+        \begin{enumerate}
+            \item When $\mA$ is a $\sigma$-algebra on $X$, we call the pair $\left( X,\mA \right)$ a \emph{measurable space}.
+            \item If $\mu:\mA\to\left[ 0,\infty \right]$ is a positive measure in addition, then we say $\left( X,\mA,\mu \right)$ is a \emph{measure space}.
+        \end{enumerate}
+    \end{definition}
+
+    \np In the terms set by Def'n 2.1, we have that $\left( \R,\mM \right)$ is a measurable space and that $\left( \R,\mM,\lambda \right)$ is a measure space.
+
+    The notion of measurable space offers a convenient framework for talking about \textit{measurable functions}, which is pretty much the topic of this section. Then the notion of measure space offers a convenient framework for discussing about \textit{integrable functions}, which is what we will do when we are done with setting the basics for measurable functions.
+
+    \np Knowing that we are dealing with a $\sigma$-algebra is, without a doubt, a rather comfortable thing for what we do. Indeed, since all the open sets are min $\mM$, we know that we can start from open sets and we can do any kind of set operations we want, involving \textit{countably many} sets at a time, and the set $M$ resulting out of these operations will still be in $\mM$, so we can fearlessly talk about the length (i.e. Lebesgue measure) $\lambda\left( M \right)$. Thus $\lambda\left( M \right)$ can surely be considered when $M$ is a closed set, then also for sets that are of type $G_{\delta}$, of type $F_{\sigma}$, and so on.
+
+    In connection to the above, here are the two questions that we consider in this and next subsections.
+
+    \begin{itemize}
+        \item \textit{Question 1. Couldn't it actually be that \textbf{every} subset of $\R$ is Lebesgue measurable?}
+    \end{itemize} 
+    The answer will be negative. But, exactly because the $\sigma$-algebra $\mM$ is so comfortable to deal with, it's not that easy to produce an example of non-measurable set. 
+    \begin{itemize}
+        \item \textit{Question 2. Is $\mM$ the \textbf{minimal} $\sigma$-algebra of subsets of $\R$ that we get by starting from open sets?}
+    \end{itemize} 
+    Once again, the answer is negative. There is a slightly smaller $\sigma$-algebra, called the \textit{Borel $\sigma$-algebra}, which has this minimality property. This is discussed in the next subsection.
+
+    \np The next lemma shows the blueprint we will use in order to produce an example of non-measurable set. 
+
+    \begin{definition}{\textbf{Translation} of a Set}
+        Let $S\subseteq\R, x\in\R$. We define the \emph{translation} of $S$ by $x$, denoted as $S+x$, by
+        \begin{equation*}
+            S+x = \left\lbrace s+x: s\in S \right\rbrace.
+        \end{equation*}
+    \end{definition}
+
+    \begin{exercise}{}
+        Let $M\in\mM$. Then for all $x\in\R$, show that $M+x\in\mM$ and that $\lambda\left( M+x \right)=\lambda\left( M \right)$.
+    \end{exercise}
+
+    \placeqed[Assignment]
+
+    \begin{lemma}{A Criterion for Non-measurability}
+        Let $S\subseteq\left( 0,1 \right)$. If there exists a countable set $\left\lbrace q_n \right\rbrace^{\infty}_{n=1}$ of numbers in $\left( -1,1 \right)$ such that
+        \begin{equation}
+            \forall m,n\in\N\left[ m\neq n\implies \left( S+q_m \right)\cap \left( S+q_n \right)=\emptyset \right],
+        \end{equation}
+        and that
+        \begin{equation}
+            \bigcup^{\infty}_{n=1}\left( S+q_n \right)\supseteq\left( 0,1 \right),
+        \end{equation}
+        then $S\notin\mM$.
+    \end{lemma}
+
+    \begin{proof}
+        Let us assume, for contradiction, that $S\notin\mM$, and let us denote $\lambda\left( S \right)=c\in\left[ 0,\infty \right]$. Since it is given that, we can actually be sure that
+        \begin{equation*}
+            c = \lambda\left( S \right)\leq\lambda\left( \left( 0,1 \right) \right)=1,
+        \end{equation*}
+        hence that $c\in\left[ 0,1 \right]$.
+
+        For every $n\in\N$, denote $M_n=S+q_n$. Sicne we assumed that $S\in\mM$, it follows that every $M_n$ is in $\mM$, with $\lambda\left( M_n \right)=\lambda\left( S \right)=c$, in view of Exercise 2.1. Another observation about the sets $M-n$ is that we have
+        \begin{equation}
+            \forall n\in\N\left[ M_n\subseteq\left( -1,2 \right) \right].
+        \end{equation}
+        This is because $S\subseteq\left( 0,1 \right)$ and each $q_n$ is in $\left( -1,1 \right)$.
+
+        Now consider the set $M=\bigcup^{\infty}_{n=1}M_n$. Then $m\in\mM$, because the $M_n$'s are from $\mM$, and $\mM$ is a $\sigma$-algebra. From [2.3] it follows that $M\subseteq\left( -1,2 \right)$ and, on the other hand, the hypothesis [2.2] of the lemam says precisely that $M\supseteq\left( 0,1 \right)$. This yields some estimates on the Lebesgue measure of $M$: sicne $\left( 0,1 \right)\subseteq M\subseteq\left( -1,2 \right)$, we have $\lambda\left( \left( 0,1 \right) \right)\leq\lambda\left( M \right)\leq\lambda\left( \left( -1,2 \right) \right)$. We thus find that
+        \begin{equation}
+            1\leq\lambda\left( M \right)\leq 3.
+        \end{equation}
+
+        We are very close to a contradiction. Indeed, recall that $M=\bigcup^{\infty}_{n=1}M_n$, where the hypothesis [2.1] tells us that $M_m\cap M_n=\emptyset$ for all distinct $n,m\in\N$. So then by the $\sigma$-additivity of the Lebesgue measure implies that
+        \begin{equation*}
+            \lambda\left( M \right)= \sum^{\infty}_{n=1}\lambda\left( M_n \right) = \lim_{p\to\infty}\sum^{p}_{n=1}\lambda\left( M_n \right)=\lim_{p\to\infty}pc =
+            \begin{cases} 
+                0 &\text{if $c=0$}\\
+                \infty &\text{if $0<c\leq 1$}
+            \end{cases}.
+        \end{equation*}
+        Either way, this contradicts with the estimate [2.4]. 
+
+        Thus we conclude that $S$ is not Lebesgue measurable.
+    \end{proof}
+
+    \np Now, of course, we have to ask: \textit{how do we find a set $S$ and a set of numbers $\left\lbrace q_n \right\rbrace^{\infty}_{n=1}$ which satisfy the hypothesis of Lemma 2.1?} It turns out that we can arrange that to happen in connection to an equivalence relation, which we define on $\left( 0,1 \right)$, as follows. For all $x,y\in\left( 0,1 \right)$, write
+    \begin{equation*}
+        x\sim y \iff x-y\in\Q.
+    \end{equation*}
+    Verifying $\sim$ is an equivalence relation amounts to the fact that $\left( \Q,+ \right)$ is an additive group.
+
+    Now, having an equivalence relation $\sim$ \textit{splits} $\left( 0,1 \right)$ into a disjoint union of equivalence classes with respect to $\sim$:
+    \begin{equation*}
+        \left( 0,1 \right) = \bigcup^{}_{i\in I}E_i
+    \end{equation*}
+    with $E_i\cap E_j=\emptyset$ for all distinct $i,j\in I$. 
+
+    From every equivalence class $E_i$, we \textit{choose} a point, say $s_i\in E_i$, by the axiom of choice. Let us define
+    \begin{equation*}
+        S = \left\lbrace s_i: i\in I \right\rbrace,
+    \end{equation*}
+    which indeed is a subset of $\left( 0,1 \right)$.
+
+    \begin{prop}{}
+        Consider $S$ defiend as above and let $\left( q_{n} \right)^{\infty}_{n=1}$ be an enumeration of the rational numbers in $\left( -1,1 \right)$. Then $S$ and $\left\lbrace q_n \right\rbrace^{\infty}_{n=1}$ satisfy the hypotheses of Lemma 2.1. 
+    \end{prop}
+
+    \begin{proof}
+        We must check that the conditions [2.1] and [2.2] from Lemma 2.1 are satisfied.
+
+        For [2.1], we pick some distinct indices $n,m\in\N$, for which we verify that $\left( S+q_m \right)\cap\left( S+q_n \right)=\emptyset$.
+
+        Assume for contradiction that there is $x\in\left( S+q_m \right)\cap\left( S+q_n \right)$. Then there are $s',s''\in S$ such that $x=s'+q_m=s''+q_n$. In view of the definition of $S$, these numbers $s'$ and $s''$ have to be of the form $s_i$ and $s_j$ for some $i,j\in I$, respectively. We thus have equalities
+        \begin{equation}
+            x = s_i+q_m = s_j+q_n.
+        \end{equation}
+        But from [2.5], combined how the elements of $S$ were selected to represent the equivalence classes of $\sim$, it follows that
+        \begin{equation*}
+            s_i-s_j = q_n-q_m \in\Q\implies s_i\sim s_j\implies i=j.
+        \end{equation*}
+        So then $s_i=s_j$, and from the equality $s_i+q_m=s_j+q_n$ we infur that $q_m=q_n$, which is a contradiction.
+
+        We thus conclude that $\left( S+q_m \right)\cap\left( S+q_n \right)=\emptyset$.
+
+        For [2.2], inview of what $\bigcup^{\infty}_{n=1}\left( S+q_n \right)$ means, the verification that needs to be done here is this: for all $x\in\left( 0,1 \right)$, there exists $i\in I$ such that $x\in E_i$. In the equivalence class $E_i$ we have selected representative $s_i$; so then, it is the case that $x-s_i\in\Q$. We also observe that, since $x,s_i\in\left( 0,1 \right)$, we have $-1<x-s_i<1$. Thus $x-s_i\in\Q\cap\left( -1,1 \right)$, and there there exists an $n\in\N$ such that $x-s_i=q_N$. This $n$ is exactly what we need, since $x-s_i=q_n$ implies $x=s_i+q_n\in S+q_n$.
+    \end{proof}
+
+    \np As a consequence to Proposition 2.2, $S$ is not Lebesgue measurable.
+
+    \subsection{Generating $\sigma$-algebras}
+    
+    In this subsection, we discuss a more general method to produce $\sigma$-algebras: start with an arbitrary collection $\mC$ of subsets of a set $X$, and consider \textit{the smallest possible $\sigma$-algebra which contains $\mC$.} We then use this to construct the said Borel $\sigma$-algebra.
+
+    The precise description of what the above means appears in Proposition 2.4. Before stating that proposition, we record, in the next lemma, a simple observation coming out directly from the definition of a $\sigma$-algebra. 
+
+    \begin{lemma}{}
+        Let $X$ be a nonempty set and let $\left\lbrace \mA_i \right\rbrace^{}_{i\in I}$ be a family of $\sigma$-algebras of subsets of $X$. Denote $\mA=\bigcap^{}_{i\in I}\mA_i$. Then $\mA$ is a $\sigma$-algebra.
+    \end{lemma}
+
+    \begin{proof}
+        We verify three things.
+        \begin{enumerate}
+            \item Since $\emptyset,X\in\mA_i$ for all $i\in I$, $\emptyset,X\in\mA$.
+            \item Let $N,M\in\mA$. Then for all $i\in I$, $N,M\in\mA_i$, so that $N\setminus M\in\mA_i$.
+            \item Let $\mC$ be a countable collection of sets in $\mA$. Then $\mC\subseteq\mA_i$ for all $i\in I$, so that $\bigcup^{}_{}\mC\in\mA_i$. Thus $\bigcup^{}_{}\mC\in\mA$.
+        \end{enumerate}
+    \end{proof}
+
+    \begin{proof}
+    \end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
