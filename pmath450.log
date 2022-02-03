@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2021.3.9)  27 JAN 2022 21:00
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2021.3.9)  2 FEB 2022 02:53
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1136,7 +1136,7 @@ LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
 (Font)                  TU/MinionPro(2)/m/it --> TU/MinionPro(2)/bx/it on input line 69.
 \symOperators:m:n=\mathgroup15
-LaTeX Info: Redefining \emph on input line 90.
+LaTeX Info: Redefining \emph on input line 96.
 \c@defncounter=\count300
 \c@stcounter=\count301
 \c@corcounter=\count302
@@ -1147,26 +1147,26 @@ LaTeX Info: Redefining \emph on input line 90.
 ) (./pmath450.aux)
 \openout1 = `pmath450.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 20.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 20.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 25.
+LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 25.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 25.
  (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    ... okay on input line 25.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
@@ -1245,14 +1245,37 @@ Underfull \hbox (badness 10000) in paragraph at lines 656--661
 
 ] [30] [31] [32]) (./2.tex [33] [34
 
-] [35]) [36] (./pmath450.aux) ) 
+] [35]
+Underfull \hbox (badness 10000) in paragraph at lines 192--196
+
+ []
+
+[36]
+Underfull \hbox (badness 10000) in paragraph at lines 237--242
+
+ []
+
+[37] [38] [39
+
+]
+LaTeX Font Info:    Try loading font information for U+euf on input line 413.
+ (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/ueuf.fd
+File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
+) [40] [41] [42
+
+]
+Overfull \hbox (0.75269pt too wide) in paragraph at lines 548--549
+\TU/ITCKabelStd(0)/m/n/10 Proof. \TU/MinionPro(2)/m/n/10.95 Let $[] \U/MnSymbolD/m/n/10.95 ^^@ [] \U/MnSymbolC/m/n/10.95 ^^U ^^E ^^U [] \U/MnSymbolD/m/n/10.95 > []$\TU/MinionPro(2)/m/n/10.95 . Since each $[][]$ is $[] \OMX/MnSymbolE/m/n/10.95 ~ [][]$\TU/MinionPro(2)/m/n/10.95 -measurable, it follows that $[][] [] \U/MnSymbolD/m/n/10.95 >
+ []
+
+) [43] (./pmath450.aux) ) 
 Here is how much of TeX's memory you used:
- 26690 strings out of 494945
- 542143 string characters out of 6177498
- 602607 words of memory out of 5000000
- 30055 multiletter control sequences out of 15000+600000
- 553514 words of font info for 161 fonts, out of 8000000 for 9000
+ 26768 strings out of 494945
+ 542733 string characters out of 6177498
+ 603223 words of memory out of 5000000
+ 30126 multiletter control sequences out of 15000+600000
+ 554466 words of font info for 166 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  62i,15n,76p,10456b,498s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on pmath450.pdf (36 pages).
+Output written on pmath450.pdf (43 pages).
