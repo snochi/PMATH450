@@ -593,6 +593,230 @@
 
     \placeqed[tl;dr]
 
+    \subsection{Convergence Properties of $\bor\left( X,\R \right)$}
+
+    \np We now turn to properties of $\bor\left( X,\R \right)$ which have to do with \textit{pointwise convergnece} of sequences of functions. These will turn out to be  as good as well: the space $\bor\left( X,\R \right)$ is closed under pointwise convergence of sequences of functions, and we also have some variations of this fact where instead of a limit we play with $\inf$ and $\sup$ constructions.
+
+    \np The main result of this subsection is in Proposition 2.16, which can be viewed as yet another tool for establishing measurability of a function. We will not give the proof of Proposition 2.16 right away; it will be a particular case of the more general Proposition 2.18.
+
+    \begin{prop}{}
+        Let $\left( X,\mA \right)$ be a measurable space and let $f:X\to\R$. If there exists $\left( f_{n} \right)^{\infty}_{n=1}\in\bor\left( X,\R \right)^{\N}$ such that $\lim_{n\to\infty}f_n = f$ pointwise, then $f\in\bor\left( X,\R \right)$.
+    \end{prop}
+
+    \placeqed[This Is a Particular Instance of Proposition 2.18]
+
+    \begin{example}{}
+        Here is an example of how Proposition 2.16 can be used. It goes in the framework of the measurable space $\left( \R,\mB_{\R} \right)$ -- the space $\bor\left( X,\R \right)$ of this example is thus $\bor\left( \R,\R \right)$.
+        
+        We consider the following statement: \textit{for all differentiable $f:\R\to\R$, $f'\in\bor\left( \R,\R \right)$.}
+
+        From calculus, we know that derivatives can sometimes be \textit{nasty} (e.g. a derivative need not be continuous). The above statement says that $f'$ cannot be \textit{that} nasty as to not be a Borel function.
+
+        In order to prove that $f'\in\bor\left( \R,\R \right)$, we write it as a pointwise limit
+        \begin{equation*}
+            f'\left( t \right) = \lim_{n\to\infty} f_n\left( t \right)
+        \end{equation*}
+        where $f_n:\R\to\R$ is defined by putting
+        \begin{equation*}
+            f_n\left( t \right) = \frac{f\left( t+\frac{1}{n} \right)-f\left( t \right)}{\frac{1}{n}}
+        \end{equation*}
+        for all $t\in\R$. Then note that each $f_n$ is continuous, so $f_n\in\bor\left( \R,\R \right)$. Thus $f'\in\bor\left( \R,\R \right)$ as a pointwise limit of $f_n$.
+    \end{example}
+
+    \rruleline
+
+    \np Now let us start to work towards proving that Proposition 2.16 is indeed available. We will actually establish a more refined version of this statement, which instead of $\lim$ calls in for a $\limsup$ or a $\liminf$. On the way towards that, we first get a version which is merely using $\sup$ or $\inf$.
+
+    \begin{prop}{}
+        Let $\left( X,\mA \right)$ be a measurable space.
+        \begin{enumerate}
+            \item Let $f:X\to\R$. If there exists $\left( f_{n} \right)^{\infty}_{n=1}\in\bor\left( X,\R \right)^{\N}$ such that
+                \begin{equation*}
+                    \sup_{n\in\N}f_n\left( x \right) = f\left( x \right)
+                \end{equation*}
+                for all $x\in X$, then $f\in\bor\left( X,\R \right)$.
+            \item Let $g:X\to\R$. If there exists $\left( g_{n} \right)^{\infty}_{n=1}\in\bor\left( X,\R \right)^{\N}$ such that
+                \begin{equation*}
+                    \inf_{n\in\N}g_n\left( x \right) = g\left( x \right)
+                \end{equation*}
+                for all $x\in X$, then $g\in\bor\left( X,\R \right)$.
+        \end{enumerate}
+    \end{prop}
+
+    \begin{proof}
+        We make use of the criterion
+        \begin{equation*}
+            \forall t\in\R\left[ f^{-1}\left( \left( -\infty,t \right] \right)\in\mA \right]\implies f\in\bor\left( X,\R \right)
+        \end{equation*}
+        provided in Exercise 2.5.\footnotemark[1] To that end, fix $t\in\R$. In connection to $t$, for every $x\in X$ we have
+        \begin{equation*}
+            f\left( x \right)\leq t\iff\sup_{n\in\N}f_n\left( x \right)\leq t\iff\forall n\in\N\left[ f_n\left( x \right)\leq t \right].
+        \end{equation*}
+        This implies we have
+        \begin{equation}
+            f^{-1}\left( \left( -\infty,t \right] \right) = \bigcap^{\infty}_{n=1} f_n^{-1}\left( \left( -\infty,t \right] \right).
+        \end{equation}
+        For every $n\in\N$, $f_n^{-1}\left( \left( -\infty,t \right] \right)\in\mA$, since it is the preimage of the interval $\left( -\infty,t \right]\in\mB_{\R}$ by the $\mA /\mB_{\R}$-measurable functoin $f_n$. This means that $f^{-1}\left( \left( -\infty,t \right] \right)$ is written as a countable intersection of sets from $\mA$ in [2.8]. It follows that $f^{-1}\left( \left( -\infty,t \right] \right)\in\mA$, as required. This completes (a).
+
+        For (b), it suffices to note that 
+        \begin{equation*}
+            g\left( x \right) = -\sup_{n\in\N}-g_n\left( x \right)
+        \end{equation*}
+        for all $x\in X$, and use the result that $\bor\left( X,\R \right)$ is closed under linear combinations.
+        
+        \noindent
+        \begin{minipage}{\textwidth}
+            \footnotetext[1]{In fact, it suffices to check $f^{-1}\left( \left( -\infty,t \right] \right)\in\mA$ for all $t\in\Q$ only.}
+        \end{minipage}
+    \end{proof}
+
+    \np The next (general) version of Proposition 2.16 will rely on the notions of $\limsup$ and $\liminf$ for a sequence of real numbers -- let us recall what those are.
+
+    Let $\left( t_{n} \right)^{\infty}_{n=1}\in\R^{\N}$, and let us consider the set of all limit points of this sequence. That is, we look $P\subseteq\R\cup\left\lbrace \pm\infty \right\rbrace$ defined as follows
+    \begin{equation*}
+        P = \left\lbrace l\in\R\cup\left\lbrace \pm\infty \right\rbrace: \exists n_1,n_2,\ldots\in\N\left[ n_1<n_2<\cdots, \lim_{k\to\infty}t_{n_k} = l \right] \right\rbrace.
+    \end{equation*}
+    It can be proved that $P$ has a largest element and a smallest element. We define
+    \begin{equation*}
+        \limsup_{n\to\infty}t_n = \max\left( P \right), \liminf_{n\to\infty}t_n = \min\left( P \right).
+    \end{equation*}
+
+    An alternative way to reach the quantity $\max\left( P \right)$ is described as follows. Consider
+    \begin{equation*}
+        \beta_k = \sup_{n\geq k}t_n
+    \end{equation*}
+    for all $k\in\N$. Then $\left( \beta_{k} \right)^{\infty}_{k=1}$ is a decreasing sequence of real numbers, and it can be proved that
+    \begin{equation*}
+        \max\left( P \right) = \lim_{k\to\infty}\beta_k = \inf_{k\in\N}\beta_k.
+    \end{equation*}
+    Therefore, we obtain
+    \begin{equation}
+        \limsup_{n\to\infty} t_n = \inf_{k\geq 1}\sup_{n\ge qk}t_n.
+    \end{equation}
+    Similarly
+    \begin{equation}
+        \liminf_{n\to\infty}t_n = \sup_{k\geq 1}\inf_{n\geq k}\left( t_n \right).
+    \end{equation}
+
+    \begin{prop}{}
+        Let $\left( X,\mA \right)$ be a measurable space.
+        \begin{enumerate}
+            \item Let $f:X\to\R$. If there exists $\left( f_{n} \right)^{\infty}_{n=1}\in\bor\left( X,\R \right)^{\N}$ such that
+                \begin{equation*}
+                    \limsup_{n\to\infty}f_n\left( x \right) = f\left( x \right)
+                \end{equation*}
+                for all $x\in X$, then $f\in\bor\left( X,\R \right)$.
+            \item Let $g:X\to\R$. If there exists $\left( g_{n} \right)^{\infty}_{n=1}\in\bor\left( X,\R \right)^{\N}$ such that
+                \begin{equation*}
+                    \liminf_{n\to\infty}g_n\left( x \right) = g\left( x \right)
+                \end{equation*}
+                for all $x\in X$, then $g\in\bor\left( X,\R \right)$.
+        \end{enumerate}
+    \end{prop}
+
+    \begin{proof}
+        We start by noticing that, for every $x\in X$, the sequence $\left( f_{n}\left( x \right) \right)^{\infty}_{n=1}$ is bounded above. Indeed, if that was not the case, then we would be able to extract a subsequence of $\left( f_{n}\left( x \right) \right)^{\infty}_{n=1}$ which converges to $\infty$, and this would imply $\limsup_{n\to\infty}f_n\left( x \right)=\infty$, in contradiction with the given hypothesis that $\limsup_{n\to\infty}f_n\left( x \right)=f\left( x \right)\in\R$. So it makes sense to define $h_1:X\to\R$ by putting
+        \begin{equation*}
+            h_1\left( x \right) = \sup_{n\in\N}f_n\left( x \right)
+        \end{equation*}
+        for all $x\in X$. Moreover, Proposition 2.17 applies here, to give us that $h_1\in\bor\left( X,\R \right)$.
+
+        We can similarly define, for all $k\geq 2$,
+        \begin{equation*}
+            h_x\left( x \right) = \sup_{n\geq k}f_n\left( x \right)
+        \end{equation*}
+        for all $x\in X$. Again, each $h_k\in\bor\left( X,\R \right)$.
+
+        We note that, for all $x\in X$, the sequence $\left( h_{k}\left( x \right) \right)^{\infty}_{k=1}$ is decreasing, with
+        \begin{equation*}
+            \inf_{k\in\N}h_k\left( x \right) = \inf_{k\geq 1}\sup_{n\geq k}f_n\left( x \right) = \limsup_{n\to\infty}f_n\left( x \right)=f\left( x \right),
+        \end{equation*}
+        where the second equality sign we invoked [2.9].
+
+        This means $f$ is presented as the (pointwise) infimum of the sequence of functions $\left( n_{k} \right)^{\infty}_{k=1}$. Since $h_k\in\bor\left( X,\R \right)$ for all $k\geq 1$, we can invoke Proposition 2.17 to conclude that $f\in\bor\left( X,\R \right)$. This marks the end of (a).
+
+        For (b), we once again use the trick $f=-g, f_n=-g_n$ for all $N\in\N$.
+    \end{proof}
+
+    \np At this moment, we have also settled the Proposition 2.16 stated at the beginning of this subsection. Indeed, let $f$ and $\left( f_{n} \right)^{\infty}_{n=1}$ be as in Proposition 2.16. Then for every $x\in X$, $f\left( x \right)$ is the unique limit poitn of $\left( f_{n}\left( x \right) \right)^{\infty}_{n=1}$, so that
+    \begin{equation*}
+        \limsup_{n\to\infty}f_n\left( x \right)=\liminf_{n\to\infty}f_n\left( x \right)=f\left( x \right).
+    \end{equation*}
+    By invoking Proposition 2.18, we conclude that $f\in\bor\left( X,\R \right)$, as required.
+
+    \np The statement of Proposition 2.18 was arranged in such a way that all the $\limsup$'s and $\liminf$'s considered there are forced to be finite. This is because there is a rescribed function $f$, taking finite values, which is arranged to be the $\limsup$ or $\liminf$ in question. Let us also have a look at what happens when we don't prescribe such an $f$.
+
+    So let $\left( X,\mA \right)$ be a measurable space, and let $\left( f_{n} \right)^{\infty}_{n=1}\in\bor\left( X,\R \right)^{\N}$. Say we want to look at the $\limsup$ of $\left( f_{n} \right)^{\infty}_{n=1}$. It is obvious how we should define it, only that now we have to deal with the possibly nonempty sets
+    \begin{equation*}
+        A_+ = \left\lbrace x\in X: \limsup_{n\to\infty}f_n\left( x \right)=0 \right\rbrace, A_- = \left\lbrace x\in X:\limsup_{n\to\infty}f_n\left( x \right)=-\infty \right\rbrace.
+    \end{equation*}
+
+    \begin{exercise}{}
+        Prove that $A_+,A_-\in\mA$.
+    \end{exercise}
+
+    \placeqed[tl;dr]
+
+    \np Suppose next that we have decided to ignore what happens for the ponits $x\in A_+\cup A_-$, and we go ahead to define $f:X\to\R$ by putting
+    \begin{equation*}
+        f\left( x \right) = 
+        \begin{cases} 0 & \text{if $x\in A_+\cup A_-$} \\ \limsup_{n\to\infty}f_n\left( x \right) & \text{otherwise} \end{cases}
+    \end{equation*}
+    for all $x\in X$.
+
+    \begin{exercise}{}
+        Prove that $f\in\bor\left( X,\R \right)$.
+    \end{exercise}
+
+    \placeqed[tl;dr]
+
+    \np Upon solving it, we will thus have proved a result about \textit{$\bor\left( X,\R \right)$ being well-behaved under $\limsup$}, where we don't prescribe a target function $f$ which is to appear as $\limsup$.
+
+    \clearpage
+    \subsection{Simple Functions}
+
+    Let $\left( X,\mA \right)$ be a measurable space throughout this subsection.
+
+    \begin{definition}{\textbf{Simple} Function}
+        We say $f\in\bor\left( X,\R \right)$ is \emph{simple} when it takes finitely many values (i.e. $\left| f\left( X \right) \right|<\left| \N \right|$). We write $\bors\left( X,\R \right)$ to denote the set of simple functions in $\bor\left( X,\R \right)$.
+    \end{definition}
+
+    \np One has a natural way of writing a general function $f\in\bor\left( X,\R \right)$ as a pointwise limit of functions from $\bors\left( X,\R \right)$. For convenience, we will focus here on the case when $f$ only takes values in $\left[ 0,\infty \right)$. The procedure for finding functions in $\bors\left( X,\R \right)$ which approximate $f$ can be thought of as a special way of \textit{binning the values of $f$}.
+    
+    More precisely, suppose we are given a function $f\in\bor\left( X,\R \right)$ such that $f\left( x \right)\geq 0$ for all $x\in X$. For all $n\in\N$, let us use the name \textit{$n$-th binning} of $f$ for $f_n:X\to\R$ defined as follows:
+    \begin{equation*}
+        f_n\left( x \right) =
+        \begin{cases} 
+            n & \text{if $f\left( x \right)\geq n$} \\
+            \frac{k-1}{2^n} & \text{otherwise}
+        \end{cases}
+    \end{equation*}
+    for all $n\in\N$, where, in case $f\left( x \right)<n$, $k$ is the unique element of $\left\lbrace 1,\ldots,n 2^n \right\rbrace$ such that $\frac{k-1}{2^n}\leq f\left( x \right)<\frac{k}{2^n}$.
+
+    \begin{prop}{}
+        Let $f\in\bor\left( X,\R \right)$ and let $\left( f_{n} \right)^{\infty}_{n=1}$ be defined as above. Then
+        \begin{enumerate}
+            \item for all $n\in\N$, $f_n\in\bors\left( X,\R \right)$; 
+            \item for all $n\in\N$, $f_n\leq f_{n+1}$;\footnotemark[1]
+            \item for all $x\in X$, $f_n\left( x \right)\nearrow f\left( x \right)$.\footnotemark[2]
+        \end{enumerate}
+        
+        \noindent
+        \begin{minipage}{\textwidth}
+            \footnotetext[1]{We write $f\leq g$ for $f,g:X\to\R$ whenever $f\left( x \right)\leq g\left( x \right)$ for all $x\in\R$.}
+            \footnotetext[2]{We write $f_n\left( x \right)\nearrow f\left( x \right)$ whenever $\left( f_{n}\left( x \right) \right)^{\infty}_{n=1}$ is an \textit{increasing sequence that converges to $f\left( x \right)$.}}
+        \end{minipage}
+    \end{prop}
+
+    \placeqed[Exercise]
+
+    \np A salient detail which is sure to appear during the verifications is this: 
+    \begin{equation*}
+        \forall x\in X\exists n_0\in\N\forall n\geq n_0 \left[ f\left( x \right)-\frac{1}{2^n}\leq f_n\left( x \right)\leq f\left( x \right) \right],
+    \end{equation*}
+    from where (c) of Proposition 2.19 follows.
+
+
 
 
 

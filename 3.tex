@@ -1,0 +1,853 @@
+\documentclass[pmath450]{subfiles}
+
+%% ========================================================
+%% document
+
+\begin{document}
+
+    \section{Lebesgue Integration}
+    
+    \subsection{Lebesgue Integration of Nonnegative Simple Borel Functions}
+
+    The preceding section devoted to the space of functions $\bor\left( X,\R \right)$ have prepared us for taking on the notion of \textit{integral} for functions in that space. 
+    
+    The construction of the Lebesgure works like a charm in the general framework of a \textit{measure space}, a triple $\left( X,\mA,\mu \right)$ where $X$ is a nonempty set, $\mA$ is a $\sigma$-algebra of subsets of $X$, and $\mu:\mA\to\left[ 0,\infty \right]$ is a positive measure. Our primary measure space of interest is $\left( \R,\mB,\lambda \right)$, where $\mB$ is the Borel $\sigma$-algebra of subsets of $\R$ and $\lambda:\mB\to\left[ 0,\infty \right]$ is the Lebesgue measure. But it comes at no cost, and is in fact more transparent, if we develop the Lebesgure integral for a general measure space $\left( X,\mA,\mu \right)$.
+
+    So for the next few subsectsions we will stick to the $\left( X,\mA,\mu \right)$ framework. Thus, fix a measure space $\left( X,\mA,\mu \right)$ throughout.
+
+    \np Recall that $\mu$ is \textit{finite sub-additive}:
+    \begin{equation*}
+        \forall A_1,\ldots,A_k\in\mA\left[ \mu\left( \bigcup^{k}_{j=1}A_j \right) \leq \sum^{k}_{j=1}\mu\left( A_j \right) \right].
+    \end{equation*}
+
+    \np We would like to extend the sub-additivity to countable unions, and also record the good behavior of $\mu$ with respect to increasing or decreasing chains of sets in $\mA$.
+
+    \begin{prop}{}
+        \vspace{-11pt}
+        \begin{enumerate}
+            \item Let $\left( A_{n} \right)^{\infty}_{n=1}\in\mA^{\N}$ be an increasing chain. Then
+                \begin{equation*}
+                    \mu\left( \bigcup^{\infty}_{n=1}A_n \right) = \lim_{n\to\infty}\mu\left( A_n \right)\in\left[ 0,\infty \right].\eqno{\text{\textit{continuity along increasing chain}}}
+                \end{equation*}
+            \item Let $\left( B_{n} \right)^{\infty}_{n=1}\in\mA^{\N}$ be a decreasing chain such that $\mu\left( B_1 \right)<\infty$. Then
+                \begin{equation*}
+                    \mu\left( \bigcap^{\infty}_{n=1}B_n \right) = \lim_{n\to\infty}\mu\left( B_n \right)\in\left[ 0,\infty \right). \eqno{\text{\textit{continuity along decreasing chain}}}
+                \end{equation*}
+            \item Let $\mC\subseteq\mA$ be countable. Then
+                \begin{equation*}
+                    \mu\left( \bigcup\mC \right) = \sum^{}_{C\in\mC}\mu\left( C \right). \eqno{\text{\textit{countable sub-additivity}}}
+                \end{equation*}
+        \end{enumerate}
+    \end{prop}
+
+    \begin{proof}
+        \begin{enumerate}
+            \item Let
+                \begin{equation*}
+                    D_n = A_n\setminus A_{n-1}
+                \end{equation*}
+                (with $A_0=\emptyset$) for all $n\in\N$. Then for all $n\in\N$, $D_n\in\mA$, as $\mA$ is closed under set-difference. It is moreover immediate that $D_n$'s are pairwise disjoint. Hence by the $\sigma$-additivity of $\mu$, we have
+                \begin{equation*}
+                    \mu\left( \bigcup^{\infty}_{n=1}D_n \right) = \sum^{\infty}_{n=1}\mu\left( D_n \right).
+                \end{equation*}
+                But the (finite) additivity of $\mu$ can be invoked as well, to obtain
+                \begin{equation*}
+                    \forall k\in\N\left[ \mu\left( \bigcup^{k}_{n=1}D_n \right)=\sum^{k}_{n=1}\mu\left( D_n \right) \right].
+                \end{equation*}
+                By definition, $A_k=\bigcup^{k}_{n=1}D_n$ for all $k\in\N$, so that $\bigcup^{\infty}_{n=1}D_n=\bigcup^{\infty}_{n=1}A_n$. We can therefore write
+                \begin{equation*}
+                    \mu\left( \bigcup^{\infty}_{n=1}A_n \right) = \mu\left( \bigcup^{\infty}_{n=1}D_n \right) = \sum^{\infty}_{n=1}\mu\left( D_n \right) = \lim_{k\to\infty}\sum^{k}_{n=1}\mu\left( D_n \right) = \lim_{k\to\infty}\mu\left( \bigcup^{k}_{n=1}D_n \right)=\lim_{k\to\infty}\mu\left( A_k \right).
+                \end{equation*}
+
+            \item The idea of the proof is to \textit{subtract all the $B_n$'s out of $B_1$.} We will be able to handle the behavior of $\mu$ under these set-differences, due to the hypothesis that each $\mu\left( B_n \right)$ is a finite number (so that we can safely perform differences $\mu\left( B_1 \right)-\mu\left( B_n \right)$ without running into $\infty-\infty$).
+
+                To be precise, for all $n\in\N$, let
+                \begin{equation*}
+                    A_n = B_1\setminus B_n.
+                \end{equation*}
+                It is immediate that $\left( A_{n} \right)^{\infty}_{n=1}$ is an increasing chain of sets in $\mA$, with
+                \begin{equation*}
+                    \bigcup^{\infty}_{n=1}A_n = \bigcup^{\infty}_{n=1}\left( B_1\setminus B_n \right) = B_1\setminus \left( \bigcap^{\infty}_{n=1}B_n \right).
+                \end{equation*}
+                Hence the continuity along increasing chain tells us that
+                \begin{equation}
+                    \lim_{n\to\infty}\mu\left( A_n \right) = \mu\left( B_1\setminus\left( \bigcap^{\infty}_{n=1}B_n \right) \right).
+                \end{equation}
+                For every $n\in\N$, the way how $A_n$ was defined implies that we have $A_n\cup B_n=B_1$ with $A_n\cap B_n=\emptyset$. This in turn implies $\mu\left( A_n \right)+\mu\left( B-n \right)=\mu\left( B_1 \right)$, leading to the formula
+                \begin{equation*}
+                    \mu\left( A_n \right)=\mu\left( B_1 \right)-\mu\left( B_n \right).
+                \end{equation*}
+                We again remark that the above quantity is well-defined since we assumed $\mu\left( B_1 \right)<\infty$. Likewise, $\mu\left( B_1\setminus \left( \bigcap^{\infty}_{n=1}B_n \right) \right)=\mu\left( B_1 \right)-\mu\left( \bigcap^{\infty}_{n=1}B_n \right)$, which makes the limit from [3.1] take the form
+                \begin{equation}
+                    \lim_{n\to\infty}\mu\left( B_1 \right)-\mu\left( B_n \right) = \mu\left( B_1 \right)-\mu\left( \bigcap^{\infty}_{n=1}B_n \right).
+                \end{equation}
+                From [3.2], some straightforward work with finite limits of convergent sequencces leads to the desired formula.
+
+            \item Since we know $\mu$ is finite-additive, we may assume $\mC$ is countable; say $\mC=\left\lbrace C_n \right\rbrace^{\infty}_{n=1}$. 
+
+                Let us denote $C = \bigcup^{\infty}_{n=1}C_n$ and $\gamma=\sum^{\infty}_{n=1}\mu\left( C_n \right)$. Then it suffices to check $\mu\left( C \right)\leq\gamma$. In order to do so, we will work with
+                \begin{equation*}
+                    A_n = \bigcup^{n}_{k=1}C_k,
+                \end{equation*}
+                defined for all $n\in\N$. It is immediate that $\left( A_{n} \right)^{\infty}_{n=1}$ is an increasing chain of sets from $\mA$, with $\bigcup^{\infty}_{n=1}A_n=\bigcup^{\infty}_{n=1}C_n=C$. Hence
+                \begin{equation}
+                    \mu\left( C \right) = \mu\left( \bigcup^{\infty}_{n=1}A_n \right) = \lim_{n\to\infty}\mu\left( A_n \right),
+                \end{equation}
+                where at the second equality sign we invoked the continuity of $\mu$ along increasing chain. In view of [3.3], we see that the desired inequality $\mu\left( C \right)\leq\gamma$ will follow if we can verify that $\mu\left( A_n \right)\leq\gamma$ for all $n\in\N$.
+
+                Indeed, for any $n\in\N$, we can write
+                \begin{equation*}
+                    \mu\left( A_n \right)=\mu\left( \bigcup^{n}_{k=1}C_k \right) \leq \sum^{n}_{k=1}\mu\left( C_k \right) \leq \sum^{\infty}_{k=1}\mu\left( C_k \right)=\gamma.
+                \end{equation*}
+                Thus we see that $\mu\left( C \right)\leq\gamma$, as required.
+        \end{enumerate}
+    \end{proof}
+
+    \np We are now good to go on integration. Since the Lebesgue integral is such an important notion, we will take time to build it, and will introduce it in the guise of a progressive construction of functionals defined on some subsets of the space of functions $\bor\left( X,\R \right)$. For this time, we consider only those are \textit{simple} and \textit{nonnegative}.
+
+    \begin{notation}{$\borplus\left( X,\R \right),\borpluss\left( X,\R \right)$}
+        Let us denote
+        \begin{equation*}
+            \borplus\left( X,\R \right) = \left\lbrace f\in\bor\left( X,\R \right): \forall x\in X\left[ f\left( x \right)\geq 0 \right] \right\rbrace,
+        \end{equation*}
+        the set of nonnegative Borel functions. We then denote
+        \begin{equation*}
+            \borpluss\left( X,\R \right) = \bors\left( X,\R \right)\cap\borplus\left( X,\R \right),
+        \end{equation*}
+        the set of simple nonnegative Borel functions.
+    \end{notation}
+
+    \np We found that $\bor\left( X,\R \right)$ is a unital algebra and a lattice. It is immediate that $\bors\left( X,\R \right)$ is both a unital subalgebra and a sublattice of $\bor\left( X,\R \right)$. 
+
+    The subset $\borplus\left( X,\R \right)$ is not a subspace of $\bor\left( X,\R \right)$, but it is obvious that we nevertheless have
+    \begin{equation*}
+        \alpha f+\beta g \in \borplus\left( X,\R \right)
+    \end{equation*}
+    for all $f,g\in\borplus\left( X,\R \right), \alpha,\beta\in\left[ 0,\infty \right)$ and also that $\borplus\left( X,\R \right)$ is closed under multiplication and is a sublattice of $\bor\left( X,\R \right)$. These closure properties of $\borplus\left( X,\R \right)$ are passed alongg to $\borpluss\left( X,\R \right)$ as well.
+
+    As a matter of notation, let us use the following to denote the zero vector of $\bor\left( X,\R \right)$.
+
+    \begin{notation}{$\underline{0}$}
+        We will write $\underline{0}$ to denote the zero vector of $\bor\left( X,\R \right)$. That is, $\underline{0}:X\to\R$ is defined by
+        \begin{equation*}
+            \underline{0}\left( x \right) = 0
+        \end{equation*}
+        for all $x\in X$.
+    \end{notation}
+
+    \np We are now ready to introduce the map $\lpluss:\borpluss\left( X,\R \right)\to\left[ 0,\infty \right]$ which is our first stint at integration.
+
+    \begin{notation}{$\lpluss$}
+        We define $\lpluss:\borpluss\left( X,\R \right)\to\left[ 0,\infty \right]$ as follows. Given any $f\in\borpluss\left( X,\R \right)$, we consider $\alpha_1,\ldots,\alpha_p$, with $\alpha_1<\cdots<\alpha_p$, the complete list of values assumed by $f$ and
+        \begin{equation*}
+            A_i = f^{-1}\left( \alpha_i \right)
+        \end{equation*}
+        for all $i\in\left\lbrace 1,\ldots,p \right\rbrace$. We then put
+        \begin{equation}
+            \lpluss\left( f \right) = \sum^{p}_{i=1}\alpha_i\mu\left( A_i \right)\in\left[ 0,\infty \right].
+        \end{equation}
+    \end{notation}
+
+    \np In order for the formula [3.4] used to define $\lpluss\left( f \right)$ makes sense, we need to make some clarifications.
+    \begin{enumerate}
+        \item Each $A_i$ is the preimage of $\left\lbrace \alpha_i \right\rbrace$, a Borel set, under a $\mA /\mB_{\R}$-measurable function, so $\mu\left( A_i \right)$ is well-defined.
+
+        \item If, for some $i\in\left\lbrace 1,\ldots,p \right\rbrace$, $\alpha_i>0$ and $\mu\left( A_i \right)=\infty$, then we have $\alpha_i\mu\left( A_i \right)=\infty$, leading to the conclusion that $\lpluss\left( f \right)=\infty$.
+
+        \item In case $\alpha_i=0,\mu\left( A_i \right)=\infty$ for some $i\in\left\lbrace 1,\ldots,p \right\rbrace$ (in fact, this can only happen for $i=1$), we use the following convention:
+            \begin{equation*}
+                0\cdot\infty = 0.
+            \end{equation*}
+            A clear test-case for the above discussion:
+            \begin{equation*}
+                \lpluss\left( \underline{0} \right) = 0\mu\left( X \right) = 0,
+            \end{equation*}
+            holding no matter what $\mu\left( X \right)$ is.
+    \end{enumerate}
+
+    \begin{definition}{\textbf{Indicator Function} of a Subset}
+        Let $A\subseteq X$. We define the \emph{indicator function} of $A$, denoted as $\chi_A$, by
+        \begin{equation*}
+            \chi_A\left( x \right) =
+            \begin{cases} 
+                1 & \text{if $x\in A$} \\
+                0 & \text{if $x\notin A$}
+            \end{cases}
+        \end{equation*}
+        for all $x\in X$.
+    \end{definition}
+
+    \begin{example}{Integration of Indicator Functions}
+        Let $A\in\mA$. Then it is immediate that $\chi_A\in\borpluss\left( X,\R \right)$, since a preimage $\chi_A^{-1}\left( S \right)$ is one of $\emptyset, A$ for all $S\subseteq\R$. In this special case, [3.4] gives that
+        \begin{equation}
+            \lpluss\left( \chi_A \right) = \mu\left( A \right),
+        \end{equation}
+        the Lebesgue measure of $A$.
+    \end{example}
+
+    \rruleline
+
+    \np In some sense, one can say that the definition of \textit{$\lpluss$ goes by pushing to linear combinations} in the above equation [3.5]. More precisely, given $f\in\borpluss\left( X,\R \right)$ which takes values $\alpha_1,\ldots,\alpha_p$, it is then immediately checked that we have
+    \begin{equation*}
+        f = \sum^{p}_{i=1}\alpha_i\chi_{f^{-1}\left( \left\lbrace \alpha_i \right\rbrace \right)}.
+    \end{equation*}
+    Hence the formula [2.4] defining $\lpluss\left( f \right)$ can be read as
+    \begin{equation*}
+        \lpluss\left( f \right) = \sum^{p}_{i=1}\alpha_i\lpluss\left( \chi_{f^{-1}\left( \left\lbrace \alpha_i \right\rbrace \right)} \right).
+    \end{equation*}
+
+    \np Here are some more basic properties of $\lpluss$.
+
+    \begin{exercise}{Positive Homogeneity of $\lpluss$}
+        Prove that
+        \begin{equation*}
+            \lpluss\left( \alpha f \right) = \alpha\lpluss\left( f \right)
+        \end{equation*}
+        for every $\alpha\in\left[ 0,\infty \right),f\in\borpluss\left( X,\R \right)$.
+    \end{exercise}
+
+    \rruleline
+
+    \np We next want to show that $\lpluss$ has nice behavior under addition. To that end, it is useful to note, in the next lemma, a slight rephrasing of how $\lpluss$ was defined.
+
+    \begin{lemma}{}
+        Let $f\in\borpluss\left( X,\R \right)$. If there exist $\gamma_1,\ldots,\gamma_r$ such that $\left\lbrace f^{-1}\left( \gamma_j \right) \right\rbrace^{r}_{j=1}$ is a partition of $X$, then
+        \begin{equation*}
+            \lpluss\left( f \right) = \sum^{r}_{j=1} \gamma_j\mu\left( f^{-1}\left( \gamma_j \right) \right).
+        \end{equation*}
+    \end{lemma}
+
+    \begin{proof}[Proof Sketch]
+        Let $C_j = f^{-1}\left( \gamma_j \right)$ for all $J\in\left\lbrace 1,\ldots,r \right\rbrace$.
+
+        We have to show that
+        \begin{equation}
+            \sum^{r}_{j=1}\gamma_j\mu\left( f^{-1}\left( \gamma_j \right) \right) = \sum^{p}_{i=1}\alpha_i \mu\left( A_i \right),
+        \end{equation}
+        where $\alpha_1<\cdots<\alpha_p$ are the distinct values taken by $f$ and $A_i = f^{-1}\left( \alpha_i \right)$ for all $i\in\left\lbrace 1,\ldots,p \right\rbrace$.
+
+        When we compare the two sides of the above equation [2.6], we see that they only differ in the respect that, some of $f^{-1}\left( \gamma_j \right)$'s may be empty and the numbers $\gamma_1,\ldots,\gamma_r$ may not be distinct. So then what we have to do is to remove the $f^{-1}\left( \gamma_j \right)$'s that are empty and put together the $\gamma_j$'s that are equal to each other -- when that is done, the left-hand side of [2.6] will be converted precisely into the right-hand side of the equation, with every $A_i$ appearing as a disjoint union of $f^{-1}\left( \gamma_j \right)$'s.
+    \end{proof}
+
+    \begin{prop}{Additivity of $\lpluss$}
+        For every $f,g\in\borpluss\left( X,\R \right)$,
+        \begin{equation*}
+            \lpluss\left( f+g \right) = \lpluss\left( f \right)+\lpluss\left( g \right).
+        \end{equation*}
+    \end{prop}
+
+    \begin{proof}
+        Let $\alpha_1,\ldots,\alpha_p$ be the values assumed by $f$, with $\alpha_1<\cdots<\alpha_p$, and let $A_i=f^{-1}\left( \alpha_i \right)$ for all $i\in\left\lbrace 1,\ldots,p \right\rbrace$. Let $\beta_1,\ldots,\beta_q\in\R, B_1,\ldots,B_q$ be defined in an analogous way. Consider
+        \begin{equation*}
+            C_{i,j} = A_i\cap B_j
+        \end{equation*}
+        and
+        \begin{equation*}
+            \gamma_{i,j} = \alpha_i+\beta_j
+        \end{equation*}
+        for all $i\in\left\lbrace 1,\ldots,p \right\rbrace,j\in\left\lbrace 1,\ldots,q \right\rbrace$. Then $C_{i,j} = \left( f+g \right)^{-1}\left( \gamma_{i,j} \right)$ for all $1,\ldots,p$, So by Lemma 3.2,
+        \begin{equation*}
+            \lpluss\left( f+g \right) = \sum^{}_{1\leq i\leq p, 1\leq j\leq q} \gamma_{i,j}\mu\left( C_{i,j} \right).
+        \end{equation*}
+        Upon replacing the $\gamma_{i,j}$ and $C_{i,j}$ from the formulas defining them, we get
+        \begin{equation}
+            \lpluss\left( f+g \right) = \sum^{}_{1\leq i\leq p, 1\leq j\leq q} \left( \alpha_i+\beta_j \right)\mu\left( A_i\cap B_j \right) = \sum^{p}_{i=1}\alpha_i\sum^{q}_{j=1}\mu\left( A_i\cap B_j \right) + \sum^{q}_{j=1}\beta_j\sum^{p}_{i=1}\mu\left( A_i\cap B_j \right).
+        \end{equation}
+        But for every $i\in\left\lbrace 1\ldots,p \right\rbrace$, $A_i\cap B_1,\ldots,A_i\cap B_q$ form a partition of $A_i$, so by the additivity of $\mu$,
+        \begin{equation*}
+            \sum^{q}_{j=1}\mu\left( A_i\cap B_j \right)=\mu\left( A_i \right).
+        \end{equation*}
+        In a similar manner, we see that
+        \begin{equation*}
+            \sum^{p}_{i=1}\mu\left( A_i\cap B_j \right)=\mu\left( B_j \right)
+        \end{equation*}
+        for all $j\in\left\lbrace 1,\ldots,q \right\rbrace$. Thus [3.7] becomes
+        \begin{equation*}
+            \lpluss\left( f+g \right) = \sum^{p}_{i=1}\alpha_i\mu\left( A_i \right) + \sum^{q}_{j=1}\beta_j\mu\left( B_j \right) = \lpluss\left( f \right)+\lpluss\left( g \right),
+        \end{equation*}
+        which is what we intended to show.
+    \end{proof}
+
+    \np There is a natural partial order $\leq$ on $\bor\left( X,\R \right)$ introduced by declaring that, for every $f,g\in\bor\left( X,\R \right)$, we have
+    \begin{equation*}
+        f\leq g \iff \forall x\in X\left[ f\left( x \right)\leq g\left( x \right) \right].
+    \end{equation*}
+    The reason for mentioning $\leq$ is that we observe the following immediate consequence of Proposition 3.3.
+
+    \begin{cor}{$\lpluss$ Is Increasing}
+        Let $f,g\in\borplus\left( X,\R \right)$. If $f\leq g$, then $\lpluss\left( f \right)\leq\lpluss\left( g \right)$.
+    \end{cor}	
+
+    \begin{proof}
+        Let $h=g-f$. Then $h\in\bors\left( X,\R \right)$ since $\bors\left( X,\R \right)$ is a vector subspace of $\bor\left( X,\R \right)$, and $h\in\borplus\left( X,\R \right)$ due to the hypothesis that $f\leq g$. This means $h\in\borpluss\left( X,\R \right)$ such that $h+f=g$. By applying Proposition 3.3 to this situation, we find that
+        \begin{equation*}
+            \lpluss\left( g \right)=\lpluss\left( f \right)+\lpluss\left( h \right)\geq\lpluss\left( f \right),
+        \end{equation*}
+        as required.
+    \end{proof}
+
+    \subsection{Lebesgue Integration of Nonnegative Borel Functions}
+    
+    In this subsectoin we do the upgrade from $\lpluss:\borpluss\left( X,\R \right)\to\left[ 0,\infty \right]$ to $\lplus:\borplus\left( X,\R \right)\to\left[ 0,\infty \right]$. The main idea is to \textit{take a $\sup$.}
+
+    We will have to adjust this notion a bit, so that we use it in connection to $\left[ 0,\infty \right]$. We wil. thus work with the supremum $\sup\left( S \right)$ of a nonempty set $S\subseteq\left[ 0,\infty \right]$, where the equality $\sup\left( S \right)=\infty$ means that either $\infty\in S$ or that $S$ is an unbounded subset of $\left[ 0,\infty \right)$.
+
+    That being said, we proceed as follows.
+
+    \begin{notation}{$\lplus\left( f \right)$}
+        Let $f\in\borplus\left( X,\R \right)$. We define
+        \begin{equation}
+            \lplus\left( f \right) = \sup\left\lbrace \lplus\left( u \right): u\in\borpluss\left( X,\R \right),u\leq f \right\rbrace.
+        \end{equation}
+    \end{notation}
+
+    \np The set appearing in [3.8] is nonempty, as $\underline{0}\leq f$ for any $f\in\borplus\left( X,\R \right)$.
+
+    \begin{prop}{$\lplus$ Extends $\lpluss$}
+        For every $f\in\borpluss\left( X,\R \right)$,
+        \begin{equation*}
+            \lplus\left( f \right) = \lpluss\left( f \right).
+        \end{equation*}
+    \end{prop}
+
+    \begin{proof}
+        Since $f\leq f$, $\lpluss\left( f \right)$ appears in the set in [3.8]. On the other hand, given any $u\in\borpluss\left( X,\R \right)$ with $u\leq f$, $\lpluss\left( u \right)\leq\lpluss\left( f \right)$ since $\lpluss$ is increasing. This means $\lpluss\left( f \right)$ is the supremum of the mentioned set.
+    \end{proof}
+
+    \np We record few basic properties of $\lplus$. As we will see, it is quite surprisingly difficult to prove that $\lplus$ is additive.
+
+    \begin{prop}{}
+        Let $f,g\in\borplus\left( X,\R \right)$ and let $\alpha\in\left[ 0,\infty \right]$.
+        \begin{enumerate}
+            \item If $f\leq g$, then $\lplus\left( f \right)\leq\lplus\left( g \right)$.\hfill\textit{increasing}
+            \item $\lplus\left( \alpha f \right)=\alpha\lplus\left( f \right)$.\hfill\textit{homogeneity}
+        \end{enumerate}
+    \end{prop}
+
+    \begin{proof}[Proof Sketch]
+        \begin{enumerate}
+            \item This holds since every function from $\left\lbrace u\in\borpluss\left( X,\R \right):u\leq f \right\rbrace$ is also counted in $\left\lbrace u\in\borpluss\left( X,\R \right): u\leq g \right\rbrace$. 
+            \item If $\alpha=0$, then $\lplus\left( \alpha f \right) = \lplus\left( \underline{0} \right) = 0 = 0\lplus\left( f \right)$ (recall $0\cdot\infty = 0$). If $\alpha>0$, then it is easy to check that
+                \begin{equation*}
+                    \left\lbrace v\in\borpluss\left( X,\R \right):v\leq\alpha f \right\rbrace = \left\lbrace \alpha u: u\in\borpluss\left( X,\R \right), u\leq f \right\rbrace.
+                \end{equation*}
+                Taking this into the definition of $\lplus\left( \alpha f \right)$ and using the homogeniety of $\lpluss$, we are done.
+        \end{enumerate}
+    \end{proof}
+
+    \np The next thing to verify is that $\lplus$ is additive. Here is half of this verification.
+
+    \begin{lemma}{}
+        For every $\borplus\left( X,\R \right)$,
+        \begin{equation}
+            \lplus\left( f+g \right)\geq\lplus\left( f \right)+\lplus\left( g \right).
+        \end{equation}
+    \end{lemma}
+
+    \begin{proof}
+        If $\lplus\left( f+g \right)=\infty$, then the required inequality is clear; so let us assume $\lplus\left( f+g \right)<\infty$. This means $\lplus\left( f \right),\lplus\left( g \right)<\infty$, since $\lplus$ is increasing.
+
+        So we have assumed that all quantities in [3.9] are finite, and we go to the verification of that inequality via the method of creating an $\epsilon$ of room. It suffices to fix $\epsilon>0$ and to prove that
+        \begin{equation}
+            \lplus\left( f+g \right)\geq\lplus\left( f \right)+\lplus\left( g \right)-\epsilon.
+        \end{equation}
+        In order to obtain [3.10], we go like this. By the definition of $\lplus\left( f \right),\lplus\left( g \right)$ as supremums, we can find $u,v\in\borpluss\left( X,\R \right)$ such that $u\leq f, v\leq g$, and
+        \begin{equation*}
+            \lpluss\left( u \right)>\lplus\left( f \right)-\frac{\varep}{2} , \lpluss\left( v \right)>\lplus\left( g \right)-\frac{\epsilon}{2}.
+        \end{equation*}
+        Then $u+v\in\borpluss\left( X,\R \right)$ is such that $u+v\leq f+g$, with
+        \begin{equation*}
+            \lplus\left( f+g \right)\geq\lpluss\left( u+v \right)=\lpluss\left( u \right)+\lpluss\left( v \right)>\lplus\left( f \right)+\lplus\left( g \right)-\varep.
+        \end{equation*}
+    \end{proof}
+
+    \np It may seem like we can do a similar argument with an $\epsilon$ of room in order to prove the inequality opposite to the one stated in Lemma 3.6, saying that
+    \begin{equation}
+        \lplus\left( f+g \right)\leq\lplus\left( f \right)+\lplus\left( g \right)
+    \end{equation}
+    for all $f,g\in\borplus\left( X,\R \right)$. 
+
+    But this does not work. The place where things break down is this. Given $w\in\borpluss\left( X,\R \right)$ such that $w\leq f+g$, it is not clear if and how we could decompose $w=u+v$ with $u,v\in\borpluss\left( X<\R \right)$ such that $u\leq f, v\leq g$.
+
+    However, the formula [3.11] will turn out to hold, in the end -- it's only a matter of how we get it. The twist is that we are going to prove the \textit{monotone convergence theorem} (MCT) and only after that we prove the additivity of $\lpluss$, as an application of the MCT.
+
+    Hence we have to leave the inequality [3.11] hanging for a bit, and should first have a look at the MCT. This is a serious tool used in integration theory, which asserts that \textit{one can interchange $\lplus$ with an increasing limit}.
+
+    In order to make a concise statement of how this exactly goes, let us introduce the following notation.
+
+    \begin{notation}{$f_n\nearrow f$}
+        Let $\left( f_{n} \right)^{\infty}_{n=1}\in\left( \R^{X} \right)^{\N}$ and let $f:X\to\R$. We say $f_n\nearrow f$ to mean that
+        \begin{enumerate}
+            \item $f_1\leq f_2\leq\cdots$; and\hfill\textit{increasing}
+            \item for all $x\in X$, $\lim_{n\to\infty}f_n\left( x \right)=f\left( x \right)$.\hfill\textit{pointwise convergence}
+        \end{enumerate}
+    \end{notation}
+
+    \begin{theorem}{Monotone Convergence Theorem}
+        Let $\left( f_{n} \right)^{\infty}_{n=1}\in\borplus\left( X,\R \right)^{\N}$ and let $f\in\borplus\left( X,\R \right)$. If $f_n\nearrow f$, then $\lim_{n\to\infty}\lplus\left( f_n \right)=\lplus\left( f \right)$.
+    \end{theorem}
+
+    \placeqed[See Proposition 3.9, 3.10]
+
+    \np We conclude this subsection by returning to the discussion of additivity of $\lplus$, by showing how it can be obtained if we assume the MCT. In the next proposition, it is actually nice to take in the full statement about linear combinations.
+
+    \begin{prop}{}
+        For all $f,g\in\borplus\left( X,\R \right), \alpha,\beta\in\left[ 0,\infty \right)$,
+        \begin{equation*}
+            \lplus\left( \alpha f+\beta g \right) = \alpha\lplus\left( f \right)+\beta\lplus\left( g \right).
+        \end{equation*}
+    \end{prop}
+
+    \begin{proof}
+        When we separate the addition and the scalar multiplication that are combined in the statement, and we also take into account the bits of argument provided in Proposition 3.5, 3.6, we see that all we need to prove is
+        \begin{equation}
+            \lplus\left( f+g \right)\leq\lplus\left( f \right)+\lplus\left( g \right)
+        \end{equation}
+        for all $f,g\in\borplus\left( X,\R \right)$. 
+
+        In the proof of [3.12] we will assume the MCT, as stated in Theorem 3.7. We will also use the approximation with simple function (see Proposition 2.19).
+
+        Let us fix $f,g\in\borplus\left( X,\R \right)$, for which we will prove that [3.12] holds. We know from Proposition 2.19 that we can find sequences $\left( f_{n} \right)^{\infty}_{n=1},\left( g_{n} \right)^{\infty}_{n=1}\in\borpluss\left( X,\R \right)^{\N}$ such that $f_n\nearrow f$ and $g_n\nearrow g$. Then $\left( f_{n}+g_{n} \right)^{\infty}_{n=1}$ is a sequence in $\borpluss\left( X,\R \right)$ such that $f_n+g_n\nearrow f+g$, and we can write
+        \begin{equation*}
+            \lplus\left( f+g \right) = \lim_{n\to\infty}\lplus\left( f_n+g_n \right) = \lim_{n\to\infty}\lpluss\left( f_n+g_n \right) = \lim_{n\to\infty}\lpluss\left( f_n \right)+\lpluss\left( g_n \right) = \lim_{n\to\infty}\lplus\left( f_n \right)+\lplus\left( g_n \right) \leq \lplus\left( f \right) + \lplus\left( g \right),
+        \end{equation*}
+        where the last inequality is from the fact that $f_n\leq f, g_n\leq g$ and by invoking Proposition 3.5.
+    \end{proof}
+
+    \subsection{Proof of Monotone Convergence Theorem}
+    
+    The MCT is an important theorem stated in the previous subsection. It is about the possibility of interchanging the limit with the integral, in a situation where we are dealing with an increasing sequence of functions in $\borplus\left( X,\R \right)$.
+
+    \np We remark that we cannot use the fact that, for all $f,g\in\borplus\left( X,\R \right)$, $\lplus\left( f+g \right)\leq \lplus\left( f \right)+\lplus\left( g \right)$ in the proof of MCT, since we proved that result by assuming the MCT.
+
+    \np We first observe an easy statement which makes care of some of the details included in the MCT.
+
+    \begin{prop}{}
+        Let $\left( f_{n} \right)^{\infty}_{n=1}\in\borplus\left( X,\R \right)^{\N}$ and let $f\in\borplus\left( X,\R \right)$. If $f_n\nearrow f$, then
+        \begin{equation*}
+            \Lambda = \lim_{n\to\infty}\lplus\left( f_n \right)\in\left[ 0,\infty \right]
+        \end{equation*}
+        exists, with $\Lambda\leq\lplus\left( f \right)$.
+    \end{prop}
+
+    \begin{proof}
+        We have $\underline{0}\leq f_1\leq f_2\leq\cdots$, which implies
+        \begin{equation*}
+            0\leq\lplus\left( f_1 \right)\leq\lplus\left( f_2 \right)\leq\cdots.
+        \end{equation*}
+        This means $\left( \lplus\left( f_n \right) \right)^{\infty}_{n=1}$ is an increasing sequence, so has a limit in $\left[ 0,\infty \right]$, as claimed. 
+
+        Furthermore, from $f_n\nearrow f$, it follows that $f\geq f_n$ for all $n\in\N$. This means $\lplus\left( f \right)\geq\lplus\left( f_n \right)$ for all $n\in\N$. Thus it follows that
+        \begin{equation*}
+            \Lambda = \sup_{n\in\N}\lplus\left( f_n \right) \leq \lplus\left( f \right).
+        \end{equation*}
+    \end{proof}
+
+    \np Having Proposition 3.9 in hand, we now see where is the punch in the MCT, and record that as follows.
+
+    \begin{prop}{}
+        Consider the setting of Proposition 3.9 and the guaranteed limit $\Lambda=\lim_{n\to\infty}\lplus\left( f_n \right)\in\left[ 0,\infty \right]$. Then $\Lambda\geq\lplus\left( f \right)$.
+    \end{prop}
+
+    \placeqed[Postponed]
+
+    \np It is clear that when we combine Proposition 3.9, 3.10 we will obtain the MCT. Hence, our job for the rest of this subsection is to prove Proposition 3.10.
+
+    \np An instructive point to consider is this. \textit{What does MCT become if we just look at the indicator functions of sets from $\mA$?} Paying attention to indicator function makes sense, since they are the starting point for the construction of $\lplus$.
+
+    So suppose that we have $f_n\uparrow f$, where all the $f_n$'s are indicator functions: for all $n\in\N$,
+    \begin{equation*}
+        f_n = \chi_{A_n}
+    \end{equation*}
+    for some $A_n\in\mA$. It is immediate that the inequalities $f_1\leq f_2\leq\cdots$ are in this case equivalent to the inclusions $A_1\subseteq A_2\subseteq\cdots$. That is, $\left( A_{n} \right)^{\infty}_{n=1}\in\mA^{\N}$ is an increasing chain.
+
+    Furthermore, the description $f_n\nearrow$ includes the fact that
+    \begin{equation*}
+        f\left( x \right) = \lim_{n\to\infty}f_n\left( x \right)=\lim_{n\to\infty}\chi_{A_n}\left( x \right)
+    \end{equation*}
+    for all $x\in X$. This implies that $f$ it itself an indicator function, namely $f=\chi_{\bigcup^{\infty}_{n=1}A_n}$.
+
+    This means the limit $\lim_{n\to\infty}\lplus\left( f_n \right)=\lplus\left( f \right)$ claimed by the MCT amounts in this case to the fact that $\lim_{n\to\infty}\mu\left( A_n \right)=\mu\left( \bigcup^{\infty}_{n=1}A_n \right)$, which we recognize as the formula for continuity of $\mu$ along increasing chains.
+
+    Hence we learn is that \textit{MCT is an upgrade of the continuity of $\mu$ along increasing chain.} This also gives us a lead on how to prove the MCT: we start from the continuity of $\mu$ along increasing chains and build up from there.
+
+    We first consider the case when in the setting with $f_n\nearrow f$ of the MCT we insist that $f$ is a simple function -- so $f\in\borpluss\left( X,\R \right)$ while $f_n$'s can be general functions in $\borplus\left( X,\R \right)$. This means we will prove the following lemma.
+
+    \begin{lemma}{}
+        Let $u\in\borpluss\left( X,\R \right)$ and let $\left( f_{n} \right)^{\infty}_{n=1}\in\borplus\left( X,\R \right)^{\N}$. If $f_n\nearrow u$, then $\lim_{n\to\infty}\lplus\left( f_n \right)\geq\lpluss\left( u \right)$.
+    \end{lemma}
+
+    \begin{proof}
+        We assume $u\neq\underline{0}$ for convenience. Indeed, the case $u=\underline{0}$ is trivial.
+
+        Since $u\neq\underline{0}$, it assumes some positive values, say $\alpha_1,\ldots,\alpha_p$ (distinct). For every $i\in\left\lbrace 1,\ldots,p \right\rbrace$, let $A_i = u^{-1}\left( \alpha_i \right)$. Then $A_1,\ldots,A_p$ are pairwise disjoint sets in $\mA$, with
+        \begin{equation}
+            \lpluss\left( u \right) = \sum^{p}_{i=1}\alpha_i\mu\left( A_i \right).
+        \end{equation}
+        Now we are going to use a trick similar to creating an $\epsilon$ of room. Let us fix $\theta\in\left( 0,1 \right)$.
+
+        In relation to $\theta$, we introduce the following notation. For every $n\in\N$ and every $i\in\left\lbrace 1,\ldots,p \right\rbrace$, let
+        \begin{equation}
+            A_i^{\left( n \right)} = f_n^{-1}\left( \left[ \theta\alpha_i,\infty \right) \right)\cap A_i.
+        \end{equation}
+        We have a number of things in relation to these $A_i^{\left( n \right)}$'s, which we divide into several claims.
+        \begin{itemize}
+            \item \textit{Claim 1. Fix $i\in\left\lbrace 1,\ldots,p \right\rbrace$. Then $\left( A_{i}^{\left( n \right)} \right)^{\infty}_{n=1}$ is an increasing chain of sets from $\mA$, whose union is $A_i$.}
+
+                \begin{subproof}
+                    By recalling the fact that $\left( f_{n} \right)^{\infty}_{n=1}$ is an increasing sequence, we see that it immediate follows from [3.14] that $\left( A_{i}^{\left( n \right)} \right)^{\infty}_{n=1}$ is an increasing chain. Moreover, $A_i^{\left( n \right)} = f_n^{-1}\left( \left[ \theta\alpha_i,\infty \right) \right)\cap A_i$ where $f_n^{-1}\left( \left[ \theta\alpha_i,\infty \right) \right),A_i\in\mA$, so that $A_i^{\left( n \right)}\in\mA$ as well. Lastly, $\bigcup^{\infty}_{n=1}A_i^{\left( n \right)}\subseteq A_i$ is clear. On the other hand, given any $x\in A_i$, we know $\left( f_{n}\left( x \right) \right)^{\infty}_{n=1}$ converges to $\alpha_i$, meaning that
+                    \begin{equation*}
+                        \lim_{n\to\infty}f_n\left( x \right)>\theta\alpha_i.
+                    \end{equation*}
+                    Thus we can find $n_0\in\N$ such that $f_{n_0}\left( x \right)>\theta\alpha_i$, and for this $n_0$ we have $x\in A_i^{\left( n_0 \right)}\subseteq\bigcup^{\infty}_{n=1}A_i^{\left( n \right)}$.
+                \end{subproof}
+
+            \item \textit{Claim 2. Let $n\in\N$. Then
+                \begin{equation*}
+                    f_n \geq \theta\sum^{p}_{i=1}\alpha_i\chi_{A_i^{\left( n \right)}}.
+                \end{equation*}}
+
+                \begin{subproof}
+                    We have to check that, for all $x\in X$,
+                    \begin{equation}
+                        f_n\left( x \right)\geq\theta\sum^{p}_{i=1}\alpha_i\chi_{A^{\left( n \right)}_i}\left( x \right).
+                    \end{equation}
+                    To that end, fix $x\in X$. There are two possibilities.
+
+                    If $x\notin A_i^{\left( n \right)}$ for all $i\in\left\lbrace 1,\ldots,p \right\rbrace$, then the right-hand side of [3.15] is equal to $0$, so we have $f_n\left( x \right)\geq 0$, which is clear.
+
+                    Suppose otherwise. Then $x\in A_i^{\left( n \right)}$ for some unique $i\in\left\lbrace 1,\ldots,p \right\rbrace$. This is becuse $A_i^{\left( n \right)}\subseteq A_i$ for every $i\in\left\lbrace 1,\ldots,p \right\rbrace$ and $A_1,\ldots,A_p$ are pairwise disjoint. The inequality [3.15] thus amounts to $f_n\left( x \right)\geq\theta\alpha_i$, where $i$ is the unique index in $\left\lbrace 1,\ldots,p \right\rbrace$ such that $x\in A_i^{\left( n \right)}$. This is indeed true by definition of $A^{\left( n \right)}_i$.
+                \end{subproof}
+
+            \item \textit{Claim 3. Let $n\in\N$. Then
+                \begin{equation*}
+                    \lplus\left( f_n \right) \geq\theta\sum^{p}_{i=1}\alpha_i\mu\left( A_i^{\left( n \right)} \right).
+                \end{equation*}}
+
+                \begin{subproof}
+                    Note that
+                    \begin{equation*}
+                        \lplus\left( f_n \right) \geq \lplus\left( \theta\sum^{p}_{i=1}\alpha_i\chi_{A_i^{\left( n \right)}} \right) = \lpluss\left( \theta\sum^{p}_{i=1}\alpha_i\chi_{A_i^{\left( n \right)}} \right) = \theta\sum^{p}_{i=1}\alpha_i\lpluss\left( \chi_{A_i^{\left( n \right)}} \right) = \theta\sum^{p}_{i=1}\alpha_i\mu\left( A_i^{\left( n \right)} \right).
+                    \end{equation*}
+                \end{subproof}
+
+            \item \textit{Claim 4.
+                \begin{equation*}
+                    \lim_{n\to\infty}\lplus\left( f_n \right) \geq \theta\sum^{p}_{i=1}\alpha_i\mu\left( A_i \right).
+                \end{equation*}}
+
+                \begin{subproof}
+                    Take $n\to\infty$ in the inequality from Claim 3.
+                \end{subproof}
+        \end{itemize} 
+        Upon recalling the formula we had for $\lpluss\left( u \right)$ at the beginning of the proof, we see that Claim 4 is giving us the inequality
+        \begin{equation}
+            \lim_{n\to\infty}\lplus\left( f_n \right) \geq\theta\lpluss\left( u \right).
+        \end{equation}
+        By \textit{unfixing $\theta$} and letting $\theta\to 1$ in [3.16], we reach to the conclusion
+        \begin{equation*}
+            \lim_{n\to\infty}\lplus\left( f_n \right) \geq\lpluss\left( u \right),
+        \end{equation*}
+        which is what we inteded to show.
+    \end{proof}
+
+    \np Now we are ready to prove Proposition 3.10.
+
+    \begin{boxyproof}{Proof of Proposition 3.10}
+        Since $\lplus\left( f \right)$ is defined as the least upper bound for all the quantities $\lpluss\left( u \right)$ where $u$ is a simple Borel function with $u\leq f$, it will suffices to check that $\Lambda$ is also an upper bound for those quantities.
+
+        In short, it suffices to prove that
+        \begin{equation*}
+            \forall u\in\borpluss\left( X,\R \right)\left[ u\leq f\implies \Lambda\geq\lpluss\left( u \right) \right].
+        \end{equation*}
+        To that end, fix $u\in\borpluss\left( X,\R \right)$ with $u\leq f$.
+
+        From the fact that $f_n\nearrow f$, it follows easily that
+        \begin{equation*}
+            \left( f_n\wedge u \right)\nearrow \left( f\wedge u \right).
+        \end{equation*}
+        But $f\wedge u = u$, so that
+        \begin{equation*}
+            \left( f_n\wedge u \right)\nearrow u.
+        \end{equation*}
+        Lemma 3.11 can be applied in connectoin to the increasing sequence $\left( f_{n}\wedge u \right)^{\infty}_{n=1}$, since the limit of this sequence is a simple Borel function. From this application of Lemma 3.11, we obtain that
+        \begin{equation*}
+            \lim_{n\to\infty}\lplus\left( f_n\wedge u \right)\geq \lpluss\left( u \right).
+        \end{equation*}
+        But for every $n\geq 1$, we have $f_n\wedge u\leq f_n$, hence $\lpluss\left( f_n\wedge u \right)\leq\lplus\left( f_n \right)$ since $\lplus$ is increasing. Consequently,
+        \begin{equation*}
+            \Lambda = \lim_{n\to\infty}\lplus\left( f_n \right) \geq \lim_{n\to\infty}\lplus\left( f_n\wedge u \right) \geq \lpluss\left( u \right),
+        \end{equation*}
+        as desired.
+    \end{boxyproof}
+
+    \np The MCT was stated in a way which forces the increasing sequence $\left( f_{n} \right)^{\infty}_{n=1}$ considered there to have $\lim_{n\to\infty}f_n\left( x \right)<\infty$ for all $x\in X$. But suppose we are just given some increasing sequence $\left( f_{n} \right)^{\infty}_{n=1}$ in $\borplus\left( X,\R \right)$, where it is allowed that $\lim_{n\to\infty}f_n\left( x \right)=\infty$. The MCT stated in Theorem 3.7 does not apply here. However, we can still say something about the increasing limit $\lim_{n\to\infty}\lplus\left( f_n \right)$. It all depends on whether the set
+    \begin{equation*}
+        M = \left\lbrace x\in X: \lim_{n\to\infty}f\left( x \right)=\infty \right\rbrace
+    \end{equation*}
+    has a measure zero or not. This will be addressed in a more precise way in an assignment.
+
+    \subsection{The Space $\lone\left( \mu \right)$ of Integrable Functions}
+
+    Fix a measure space $\left( X,\mA,\mu \right)$. Recall that we have $\bor\left( X,\R \right)$, the unital algebra and lattice of $\mA /\mB_{\R}$-measurable functions. We also have inclusions
+    \begin{equation*}
+        \bor\left( X,\R \right)\supseteq\borplus\left( X,\R \right)\supseteq\borpluss\left( X,\R \right),
+    \end{equation*}
+    where we started our construction of integration from $\borpluss\left( X,\R \right)$ by defining $\lpluss:\borpluss\left( X,\R \right)\to\left[ 0,\infty \right]$. We furthermore take the supremum of suitable quantities concerning $\lpluss$ to define $\lplus:\borplus\left( X,\R \right)\to\left[ 0,\infty \right]$, which extends $\lpluss$. What we now want to define is $\lbor$ that extends $\lplus$ to $\bor\left( X,\R \right)$. However, it turns out if we are to define such $\lbor$ to every Borel functions, then we face the \textit{forbidden operation} $\infty-\infty$. Hence we are going to define a subspace $\lone\left( \mu \right)$ of $\bor\left( X,\R \right)$ on which we can safely define $\lbor$.
+
+    \begin{notation}{$f_+, f_-$}
+        Let $f:X\to\R$. We are going to write
+        \begin{equation*}
+            \begin{aligned}
+                f_+ & = f\vee\underline{0} \\
+                f_- & = \left( -f \right)\vee\underline{0}
+            \end{aligned} .
+        \end{equation*}
+    \end{notation}
+
+    \np Observe that
+    \begin{equation*}
+        \begin{aligned}
+            f_+ + f_- & = f \\
+            f_+ - f_- & = \left| f \right|
+        \end{aligned} .
+    \end{equation*}
+    It is immediate from the definition that $f_+,f_-\in\borplus\left( X,\R \right)$ whenever $f\in\bor\left( X,\R \right)$.
+
+    \begin{lemma}{}
+        Let $f\in\bor\left( X,\R \right)$. The following are equivalent.
+        \begin{enumerate}
+            \item $\lplus\left( \left| f \right| \right) < \infty$.
+            \item $\lplus\left( f_+ \right)<\infty$ and $\lplus\left( f_- \right)<\infty$.
+        \end{enumerate}
+    \end{lemma}
+
+    \begin{proof}
+        If $\lplus\left( \left| f \right| \right)<\infty$, then we have $\lplus\left( f_+ \right)\leq\lplus\left( \left| f \right| \right)<\infty$ and similarly $\lplus\left( f_- \right)\leq\lplus\left( \left| f \right| \right)<\infty$. 
+
+        Conversely, if $\lplus\left( f_+ \right),\lplus\left( f_- \right)<\infty$, then $\lplus\left( \left| f \right| \right)=\lplus\left( f_+ \right)-\lplus\left( f_- \right)<\infty$.
+    \end{proof}
+    
+    \np We are now ready to define what $\lone\left( \mu \right)$ is.
+
+    \begin{definition}{\textbf{Integrable} Function}
+        Let
+        \begin{equation*}
+            \lone\left( \mu \right) = \left\lbrace f\in\bor\left( X,\R \right): \lplus\left( \left| f \right| \right)<\infty \right\rbrace.
+        \end{equation*}
+        We call each function in $\lone\left( \mu \right)$ as an \emph{integrable} function.
+    \end{definition}
+
+    \begin{notation}{$\lbor\left( f \right)$}
+        For every $f\in\lone\left( \mu \right)$, we denote
+        \begin{equation*}
+            \lbor\left( f \right) = \lplus\left( f_+ \right)-\lplus\left( f_- \right)\in\R.
+        \end{equation*}
+    \end{notation}
+
+    \np So far we have two functionals $\lbor:\lone\left( \mu \right)\to\R, \lplus:\borplus\left( X,\R \right)\to\left[ 0,\infty \right]$ where both are trying to be the \textit{Lebesgue integral}. 
+
+    Observe that, for any $f\in\lone\left( \mu \right)\cap\borplus\left( X,\R \right)$, we have
+    \begin{equation*}
+        \lbor\left( f \right) = \lplus\left( f \right),
+    \end{equation*}
+    since $f\geq\underline{0}$ implies $f_+=f, f_-=\underline{0}$, so that
+    \begin{equation*}
+        \lbor\left( f \right) = \lplus\left( f_+ \right) - \lplus\left( f_- \right) = \lplus\left( f \right) - \lplus\left( \underline{0} \right) = \lplus\left( f \right).
+    \end{equation*}
+    Hence $\lbor,\lplus$ both agree for such $f$.
+    
+    \begin{lemma}{}
+        Let $f\in\lone\left( \mu \right)$ be such that $f=h_1-h_2$ for some $h_1,h_2\in\borplus\left( X,\R \right)$ with $\lplus\left( h_1 \right),\lplus\left( h_2 \right)<\infty$. Then
+        \begin{equation*}
+            \lbor\left( f \right) = \lplus\left( h_1 \right)-\lplus\left( h_2 \right).
+        \end{equation*}
+    \end{lemma}
+
+    \begin{proof}
+        Note that
+        \begin{equation*}
+            f_+-f_- = f = h_1-h_2,
+        \end{equation*}
+        rearranging which gives
+        \begin{equation*}
+            h_1+f_- = h_2+f_+.
+        \end{equation*}
+        Hence
+        \begin{equation*}
+            \lplus\left( h_1 \right)+\lplus\left( f_- \right) = \lplus\left( h_1+f_- \right) = \lplus\left( h_2+f_+ \right) = \lplus\left( h_2 \right)+\lplus\left( f_+ \right),
+        \end{equation*}
+        so that
+        \begin{equation*}
+            \lbor\left( f \right) = \lplus\left( f_+ \right)-\lplus\left( f_- \right) = \lplus\left( h_1 \right)-\lplus\left( h_2 \right).
+        \end{equation*}
+    \end{proof}
+
+    \begin{prop}{}
+        \vspace{-11pt}
+        \begin{enumerate}
+            \item $\lone\left( \mu \right)$ is a vector subspace of $\bor\left( X,\R \right)$.
+            \item $\lbor:\lone\left( \mu \right)\to\R$ is linear.
+        \end{enumerate}
+    \end{prop}
+
+    \begin{proof}[Proof of (a)]
+        We need to check that that $\mL^{1}\left( \mu \right)$ is closed under linear combination and has $\underline{0}$. Clearly $\underline{0}\in\mL^{1}\left( \mu \right)$. We note that given any $f,g\in\mL^{1}\left( \mu \right)$ and $\alpha,\beta\in\R$, 
+        \begin{equation*}
+            \lplus\left( \left| \alpha f+\beta g \right| \right) < \infty
+        \end{equation*}
+        by observing that
+        \begin{equation*}
+            \left| \alpha f\left( x \right)+\beta g\left( x \right) \right| \leq \left| \alpha f\left( x \right) \right|+\left| \beta g\left( x \right) \right| = \left| \alpha \right|\left| f\left( x \right) \right|+\left| \beta \right|\left| g\left( x \right) \right|
+        \end{equation*}
+        for all $x\in\R$, so that
+        \begin{equation*}
+            \lplus\left( \left| \alpha f+\beta g \right| \right) \leq \lplus\left( \left| \alpha \right|\left| f \right|+\left| \beta \right|\left| g \right| \right) = \lplus\left( \left| \alpha \right|\left| f \right| \right)+\lplus\left( \left| \beta \right|\left| g \right| \right) = \left| \alpha \right|\lplus\left( \left| f \right| \right)+\left| \beta \right|\lplus\left( \left| g \right| \right) < \infty.
+        \end{equation*}
+        \qedplacedtrue
+    \end{proof}
+
+    \begin{proof}[Proof of (b)]
+        We split the proof into two parts. Let $f,g\in\mL^{1}\left( \mu \right), \alpha\in\R$.
+        \begin{itemize}
+            \item \textit{Claim 1. $\lbor\left( f+g \right)=\lbor\left( f \right)+\lbor\left( g \right)$.}
+
+                \begin{subproof}
+                    Write $f=f_+-f_-, g=g_+-g_-$. Then we have
+                    \begin{equation*}
+                        \begin{aligned}
+                            \lbor\left( f \right) & = \lplus\left( f_+ \right) - \lplus\left( f_- \right), \\
+                            \lbor\left( g \right) & = \lplus\left( g_+ \right) - \lplus\left( g_- \right).
+                        \end{aligned} 
+                    \end{equation*}
+                    Now write
+                    \begin{equation*}
+                        f+g = \left( f_+-f_- \right) + \left( g_+-g_- \right) = \underbrace{\left( f_++g_+ \right)}_{=h_1}-\underbrace{\left( f_-+g_- \right)}_{=h_2} = h_1-h_2,
+                    \end{equation*}
+                    where $h_1,h_2\in\borplus\left( X,\R \right)$, with $\lplus\left( h_1 \right) = \lplus\left( f_+ \right)+\lplus\left( g_+ \right)<\infty$ and $\lplus\left( h_2 \right) = \lplus\left( f_- \right)+\lplus\left( g_- \right)<\infty$. Hence 
+                    \begin{equation*}
+                        \lbor\left( f+g \right) = \lplus\left( h_1 \right)-\lplus\left( h_2 \right) = \lplus\left( f_+ \right)+\lplus\left( g_+ \right)-\lplus\left( f_- \right)+\lplus\left( g_- \right) = \lbor\left( f \right)+\lbor\left( g \right).
+                    \end{equation*}
+                \end{subproof}
+
+            \item \textit{Claim 2. $\lbor\left( \alpha f \right)=\alpha\lbor\left( f \right)$.}
+
+                \begin{subproof}
+                    When $\alpha=0$, the result is clear. Suppose $\alpha>0$. Note that
+                    \begin{equation*}
+                        \lbor\left( \alpha f \right) = \lplus\left( \alpha f_+ \right) - \lplus\left( \alpha f_- \right) = \alpha\lplus\left( f_+ \right) - \alpha\lplus\left( f_- \right) = \alpha\left( \lplus\left( f_+ \right)-\lplus\left( f_- \right) \right) = \alpha\lbor\left( f \right).
+                    \end{equation*}
+                    When $\alpha<0$, we note that
+                    \begin{equation*}
+                        \lbor\left( \alpha f \right) = \lplus\left( -\alpha f_- \right) - \lplus\left( -\alpha f_+ \right) = -\alpha\left( \lplus\left( f_- \right)-\lplus\left( f_+ \right) \right) = -\alpha\left( -\lbor\left( f \right) \right) = \lbor\left( f \right).
+                    \end{equation*}
+                \end{subproof}
+        \end{itemize} 
+    \end{proof}
+
+    \begin{prop}{}
+        \vspace{-11pt}
+        \begin{enumerate}
+            \item If $f,g\in\mL^{1}\left( \mu \right)$ are such that $f\leq g$, then $\lbor\left( f \right)\leq\lbor\left( g \right)$.
+            \item If $f\in\mL^{1}\left( \mu \right)$, then $\left| f \right|\in\mL^{1}\left( \mu \right)$ with
+                \begin{equation*}
+                    \left| \lbor\left( f \right) \right| \leq \lbor\left( \left| f \right| \right).
+                \end{equation*}
+        \end{enumerate}
+    \end{prop}
+
+    \begin{proof}[Proof of (a)]
+        Observe that
+        \begin{equation*}
+            \lbor\left( g \right)-\lbor\left( f \right) = \lbor\left( g-f \right) = \lplus\left( g-f \right) \geq 0.
+        \end{equation*}
+        \qedplacedtrue
+    \end{proof}
+
+    \begin{proof}[Proof of (b)]
+        It suffices to note that $-\left| f \right|\leq f\leq\left| f \right|$.
+    \end{proof}
+
+    \begin{notation}{$\int f\dif\mu$.}
+        Let $f\in\bor\left( X,\R \right)$, for which at least one of $\lplus\left( f \right), \lbor\left( f \right)$. Then we write
+        \begin{equation*}
+            \int^{}f\dif\mu = \int^{}_{X}f\left( x \right)\dif\mu\left( x \right)
+        \end{equation*}
+        for $\lplus\left( f \right)$ or $\lbor\left( f \right)$.
+    \end{notation}
+
+    \np We remark that the above quantity $\int^{}_{X}f\dif\mu$ is well-defined even if both $\lplus\left( f \right),\lbor\left( f \right)$ are defined, since we know 
+    \begin{equation*}
+        \lplus\left( f \right) = \lbor\left( f \right).
+    \end{equation*}
+
+    \np Suppose $A\in\mA$ is nonempty. Then \textit{what does it mean by writing $\int^{}_{A}f\left( x \right)\dif\mu\left( x \right)$?} There are two possible answers.
+    \begin{enumerate}
+        \item $\int^{}_{A}f\left( x \right)\dif\mu\left( x \right) = \int^{}_{X}f\left( x \right)\chi_A\left( x \right)\dif\mu\left( x \right)$.
+        \item We can consider the restricted measure space $\left( A,\mA_0,\mu_0 \right)$ and the restriction $f_0=f|_A$, and write
+            \begin{equation*}
+                \int^{}_{A}f\left( x \right)\dif\mu\left( x \right) = \int^{}_{A}f_0\left( x \right)\dif\mu_0\left( x \right).
+            \end{equation*}
+    \end{enumerate}
+    As we will see in an assignment, these two methods \textit{coincide}.
+
+    \subsection{Lebesgue's Dominated Convergence Theorem}
+
+    We again consider the space of functions $\lone\left( \mu \right)$ introduced in the previous subsection, and we will prove an important theorem, the \textit{Lebesgue's dominated convergence theorem} (LDCT), which addresses the issue of when we can \textit{interchange integration with a limit}. 
+
+    Interchanging integration with a limit really has issues, and it is easy to point out examples where the two quantities are not equal to each other. The insight of Lebesgue was to spot a sufficient condition which clears these issues -- and where, moreover, the condition is easy to verify and also turns out to hold in many applications. In words, this sufficient condition says that, the functions $f_n$ appearing in a sequence $\left( f_{n} \right)^{\infty}_{n=1}\in\bor\left( X,\R \right)^{\N}$ admit a \textit{dominating function} which is integrable.
+    
+    This is made formal in below.
+
+    \clearpage
+    \begin{theorem}{Lebesgue's Dominated Convergence Theorem (LDCT)}
+        Let $\left( f_{n} \right)^{\infty}_{n=1}\in\bor\left( X,\R \right)$ such that $f_n\to f\in\bor\left( X,\R \right)$ pointwise and suppose there exists $h\in\lone\left( \mu \right)\cap\borplus\left( X,\R \right)$ which dominates each $f_n$, in the sense that $\left| f_n \right|\leq h$. Then $f,f_1,\ldots\in\lone\left( \mu \right)$ and
+        \begin{equation*}
+            \lim_{n\to\infty}\int^{}_{}f_n\dif\mu = \int^{}_{}f\dif\mu.
+        \end{equation*}
+    \end{theorem}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
