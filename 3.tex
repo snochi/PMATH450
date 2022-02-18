@@ -807,7 +807,141 @@
         \end{equation*}
     \end{theorem}
 
+    \rruleline
 
+    \np The LDCT can actaully be stated in a form which looks a bit different, in connection to a map $\left\lVert \cdot \right\rVert_{1}:\lone\left( \mu \right)\to\left[ 0,\infty \right)$. After defining $\left\lVert \cdot \right\rVert_{1}$, we will rephrase LDCT in a way which refers to $\left\lVert \cdot \right\rVert_{1}$.
+
+    \begin{notation}{$\left\lVert f \right\rVert_{1}$}
+        For every $f\in\lone\left( \mu \right)$, we define
+        \begin{equation}
+            \left\lVert f \right\rVert_{1} = \int^{}_{}\left| f \right|\du\in\left[ 0,\infty \right).
+        \end{equation}
+    \end{notation}
+
+    \np The integral on the right-hand side of [3.17] can be viewed either in the $\lplus$ sense of in the $\lbor$ sense, since $\left| f \right|\in\lone\left( \mu \right)\cap\borplus\left( X,\R \right)$. 
+
+    Note that $\left\lVert \cdot\right\rVert_1$ already appeared in the previous subsection (see Proposition 3.15). The inequality in (b) of Proposition 3.15 can be presented in the form
+    \begin{equation}
+        \left| \int^{}_{}f\dif\mu \right|\leq \left\lVert f \right\rVert_{1}
+    \end{equation}
+    for all $f\in\lone\left( \mu \right)$.
+
+    It is easily verified that $\left\lVert \cdot \right\rVert_{1}$ is a semi-norm on $\lone\left( \mu \right)$, which means
+    \begin{equation*}
+        \left\lVert f+g\right\rVert_1 \leq \left\lVert f \right\rVert_{1}+\left\lVert g \right\rVert_{1}
+    \end{equation*} 
+    and
+    \begin{equation*}
+        \left\lVert af \right\rVert_{1} = \left| a \right|\left\lVert f \right\rVert_{1}
+    \end{equation*}
+    for all $f,g\in\lone\left( \mu \right),a\in\R$. 
+
+    Now back to the LDCT.
+
+    \begin{theorem}{Restatement of LDCT with respect to $\left\lVert \cdot\right\rVert_1$}
+        Let $\left( f_{n} \right)^{\infty}_{n=1}\in\bor\left( X,\R \right)^{\N}$ such that $\lim_{n\to\infty}f_n = f$ pointwise for some $f\in\bor\left( X,\R \right)$. If there exists $h\in\lone\left( \mu \right)\cap\borplus\left( X,\R \right)$ such that $\left| f_n \right|\leq h$ for all $n\in\N$, then $f, f_1, f_2, \ldots\in\lone\left( \mu \right)$, with
+        \begin{equation*}
+            \lim_{n\to\infty} \left\lVert f_n-f \right\rVert_{1} = 0.
+        \end{equation*}
+    \end{theorem}
+
+    \rruleline
+
+    \np Theorem 3.16, 3.17 have the same hypothesis, and it is easy to see that the conclusion of Theorem 3.17 implies that of Theorem 3.16.
+
+    \begin{lemma}{}
+        Suppose $\left( f_{n} \right)^{\infty}_{n=1}\in\lone\left( \mu \right)^{\N}$ is such that
+        \begin{equation}
+            \lim_{n\to\infty} \left\lVert f-f_n \right\rVert_{1} = 0
+        \end{equation}
+        for some $f\in\lone\left( \mu \right)$. Then
+        \begin{equation}
+            \lim_{n\to\infty} \int^{}_{}f_n\dif\mu = \int^{}_{}f\dif\mu.
+        \end{equation}
+    \end{lemma}
+
+    \clearpage
+    \begin{proof}
+        Note that
+        \begin{equation}
+            0 = \lim_{n\to\infty} \left\lVert f-f_n \right\rVert_{1} \geq \lim_{n\to\infty}\left| \int^{}_{}f-f_n\dif\mu \right| = \lim_{n\to\infty}\left| \int^{}_{}f\dif\mu-\int^{}_{}f_n\dif\mu \right|
+        \end{equation}
+        by linearity of the Lebesgue integral and [3.18]. But [3.21] means $\lim_{n\to\infty}\left|\int f_n\dif\mu - \int f\dif\mu\right|=0$, which precisely means [3.20]. 
+    \end{proof}
+
+    \begin{notation}{$f_n\searrow f$}
+        Let $\left( f_{n} \right)^{\infty}_{n=1}\in\left( \R^{X} \right)^{\N}$ and let $f:X\to\R$. We say $f_n\searrow f$ to mean that
+        \begin{enumerate}
+            \item $f_1\geq f_2\geq\cdots$; and\hfill\textit{decreasing}
+            \item for all $x\in X$, $\lim_{n\to\infty}f_n\left( x \right)=f\left( x \right)$.\hfill\textit{pointwise convergence}
+        \end{enumerate}
+    \end{notation}
+
+    \begin{prop}{}
+        Let $\left( u_{n} \right)^{\infty}_{n=1}\in\borplus\left( X,\R \right)^{\N}$ be such that $u_n\searrow u$ for some $u\in\borplus\left( X,\R \right)$. If $\int u_1\dif\mu<\infty$, then
+        \begin{equation*}
+            \lim_{n\to\infty}\int u_n\dif\mu = \int u\dif\mu.
+        \end{equation*}
+    \end{prop}
+
+    \begin{proof}
+        For every $n\in\N$, let
+        \begin{equation*}
+            f_n = u_1 - u_n.
+        \end{equation*}
+        Since $\left( u_{n} \right)^{\infty}_{n=1}$ is a decreasing sequence in $\borplus\left( X,\R \right)$, $\left( f_{n} \right)^{\infty}_{n=1}$ is an increasing sequence in $\borplus\left( X,\R \right)$. Since $u_n\to u$ pointwise, $f_n=u_1-u_n\to u_1-u$ pointwise. Hence by the MCT,
+        \begin{equation*}
+            \lim_{n\to\infty}\int f_n\dif\mu = \int u_1-u\dif\mu,
+        \end{equation*}
+        rearranging which gives
+        \begin{equation*}
+            \lim_{n\to\infty}\int u_1-f_n = \int u\dif\mu.
+        \end{equation*}
+        Thus
+        \begin{equation*}
+            \lim_{n\to\infty} \int u_n\dif\mu = \lim_{n\to\infty}\int u_1-f_n\dif\mu = \int u\dif\mu,
+        \end{equation*}
+        as required.
+    \end{proof}
+
+    \begin{prop}{}
+        Let $\left( g_{n} \right)^{\infty}_{n=1}\in\borplus\left( X,\R \right)$ be such that $g_n\to\underline{0}$ pointwise. Suppose moreover that there exists $h\in\borplus\left( X,\R \right)\cap\lone\left( \mu \right)$ such that $g_n\leq h$ for all $n\in\N$. Then
+        \begin{equation*}
+            \lim_{n\to\infty}\int g_n\dif\mu = 0.
+        \end{equation*}
+    \end{prop}
+
+    \begin{proof}
+        For each $n\in\N$, let $u_n:X\to\R$ be defined by
+        \begin{equation}
+            u_n\left( x \right) = \sup_{k\geq n}g_k\left( x \right)\leq h\left( x \right)\in\left[ 0,\infty \right).
+        \end{equation}
+        We claim that $u_n\in\borplus\left( X,\R \right)$ for all $N\in\N$. To verify this, suppose $a\in\R$ is given, for which we verify $u_n^{-1}\left( \left( a,\infty \right) \right)\in\mA$; this will prove that $u_n$ is $\mA /\mB_{\R}$-measurable. Note that
+        \begin{flalign*}
+            && u_n^{-1}\left( \left( a,\infty \right) \right) & = \left\lbrace x\in X: u_n\left( x \right)\in\left( a,\infty \right) \right\rbrace && \\ 
+            && & = \left\lbrace x\in X: \exists k\in\N \left[ g_k\left( x \right)\geq a \right] \right\rbrace && \\
+            && & = \bigcup^{}_{k\geq n}g_k^{-1}\left( \left( a,\infty \right) \right).
+        \end{flalign*}
+        Since $g_k\in\borplus\left( X,\R \right)$, it follows that $g_k^{-1}\left( \left( a,\infty \right) \right)\in\mA$ for all $k\geq n$. Since $\mA$ is closed under countable unions, we conclude $u^{-1}\left( \left( a,\infty \right) \right)\in\mA$. Since $u\geq\underline{0}$ is clear from the definition, $u\in\borplus\left( X,\R \right)$, as we claimed.
+
+        Now, $\left( u_{n} \right)^{\infty}_{n=1}$ is a decreasing sequence by definition. Moreover,
+        \begin{equation*}
+            \inf_{n\in\N} u_n\left( x \right) = \inf_{n\in\N}\sup_{k\geq n}g_k\left( x \right)=\limsup_{n\to\infty}g_n\left( x \right)=\lim_{n\to\infty}g_n\left( x \right)=0
+        \end{equation*}
+        for all $x\in X$, since $g_n\to\underline{0}$ pointwise. This means $u_n\searrow\underline{0}$. Moreover, it is clear from [3.22] that $\int u_1\dif\mu\leq\int h\dif\mu < \infty$, since $h\in\lone\left( \mu \right)$. Therefore, by invoking Proposition 3.19 with respect to $\left( u_{n} \right)^{\infty}_{n=1}$, we obtain
+        \begin{equation*}
+            \lim_{n\to\infty} \int u_n\dif\mu = \int\underline{0}\dif\mu  0.
+        \end{equation*}
+        But then
+        \begin{equation*}
+            \lim_{n\to\infty}\int g_n\dif\mu\leq\lim_{n\to\infty}\int^{}_{X}\sup_{k\geq n}g_n\left( x \right)\dif\mu = \lim_{n\to\infty}\int u_n\dif\mu = 0,
+        \end{equation*}
+        so that
+        \begin{equation*}
+            \lim_{n\to\infty}\int g_n\dif\mu = 0,
+        \end{equation*}
+        as required.
+    \end{proof}
 
 
 

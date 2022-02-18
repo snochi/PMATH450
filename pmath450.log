@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2021.3.9)  15 FEB 2022 23:38
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2021.3.9)  17 FEB 2022 23:51
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1307,9 +1307,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 804--810
 
 ] [48
 
-] [49] [50] [51] [52] [53] [54] [55] [56] [57] [58] [59] [60]) [61
+] [49] [50] [51] [52] [53] [54] [55] [56] [57] [58] [59] [60] [61
 
-] (./pmath450.aux) ) 
+] [62
+
+]) [63] (./pmath450.aux) ) 
 Here is how much of TeX's memory you used:
  27912 strings out of 494945
  562975 string characters out of 6177498
@@ -1319,4 +1321,4 @@ Here is how much of TeX's memory you used:
  36 hyphenation exceptions out of 8191
  62i,15n,76p,10456b,499s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on pmath450.pdf (61 pages).
+Output written on pmath450.pdf (63 pages).
