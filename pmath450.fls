@@ -318,4 +318,6 @@ INPUT 3.tex
 INPUT 3.tex
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/euler/eufm10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/euler/eufm7.tfm
+INPUT 4.tex
+INPUT 4.tex
 INPUT pmath450.aux

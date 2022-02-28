@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2021.3.9)  17 FEB 2022 23:51
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2021.3.9)  28 FEB 2022 12:17
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1169,26 +1169,26 @@ LaTeX Info: Redefining \emph on input line 116.
 ) (./pmath450.aux)
 \openout1 = `pmath450.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 37.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 37.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 39.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 39.
  (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    ... okay on input line 39.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: End \AtBeginDocument code.
@@ -1311,14 +1311,21 @@ Underfull \hbox (badness 10000) in paragraph at lines 804--810
 
 ] [62
 
-]) [63] (./pmath450.aux) ) 
+]) (./4.tex [63]
+Underfull \hbox (badness 10000) in paragraph at lines 61--66
+
+ []
+
+[64
+
+] [65]) [66] (./pmath450.aux) ) 
 Here is how much of TeX's memory you used:
- 27912 strings out of 494945
- 562975 string characters out of 6177498
+ 27917 strings out of 494945
+ 562993 string characters out of 6177498
  623101 words of memory out of 5000000
- 31257 multiletter control sequences out of 15000+600000
+ 31259 multiletter control sequences out of 15000+600000
  555174 words of font info for 169 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  62i,15n,76p,10456b,499s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on pmath450.pdf (63 pages).
+Output written on pmath450.pdf (66 pages).

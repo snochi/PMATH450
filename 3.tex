@@ -288,7 +288,7 @@
 
     \subsection{Lebesgue Integration of Nonnegative Borel Functions}
     
-    In this subsectoin we do the upgrade from $\lpluss:\borpluss\left( X,\R \right)\to\left[ 0,\infty \right]$ to $\lplus:\borplus\left( X,\R \right)\to\left[ 0,\infty \right]$. The main idea is to \textit{take a $\sup$.}
+    In this subsection we do the upgrade from $\lpluss:\borpluss\left( X,\R \right)\to\left[ 0,\infty \right]$ to $\lplus:\borplus\left( X,\R \right)\to\left[ 0,\infty \right]$. The main idea is to \textit{take a $\sup$.}
 
     We will have to adjust this notion a bit, so that we use it in connection to $\left[ 0,\infty \right]$. We wil. thus work with the supremum $\sup\left( S \right)$ of a nonempty set $S\subseteq\left[ 0,\infty \right]$, where the equality $\sup\left( S \right)=\infty$ means that either $\infty\in S$ or that $S$ is an unbounded subset of $\left[ 0,\infty \right)$.
 
@@ -570,7 +570,7 @@
         \begin{equation*}
             \left( f_n\wedge u \right)\nearrow u.
         \end{equation*}
-        Lemma 3.11 can be applied in connectoin to the increasing sequence $\left( f_{n}\wedge u \right)^{\infty}_{n=1}$, since the limit of this sequence is a simple Borel function. From this application of Lemma 3.11, we obtain that
+        Lemma 3.11 can be applied in connection to the increasing sequence $\left( f_{n}\wedge u \right)^{\infty}_{n=1}$, since the limit of this sequence is a simple Borel function. From this application of Lemma 3.11, we obtain that
         \begin{equation*}
             \lim_{n\to\infty}\lplus\left( f_n\wedge u \right)\geq \lpluss\left( u \right).
         \end{equation*}
@@ -814,7 +814,7 @@
     \begin{notation}{$\left\lVert f \right\rVert_{1}$}
         For every $f\in\lone\left( \mu \right)$, we define
         \begin{equation}
-            \left\lVert f \right\rVert_{1} = \int^{}_{}\left| f \right|\du\in\left[ 0,\infty \right).
+            \left\lVert f \right\rVert_{1} = \int^{}_{}\left| f \right|\dif\mu\in\left[ 0,\infty \right).
         \end{equation}
     \end{notation}
 
@@ -922,7 +922,7 @@
             && & = \left\lbrace x\in X: \exists k\in\N \left[ g_k\left( x \right)\geq a \right] \right\rbrace && \\
             && & = \bigcup^{}_{k\geq n}g_k^{-1}\left( \left( a,\infty \right) \right).
         \end{flalign*}
-        Since $g_k\in\borplus\left( X,\R \right)$, it follows that $g_k^{-1}\left( \left( a,\infty \right) \right)\in\mA$ for all $k\geq n$. Since $\mA$ is closed under countable unions, we conclude $u^{-1}\left( \left( a,\infty \right) \right)\in\mA$. Since $u\geq\underline{0}$ is clear from the definition, $u\in\borplus\left( X,\R \right)$, as we claimed.
+        Since $g_k\in\borplus\left( X,\R \right)$, it follows that $g_k^{-1}\left( \left( a,\infty \right) \right)\in\mA$ for all $k\geq n$. Since $\mA$ is closed under countable unions, we conclude $u^{-1}\left( \left( a,\infty \right) \right)\in\mA$. Since $u\geq\underline{0}$ is clear from the definition, $u\in\borplus\left( X,\R \right)$, as we claimed (in fact, see Proposition 2.18).
 
         Now, $\left( u_{n} \right)^{\infty}_{n=1}$ is a decreasing sequence by definition. Moreover,
         \begin{equation*}
@@ -930,11 +930,11 @@
         \end{equation*}
         for all $x\in X$, since $g_n\to\underline{0}$ pointwise. This means $u_n\searrow\underline{0}$. Moreover, it is clear from [3.22] that $\int u_1\dif\mu\leq\int h\dif\mu < \infty$, since $h\in\lone\left( \mu \right)$. Therefore, by invoking Proposition 3.19 with respect to $\left( u_{n} \right)^{\infty}_{n=1}$, we obtain
         \begin{equation*}
-            \lim_{n\to\infty} \int u_n\dif\mu = \int\underline{0}\dif\mu  0.
+            \lim_{n\to\infty} \int u_n\dif\mu = \int\underline{0}\dif\mu = 0.
         \end{equation*}
         But then
         \begin{equation*}
-            \lim_{n\to\infty}\int g_n\dif\mu\leq\lim_{n\to\infty}\int^{}_{X}\sup_{k\geq n}g_n\left( x \right)\dif\mu = \lim_{n\to\infty}\int u_n\dif\mu = 0,
+            \lim_{n\to\infty}\int g_n\dif\mu\leq\lim_{n\to\infty}\int^{}_{X}\sup_{k\geq n}g_k\left( x \right)\dif\mu = \lim_{n\to\infty}\int u_n\dif\mu = 0,
         \end{equation*}
         so that
         \begin{equation*}
@@ -943,7 +943,21 @@
         as required.
     \end{proof}
 
+    \begin{example}{}
+        Consider the setting $\left( \R,\mB_{\R},\lambda \right)$ and for all $n\in\N$, let $f_n=\chi_{\left( n,n+1 \right)}$. Then note that $f_n\in\borpluss\left( \R,\R \right)$ for all $n\in\N$,
+        \begin{equation*}
+            \int f_n\dif\lambda = 1,
+        \end{equation*}
+        and $\lim_{n\to\infty}f_n\left( t \right)=0$ for all $t\in\R$. This means
+        \begin{equation*}
+            \lim_{n\to\infty} \int f_n\dif\lambda = 1 \neq 0 \int\lim_{n\to\infty}f_n\dif\lambda.
+        \end{equation*}
+        Does this contradict LDCT?
+    \end{example}
 
+    \begin{answer}
+        No; note that, in order for a fuction $h:\R\to\R$ to dominate all $f_n$'s, $h\left( x \right)\geq 1$ for all $x>1$. This means $h\notin\lone\left( \lambda \right)$.
+    \end{answer}
 
 
 

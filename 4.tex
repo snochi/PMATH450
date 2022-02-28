@@ -1,0 +1,191 @@
+\documentclass[pmath450]{subfiles}
+
+%% ========================================================
+%% document
+
+\begin{document}
+
+    \section{Hilbert Spaces}
+
+    \subsection{$\mL^p\left( \mu \right)$ Spaces and the Minkowski Inequality}
+    
+    \begin{notation}{$\mL^p\left( \mu \right)$}
+        Given $p\in\left( 0,\infty \right)$, we denote
+        \begin{equation*}
+            \mL^p\left( \mu \right) = \left\lbrace f\in\bor\left( X,\R \right): \int_X\left| f \right|^p<\infty \right\rbrace.
+        \end{equation*}
+    \end{notation}
+    
+    \begin{prop}{}
+        Let $p\in\left( 0,\infty \right)$. $\mL^p\left( \mu \right)$ is a linear subspace of $\bor\left( X,\R \right)$.
+    \end{prop}
+
+    \begin{proof}
+        Claerly $\underline{0}\in\mL^p\left( \mu \right)$.
+
+        Let $f,g\in\mL^p\left( \mu \right),\alpha\in\R$. Then
+        \begin{equation*}
+            \lplus\left( \left| \alpha f \right|^p \right) = \lplus\left( \left| \alpha \right|^p\left| f \right|^p \right) = \left| \alpha \right|^p \lplus\left( \left| f \right|^p \right)\infty.
+        \end{equation*}
+        Moreover,
+        \begin{flalign*}
+            && \lplus\left( \left| f+g \right|^p \right) & = \int^{}_{X}\left| f\left( x \right)+g\left( x \right) \right|^p\dif\mu = \int_{X} \left( 2\max\left\lbrace \left| f\left( x \right) \right|,\left| g\left( x \right) \right| \right\rbrace \right)^p\dif\mu && \\
+            && & = \int_X\max\left\lbrace 2^p\left| f\left( x \right) \right|^p, 2^p\left| g\left( x \right) \right|^p \right\rbrace\dif\mu \leq 2^p\int_X \left| f\left( x \right) \right|^p + \left| g\left( x \right) \right|^p \dif\mu = 2^p\left( \lplus\left( \left| f \right|^p \right)+\lplus\left( \left| g \right|^p \right) \right)< \infty.
+        \end{flalign*}
+    \end{proof}
+
+    \np As a special case, consider where $p=1$. Then note that $\mL^1\left( \mu \right)$ in Notation 4.1 coincides with our previous definition of $\lone\left( \mu \right)$.
+
+    For any $f\in\lone\left( \mu \right)$, recall that we defined $\left\lVert f \right\rVert_{1}$ by
+    \begin{equation*}
+        \left\lVert f \right\rVert_{1} = \int^{}_{X}\left| f \right|\dif\mu\in\left[ 0,\infty \right).
+    \end{equation*}
+    This gave us a map $\left\lVert \cdot \right\rVert_{1}:\lone\left( \mu \right)\to\left[ 0,\infty \right)$, which is a \textit{seminorm}. That is,
+    \begin{flalign*}
+        && \forall f,g\in\lone\left( \mu \right) & \left[ \left\lVert f+g \right\rVert_{1}\leq \left\lVert f \right\rVert_{1}+\left\lVert g \right\rVert_{1} \right], && \text{\textit{triangle ineqautliy}} \\
+        && \forall f\in\lone\left( \mu \right),c\in\R & \left[ \left\lVert cf \right\rVert_{1}=\left| c \right|\left\lVert f \right\rVert_{1} \right], && \text{\textit{absolute homogeneity}} \\
+        && \forall f\in\lone\left( \mu \right) & \left[ \left\lVert f\right\rVert_1\geq 0 \right]. && \text{\textit{nonnegativity}}
+    \end{flalign*}
+    If we have in addition that
+    \begin{flalign*}
+        && \forall f\in\lone\left( \mu \right) & \left[ f\neq \underline{0}\implies \left\lVert f \right\rVert_{1}>0 \right], && \text{\textit{positive definiteness}}
+    \end{flalign*}
+    then $\left\lVert \cdot \right\rVert_{1}$ would be a \textit{norm}. Unfortunately, this is not the case in general.
+
+    \begin{notation}{$\left\lVert \cdot\right\rVert_p$}
+        Let $p\in\left( 0,\infty \right)$. For every $f\in\lp\left( \mu \right)$, we define
+        \begin{equation*}
+            \left\lVert f\right\rVert_p = \left( \int_X\left| f \right|^p\dif\mu \right)^{\frac{1}{p}} \in\left[ 0,\infty \right).\footnotemark[1]
+        \end{equation*}
+        
+        \noindent
+        \begin{minipage}{\textwidth}
+            \footnotetext[1]{We are taking the power $\frac{1}{p}$ of the integral so that we can ensure the absolute homogeneity of $\left\lVert \cdot\right\rVert_p$.}
+        \end{minipage}
+    \end{notation}
+
+    \np \textit{For what $p\in\left( 0,\infty \right)$ is $\left\lVert \cdot\right\rVert_p$ a seminorm?} We know that for $p=1$, $\left\lVert \cdot \right\rVert_{1}$ is a seminorm. 
+
+    Now suppose $p\in\left( 0,\infty \right)\setminus \left\lbrace 1 \right\rbrace$. It is immediate from the definition that $\left\lVert \cdot\right\rVert_p$ is absolutely homogeneous. This means it suffices to check the triangle inequality for $\left\lVert \cdot\right\rVert_p$. It turns out that the answer is positive if and only if $p>1$. In case $p>1$, we call the special case of the triangle inequality \textit{Minkowski's inequality}.
+
+    \begin{prop}{Minkowski's Inequality}
+        Let $p>1$. Then
+        \begin{equation*}
+            \left\lVert f+g\right\rVert_p \leq \left\lVert f\right\rVert_p + \left\lVert g\right\rVert_p
+        \end{equation*}
+        for all $f,g\in\lp\left( \mu \right)$.
+    \end{prop}
+    
+    \placeqed[Postponed]
+
+    \np For $p>1$, we define a \textit{conjugate exponent} $q\in\left( 1,\infty \right)$, via requirement that $\frac{1}{p}+\frac{1}{q}=1$. That is,
+    \begin{equation*}
+        q = \frac{p}{p-1}.
+    \end{equation*}
+    There are few other equivalent definitions of $q$:
+    \begin{equation*}
+        \begin{aligned}
+            p+q & = pq, && \\
+            q\left( p-1 \right) & = p, && \\
+            p-\frac{p}{q} & = 1.
+        \end{aligned} 
+    \end{equation*}
+    The idea for proving Minkowski's inequality is by playing things about $\lp\left( \mu \right)$ against $\mL^q\left( \mu \right)$ (i.e. duality). Concretely, we have the following proposition.
+
+    \begin{prop}{Holder's Inequality}
+        Let $p,q\in\left( 1,\infty \right)$ be such that $\frac{1}{p}+\frac{1}{q}=1$.
+        \begin{enumerate}
+            \item If $f\in\lp\left( \mu \right),g\in\mL^q\left( \mu \right)$, then $fg\in\lone\left( \mu \right)$ with
+                \begin{equation*}
+                    \left\lVert fg \right\rVert_{1} \leq \left\lVert f\right\rVert_p\left\lVert g\right\rVert_q. \eqno\text{\textit{Holder's inequality}}
+                \end{equation*}
+            \item For any $f\in\lp\left( \mu \right)$, we have
+                \begin{equation}
+                    \left\lVert f\right\rVert_p = \sup\left\lbrace \left\lVert fh \right\rVert_{1}: h\in\mL^q\left( \mu \right), \left\lVert h\right\rVert_q\leq 1 \right\rbrace.
+                \end{equation}
+        \end{enumerate}
+    \end{prop}
+
+    \placeqed[Postponed]
+
+    \np It is immediate from Holder's inequality that, if $h\in\mL^q\left( \mu \right)$ with $\left\lVert h\right\rVert_q\leq 1$, then
+    \begin{equation*}
+        \left\lVert fh \right\rVert_{1} \leq \left\lVert f\right\rVert_p\left\lVert h\right\rVert_q\leq \left\lVert f\right\rVert_p.
+    \end{equation*}
+    By remembering the definition of supremum, we obtain
+    \begin{equation*}
+        \left\lVert f\right\rVert_p \geq \sup\left\lbrace \left\lVert fh \right\rVert_{1}: h\in\mL^q\left( \mu \right), \left\lVert h\right\rVert_q\leq 1 \right\rbrace.
+    \end{equation*}
+    Therefore, the point of [4.1] is that we can find $h\in\mL^q\left( \mu \right)$ to also obtain
+    \begin{equation*}
+        \left\lVert f\right\rVert_p\leq \left\lVert fh \right\rVert_{1}.
+    \end{equation*}
+
+    \np We show that Minkowski's inequality follows easily from Proposition 4.3.
+
+    \begin{boxyproof}{Proof of Minkowski's Inequality Assuming Proposition 4.3}
+        Let $q$ be the conjugate exponent of $p$,
+        \begin{equation*}
+            q = \frac{p}{p-1}.
+        \end{equation*}
+        Use [4.1] for $f+g$ to obtain
+        \begin{equation*}
+            \left\lVert f+g\right\rVert_p = \sup\left\lbrace \left\lVert \left( f+g \right)h \right\rVert_{1}: h\in\mL^q\left( \mu \right), \left\lVert h\right\rVert_q\leq 1 \right\rbrace. 
+        \end{equation*}
+        By the definition of supremum, in order to get Minkowski's inequality, it suffices to check that
+        \begin{equation}
+            \left\lVert \left( f+g \right)h \right\rVert_{1} \leq \left\lVert f\right\rVert_p + \left\lVert g\right\rVert_p
+        \end{equation}
+        for all $h\in\mL^q\left( \mu \right)$ with $\left\lVert h\right\rVert_q\leq 1$. Hence fix $h\in\mL^q\left( \mu \right)$ with $\left\lVert h\right\rVert_q\leq 1$, for which we verify [4.2]. Indeed,
+        \begin{flalign*}
+            && \left\lVert \left( f+g \right)h \right\rVert_{1} & = \left\lVert fh+gh \right\rVert_{1} && \\ 
+            && & \leq \left\lVert fh \right\rVert_{1} + \left\lVert gh \right\rVert_{1} && \text{triangle inequality for $\left\lVert \cdot \right\rVert_{1}$} \\
+            && & \leq \left\lVert f\right\rVert_p\left\lVert h\right\rVert_q + \left\lVert g\right\rVert_p\left\lVert h\right\rVert_q && \text{Holder's inequality} \\
+            && & \leq \left\lVert f\right\rVert_p + \left\lVert g\right\rVert_q.
+        \end{flalign*}
+    \end{boxyproof}
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+\end{document}
