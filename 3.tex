@@ -959,6 +959,293 @@
         No; note that, in order for a fuction $h:\R\to\R$ to dominate all $f_n$'s, $h\left( x \right)\geq 1$ for all $x>1$. This means $h\notin\lone\left( \lambda \right)$.
     \end{answer}
 
+    \subsection{Almost Everywhere}
+
+    We again fix a measure space $\left( X,\mA,\mu \right)$.
+
+    \begin{definition}{\textbf{Almost Everywhere} Predicate}
+        Consider a predicate $P$ over $X$. We say $P$ is (true) \emph{almost everywhere} with respect to $\mu$, often abbreviated as $P$ is \emph{a.e.-$\mu$}, to mean that there exists a negligible set $N\in\mA$ such that $P\left( x \right)$ is true for all $x\in X\setminus N$.
+    \end{definition}
+    
+    \begin{prop}{A Characterization of a.e.-$\mu$ Equal Functions}
+        Let $f,g\in\bor\left( X,\R \right)$ and let $M=\left\lbrace x\in X: f\left( x \right)\neq g\left( x \right) \right\rbrace$.
+        \begin{enumerate}
+            \item $M\in\mA$.
+            \item $f=g$ a.e.-$\mu$ if and only if $\mu\left( M \right)=0$.
+        \end{enumerate}
+    \end{prop}
+
+    \begin{proof}
+        \begin{enumerate}
+            \item Write
+                \begin{equation*}
+                    M = \left\lbrace x\in X: f\left( x \right)\neq g\left( x \right) \right\rbrace = \left\lbrace x\in X: \left( f-g \right)\left( x \right)\neq 0 \right\rbrace = \left( f-g \right)^{-1}\left( \R\setminus \left\lbrace 0 \right\rbrace \right).
+                \end{equation*}
+                Since $f-g\in\bor\left( X,\R \right)$ and $\R\setminus \left\lbrace 0 \right\rbrace\in\mB_{\R}$, it follows that $A\in\mA$.
+
+            \item Suppose $f=g$ a.e.-$\mu$. This means there is $N\in\mA$ such that $\mu\left( N \right)=0$ and $f\left( x \right)=g\left( x \right)$ for all $x\in X\setminus N$. But for any $x\in X$,
+                \begin{equation*}
+                    x\in M\implies f\left( x \right)\neq g\left( x \right)\implies x\notin X\setminus N \implies x\in N.
+                \end{equation*}
+                Hence $M\subseteq N$, so that $0\leq\mu\left( M \right)\leq\mu\left( N \right)=0$, forcing $\mu\left( M \right)=0$.
+
+                For the converse direction, we note that by picking $N=M$ the conditions in Def'n 3.13 are satisfied.
+        \end{enumerate}
+    \end{proof}
+
+    \np We have alternative way of characterizing $f=g$ a.e.-$\mu$.
+
+    \begin{lemma}{}
+        Let $f\in\borplus\left( X,\R \right)$ and consider $\int_Xf\dif\mu\in\left[ 0,\infty \right]$. The following are equivalent.
+        \begin{enumerate}
+            \item $f=0$ a.e.-$\mu$.
+            \item $\int_Xf\dif\mu=0$.
+        \end{enumerate}
+    \end{lemma}
+
+    \begin{proof}
+        We are going to use the definition of $\lplus$ directly. The following claim is what makes our argument work.
+
+        We claim that, \textit{for every $u\in\borpluss\left( X,\R \right)$ such that $u\leq f$, we have $\int_Xu\dif\mu=0$.} To verify this, we observe that
+        \begin{equation*}
+            u^{-1}\left( 0 \right) \supseteq f^{-1}\left( 0 \right),
+        \end{equation*}
+        since both $u,f$ are nonnegative and $u\leq f$. So let $Y = u^{-1}\left( 0 \right)$, which is a set in $\mA$ since $u\in\bor\left( X,\R \right)$. This means $X\setminus Y\in\mA$ as well, with
+        \begin{equation*}
+            X\setminus Y = X\setminus u^{-1}\left( 0 \right) \subseteq X\setminus f^{-1}\left( 0 \right).
+        \end{equation*}
+        But $f=0$ a.e.-$\mu$, which precisely means $\mu\left( X\setminus f^{-1}\left( 0 \right) \right)=0$. Consequently, $\mu\left( X\setminus Y \right)=0$. Now, given any $a>0$ that $u$ assumes, $u^{-1}\left( a \right)\subseteq X\setminus u^{-1}\left( 0 \right) = X\setminus Y$, so that $\mu\left( u^{-1}\left( a \right) \right)=0$. Thus it follows from the definition of the Lebesgue integral for simple nonnegative functions that $\int_Xu\dif\mu=0$, as claimed.
+
+        By recalling that $\lplus\left( f \right)$ is simply the supremum of the simple functions which \textit{underestimates} $f$, we conclude $\lplus\left( f \right)=0$. This ends (a)$\implies$(b).
+
+        For the converse direction, we claim that, \textit{for all $\epsilon>0$, the set
+            \begin{equation*}
+                S_{\epsilon} = \left\lbrace x\in X: f\left( x \right)\geq\epsilon \right\rbrace
+            \end{equation*}
+        has measure zero, with respect to $\mu$.} This is rather straightforward, since if we assume $\mu\left( S_{\epsilon} \right)>0$ for some $\epsilon>0$, then by defining
+        \begin{equation*}
+            u =
+            \begin{cases} 
+                0 & \text{if $x\notin S_{\epsilon}$} \\
+                \epsilon & \text{if $x\in S_{\epsilon}$}
+            \end{cases}
+        \end{equation*}
+        for all $x\in X$, $u\leq f$ with $\int_Xu\dif\mu = \mu\left( S_{\epsilon} \right)\epsilon\neq 0$. This contradicts $\int_Xf\dif\mu = 0$.
+
+        Now we consider the particular case where $\epsilon\in\left\lbrace 1,\frac{1}{2},\ldots \right\rbrace$, so that we can write
+        \begin{equation*}
+            S = \bigcup^{}_{n\in\N} S_{\frac{1}{n}}
+        \end{equation*}
+        and ensure that $S\in\mA$, as a countable union of measurable sets. But note that, by defnintion, for any $x\in S$, we have that $f\left( x \right)\geq \frac{1}{n}$ for some $n\in\N$, so that $f\left( x \right)>0$. Conversely, if $x\in X$ is such that $f\left( x \right)>0$, then $f\left( x \right)>\frac{1}{n}$ for some $n\in\N$. This means
+        \begin{equation*}
+            S = \left\lbrace x\in X: f\left( x \right)>0 \right\rbrace.
+        \end{equation*}
+        But we noted that $\mu\left( S_{\epsilon} \right)=0$ for all $\epsilon>0$, so in particular $\mu\left( S_{\frac{1}{n}} \right)=0$ for all $n\in\N$. We also see from the definition that $S_{\frac{1}{n}}\subseteq S_{\frac{1}{n+1}}$ for all $n\in\N$. This means $\left( S_{\frac{1}{n}} \right)^{\infty}_{n=1}$ is an increasing chain of sets in $\mA$, a perfect setting to apply the \textit{continuity of $\mu$ along increasing chains}, obtaining
+        \begin{equation*}
+            \mu\left( S \right) = \lim_{n\to\infty}\mu\left( S_{\frac{1}{n}} \right) = \lim_{n\to\infty} 0 = 0.
+        \end{equation*}
+        This $S$ is by construction $X\setminus f^{-1}\left( 0 \right)$, so we thus conclude $f=0$ a.e.-$\mu$.
+    \end{proof}
+
+    \begin{prop}{}
+        Let $f,g\in\bor\left( X,\R \right)$ and consider the function $\left| f-g \right|\in\borplus\left( X,\R \right)$. The following are equivalent.
+        \begin{enumerate}
+            \item $f=g$ a.e.-$\mu$.
+            \item $\int_X\left| f-g \right|\dif\mu=0$.
+        \end{enumerate}
+    \end{prop}
+
+    \begin{proof}
+        Denoting $h=\left| f-g \right|\in\borplus\left( X,\R \right)$, we see that
+        \begin{equation*}
+            f=g\text{ a.e.-$\mu$} \iff h=0\text{ a.e.-$\mu$}.
+        \end{equation*}
+        Upon applying Lemma 3.22 to $h$ we thus find that
+        \begin{equation*}
+            f=g\text{ a.e.-$\mu$} \iff h=0\text{ a.e.-$\mu$} \iff \int_Xh\dif\mu = 0 \iff \int_X\left| f-g \right|\dif\mu = 0,
+        \end{equation*}
+        as required.
+    \end{proof}
+
+    \np Now let us look at the case when we consider functions from the space $\lone\left( \mu \right)$. Recall that we define $\left\lVert \cdot \right\rVert_{1}:\lone\left( \mu \right)\to\left[ 0,\infty \right)$ by
+    \begin{equation*}
+        \left\lVert f \right\rVert_{1} = \int_Xf\dif\mu
+    \end{equation*}
+    for all $f\in\lone\left( \mu \right)$. From Proposition 3.23, we thus infer the following.
+
+    \begin{cor}{}
+        Let $f,g\in\lone\left( \mu \right)$. The following are equivalent.
+        \begin{enumerate}
+            \item $f=g$ a.e.-$\mu$.
+            \item $\left\lVert f-g \right\rVert_{1}=0$.
+        \end{enumerate}
+    \end{cor}	
+
+    \placeqed[See Proposition 3.24]
+
+    \np In fact in the setting of Corollary 3.23.1, it actually suffices if we assume one of the two functions $f,g$ to be in $\lone\left( \mu \right)$. This is recorded in the next proposition.
+
+    \begin{prop}{}
+        Let $f,g\in\bor\left( X,\R \right)$ such that $f=g$ a.e.-$\mu$. If one of $f,g$ is in $\lone\left( \mu \right)$, then so is the other. Moreover, we have
+        \begin{equation*}
+            \int_Xf\dif\mu = \int_Xg\dif\mu
+        \end{equation*}
+        and
+        \begin{equation*}
+            \left\lVert f\right\rVert_1=\left\lVert g \right\rVert_{1}.
+        \end{equation*}
+    \end{prop}
+
+    \begin{proof}
+        Since $f,g\in\bor\left( X,\R \right)$ are such that $f=g$ a.e.-$\mu$, Proposition 3.23 can be applied (without assuming that $f$ or $g$ are integrable) to infer that $f-g\in\lone\left( \mu \right)$ and $\left\lVert f-g \right\rVert_{1}=0$.
+
+        We are also told that one of $f,g$ is integrable; without loss of generality assume $f\in\lone\left( \mu \right)$. Then we get the integrability of $g$ by writing $g=f-\left( f-g \right)$ with $f,f-g\in\lone\left( \mu \right)$ and by invoking the closure of $\lone\left( \mu \right)$ under linear combinations.
+
+        By starting from the fact that $\left\lVert f-g \right\rVert_{1}=0$ we write that
+        \begin{equation*}
+            0\leq \left| \int_Xf\dif\mu - \int_Xg\dif\mu \right| = \left| \int_X\left( f-g \right)\dif\mu \right|\leq \left\lVert f-g \right\rVert_{1}=0,
+        \end{equation*}
+        which implies that $\int_Xf\dif\mu = \int_Xg\dif\mu$.
+
+        Moreover,
+        \begin{equation*}
+            \left\lVert f \right\rVert_{1} = \left\lVert \left( f-g \right)+g \right\rVert_{1} \leq \left\lVert f-g \right\rVert_{1}+\left\lVert g \right\rVert_{1}=0+\left\lVert g \right\rVert_{1}
+        \end{equation*}
+        to obtain that $\left\lVert f \right\rVert_{1}\leq \left\lVert g \right\rVert_{1}$. A similar argument shows that $\left\lVert g \right\rVert_{1}\leq \left\lVert f \right\rVert_{1}$, and we conclude htat $\left\lVert f \right\rVert_{1}=\left\lVert g \right\rVert_{1}$, as required.
+    \end{proof}
+
+    \np It is easy to verify that the notion of equality a.e.-$\mu$ gives an equivalence relatoin on $\bor\left( X,\R \right)$ -- that is, it enjoys the three properties of being reflexive, symmetric and transitive.
+
+    An equivalence relation breaks the underlying set into equivalence classes. In the case at hand, $\bor\left( X,\R \right)$ is therefore decomposed into a disjoint union of equivalence classes, where two functions $f,g\in\bor\left( X,\R \right)$ belong to the same class if and only if $f=g$ a.e.-$\mu$. In the language of these equivalence classes, Proposition 3.24 can be stated as saying that
+    \begin{equation*}
+        \text{$\lone\left( \mu \right)$ is \textit{saturated} with respect to equality a.e.-$\mu$.}
+    \end{equation*}
+    That is, whenever $f\in\lone\left( \mu \right)$, the whole equivalence class of $f$ is contained in $\lone\left( \mu \right)$.
+
+    \np Many textbooks go for \textit{identifying functions} which are equal a.e.-$\mu$. Formally, what they do goes under the name of \textit{taking the quotient} of $\bor\left( X,\R \right)$ by the equivalence relation given by equality a.e.-$\mu$. Doing such identifications has some merits, but also generates the issue that our basic notion of \textit{what is a function} starts to depend on what measure $\mu$ we are consindering on a measurable space $\left( X,\mA \right)$. We will generally avoid this -- we will rather prefer to stick to the \textit{usual} notion of functoin.
+
+    \subsection{Lebesgue Integration and Riemann Integration on a Finite Interval}
+
+    We fix $a<b$ in $\R$ and we look at the measure space $\left( \left[ a,b \right],\mB_{\left[ a,b \right]},\lambda_{\left[ a,b \right]} \right)$. In connection to this measure space, we are going to introduce the following notation.
+
+    \begin{notation}{$\bor_b\left( \left[ a,b \right],\R \right)$}
+        We will denote
+        \begin{equation*}
+            \bor_b\left( \left[ a,b \right],\R \right) = \left\lbrace f\in\bor\left( \left[ a,b \right],\R \right): f\text{ is bounded} \right\rbrace.
+        \end{equation*}
+    \end{notation}
+    
+    \np It is immediate that $\bor_b\left( \left[ a,b \right],\R \right)$ is a linear subspace of $\bor\left( \left[ a,b \right],\R \right)$ which is also closed under multiplication, under $\vee$ and $\wedge$ operations, and under the operation of taking the absolute value.
+
+    An important point to notice is that we have $\bor_b\left( \left[ a,b \right],\R \right)\subseteq\lone\left( \lambda_{\left[ a,b \right]} \right)$. Indeed, if $f\in\bor_b\left( \left[ a,b \right],\R \right)$, then we can pick an $r>0$ such that $\left| f\left( x \right) \right|\leq r$ for all $x\in\left[ a,b \right]$, and it follows that
+    \begin{equation*}
+        \int_{\left[ a,b \right]}\left| f \right|\dif\lambda_{\left[ a,b \right]}\leq \int_{\left[ a,b \right]}r\dif\lambda_{\left[ a,b \right]} = r\left( b-a \right)<\infty,
+    \end{equation*}
+    showing that $f\in\lone\left( \lambda_{\left[ a,b \right]} \right)$. Thus we are sure we can talk here about Lebesgue integrals.
+
+
+    \np Fix $f\in\bor_b\left( \left[ a,b \right],\R \right)$ and let us do a quick review from calculus, concerning the fact that $f$ has an upper Riemann integral and a lower Riemann integral over $\left[ a,b \right]$. This goes as follows.
+    \begin{enumerate}
+        \item We consider \textit{divisions} of the interval $\left[ a,b \right]$, which are systems of points
+            \begin{equation*}
+                \Delta = \left( t_0,\ldots,t_k \right)
+            \end{equation*}
+            with $k\geq 1$ and $a=t_0<t_1<\cdots<t_k=b$.
+        \item Given a division $\Delta=\left( t_0,t_1,\ldots,t_k \right)$ of $\left[ a,b \right]$, we define the \textit{upper Darboux sum} $U\left( f,\Delta \right)$ and \textit{lower Darboux sum} $L\left( f,\Delta \right)$ associated to $f$ and $\Delta$, which are
+            \begin{equation*}
+                U\left( f,\Delta \right) = \sum^{k}_{i=1} \left( t_i-t_{i-1} \right)\sup_{t_{i-1}\leq t\leq t_i}f\left( t \right)
+            \end{equation*}
+            and
+            \begin{equation*}
+                L\left( f,\Delta \right) = \sum^{k}_{i=1} \left( t_i-t_{i-1} \right)\inf_{t_{i-1}\leq t\leq t_i}f\left( t \right).
+            \end{equation*}
+        \item We then define the \textit{upper integral} $\overline{\int^b_a}f\left( t \right)\dif t$ and \textit{lower integral} $\underline{\int^b_a}f\left( t \right)\dif t$ of $f$ on $\left[ a,b \right]$ to be
+            \begin{equation*}
+                \overline{\int_{a}^b}f\dif t = \inf\left\lbrace U\left( f,\Delta \right): \Delta\text{ is a division of $\left[ a,b \right]$} \right\rbrace
+            \end{equation*}
+            and
+            \begin{equation*}
+                \underline{\int_{a}^b}f\dif t = \sup\left\lbrace U\left( f,\Delta \right): \Delta\text{ is a division of $\left[ a,b \right]$} \right\rbrace.
+            \end{equation*}
+    \end{enumerate}
+    We know from calculus that the upper and lower integrals are well-defined and we always have the inequality
+    \begin{equation}
+        \underline{\int_{a}^b}f\left( t \right)\dif t \leq \overline{\int_{a}^b}f\left( t \right)\dif t.
+    \end{equation}
+    If [3.23] holds with an equality, then we declare $f$ to be \textit{Riemann integrable}, and we define the Riemann integral of $f$ to be the common value of the pper and lower integrals:
+    \begin{equation*}
+        \left( R \right)\int^b_a f\left( t \right)\dif t = \underline{\int_{a}^b}f\left( t \right)\dif t = \overline{\int_{a}^b}f\left( t \right)\dif t.
+    \end{equation*}
+    To distinguish with the Lebesgue integral, we are writing $\left( R \right)\int^b_af\left( t \right)\dif t$ to denote the Riemann integral of $f$.
+
+    \begin{prop}{}
+        Let $f\in\bor_b\left( \left[ a,b \right],\R \right)$. Then
+        \begin{equation}
+            \underline{\int_{a}^b}f\left( t \right)\dif t \leq \int_{\left[ a,b \right]}f\dif\lambda_{\left[ a,b \right]} \leq \overline{\int_{a}^b}f\left( t \right)\dif t.
+        \end{equation}
+    \end{prop}
+
+    \begin{proof}
+        The verifications of the two inequalities in [3.24] are similar to each other; let us see for instance the details for the first of them.
+
+        Since $\underline{\int_{a}^b}f\left( t \right)\dif t$ is defined as a supremum of lower sums, this inequality will follow if we can verify that
+        \begin{equation}
+            L\left( f,\Delta \right)\leq \int_{\left[ a,b \right]}f\dif\lambda_{\left[ a,b \right]}
+        \end{equation}
+        for all division $\Delta$ of $\left[ a,b \right]$.
+
+        So let us fix a division $\Delta=\left( t_0,\ldots,t_k \right)$ of $\left[ a,b \right]$, for which we will verify that [3.25] holds. For every $i\in\left\lbrace 1,\ldots,k \right\rbrace$, we denote
+        \begin{equation*}
+            c_i = \inf_{t_{i-1}\leq t\leq t_i}f\left( t \right).
+        \end{equation*}
+        This allows us to write explicitly that
+        \begin{equation*}
+            L\left( f,\Delta \right) = \sum^{k}_{i=1}c_i\left( t_i-t_{i-1} \right).
+        \end{equation*}
+
+        Consider the piecewise constant function $g:\left[ a,b \right]\to\R$ which is defined as follows: for all $t\in\left[ a,b \right]$, 
+        \begin{equation*}
+            g\left( t \right) =
+            \begin{cases} 
+                c_1 & \text{if $t_0\leq t<t_1$} \\
+                \vdots & \\
+                c_{k-1} & \text{if $t_{k-2}\leq t<t_{k-1}$} \\
+                c_k & \text{if $t_{k-1}\leq t\leq t_k$} \\
+            \end{cases}.
+        \end{equation*}
+        It is immediate that $g\in\bor\left( \left[ a,b \right],\R \right)$, and upon comparing the definition of $g$ with the definition of $c_1,\ldots,c_k$, we see that $g\leq f$. Moreover, $g$ is a linear combination of indicator functions of intervals:
+        \begin{equation*}
+            g = c_1\chi_{\left[ t_0,t_1 \right)}+\cdots+c_{k-1}\chi_{\left[ t_{k-2},t_{k-1} \right)}+c_k\chi_{\left[ t_{k-1},t_k \right]}.
+        \end{equation*}
+        From the Lebesgue integral of $g$ we thus have
+        \begin{flalign*}
+            && \int_{\left[ a,b \right]}g\dif\lambda_{\left[ a,b \right]} & = c_1\lambda_{\left[ a,b \right]}\left( \left[ t_0,t_1 \right) \right)+\cdots+c_{k-1}\lambda_{\left[ a,b \right]}\lambda_{\left[ a,b \right]}\left( \left[ t_{k-2},t_{k-1} \right) \right)+c_k\lambda_{\left[ a,b \right]}\left( \left[ t_{k-1},t_k \right] \right) && \\
+            && & = \sum^{k}_{i=1} c_i\left( t_i-t_{i-1} \right) = L\left( f,\Delta \right).
+        \end{flalign*}
+        But since Lebesgue integral is increasing, we thus have that
+        \begin{equation*}
+            \int_{\left[ a,b \right]}f\dif\lambda_{\left[ a,b \right]}\geq \int_{\left[ a,b \right]}g\dif\lambda_{\left[ a,b \right]} = L\left( f,\Delta \right),
+        \end{equation*}
+        which is exactly the inequality that we desired to prove.
+    \end{proof}
+
+    \np Based on Proposition 3.25 and by taking into account how the Riemann integral is defined, it becomes clear that we have the following corollary.
+
+    \begin{cor}{}
+        Let $f\in\bor_b\left( \left[ a,b \right],\R \right)$ and suppose that $f$ is Riemann integrable. Then we have
+        \begin{equation*}
+            \left( R \right)\int^{b}_{a}f\left( t \right)\dif t = \int_{\left[ a,b \right]}f\dif\lambda_{\left[ a,b \right]}.
+        \end{equation*}
+    \end{cor}	
+
+    \placeqed[Follows Immediately from Propositoin 3.25]
+
+    \np The upshot of Corollary 3.25.1 is that, based on it, we can compute Lebesgue integrals by using the various integration techniques that we have from calculus, in reference to the Riemann integral.
+
+
+
+
+
 
 
 
