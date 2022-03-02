@@ -145,6 +145,75 @@
         \end{flalign*}
     \end{boxyproof}
     
+    \np We now turn to the proof of Holder's inequality.
+    
+    \begin{lemma}{}
+        Given $p,q\in\left( 1,\infty \right)$ such that $\frac{1}{p}+\frac{1}{q}=1$, we have
+        \begin{equation}
+            \forall a,b\in\left[ 0,\infty \right)\left[ ab\leq\frac{1}{p}a^p+\frac{1}{q}b^q \right].
+        \end{equation}
+    \end{lemma}
+    
+    \begin{proof}
+        When $a=0$ or $b=0$, [4.3] is clear. Assume $a,b>0$ and let $\alpha=\log\left( a \right),\beta=\log\left( b \right)$. Then the verification [4.3] amounts to
+        \begin{equation}
+            e^{\alpha}e^{\beta} \leq \frac{1}{p} e^{\alpha p} + \frac{1}{q} e^{\beta q}.
+        \end{equation}
+        But recall $\frac{1}{p}+\frac{1}{q}=1$, so the right-hand side of [4.4] is taking a convex combination of $e^{\alpha p}, e^{\alpha q}$. We also know that exponential functions are concave up. That is, given any $s,t\in\R, \lambda\in\left[ 0,1 \right]$, we have
+        \begin{equation}
+            e^{\lambda s+\left( 1-\lambda t \right)t} \leq \lambda e^{s} + \left( 1-\lambda \right)e^{t}.
+        \end{equation}
+        Now by letting $\lambda=\frac{1}{p}$, we have $1-\lambda=\frac{1}{q}$ freely by definition of $p,q$. Then by writing $s=\alpha p, t=\beta q$, we see that [4.4] is precisely of the form [4.5], as needed.
+    \end{proof}
+    
+    \begin{lemma}{}
+        Let $p,q\in\left( 1,\infty \right)$ with $\frac{1}{p}+\frac{1}{q}=1$ and let $f\in\mL^p\left( \mu \right),g\in\mL^q\left( \mu \right)$. Then $fg\in\lone\left( \mu \right)$, with
+        \begin{equation}
+            \left\lVert fg \right\rVert_{1} \leq \frac{1}{p}\left\lVert f\right\rVert^p_p + \frac{1}{q}\left\lVert g\right\rVert^q_q.
+        \end{equation}
+    \end{lemma}
+    
+    \begin{proof}
+        To get [4.6] from [4.3], we take $a=\left| f\left( x \right) \right|,b=\left| g\left( x \right) \right|$ so that
+        \begin{equation}
+            \left| f\left( x \right)g\left( x \right) \right|\leq \frac{1}{p}\left| f\left( x \right) \right|^p+\frac{1}{q}\left| g\left( x \right) \right|^q
+        \end{equation}
+        for all $x\in X$. By integrating both sides of [4.7], we obtain [4.6].
+    \end{proof}
+    
+    \clearpage
+
+    \begin{lemma}{}
+        Let $p,q\in\left( 1,\infty \right)$ with $\frac{1}{p}+\frac{1}{q}=1$ and let $f\in\mL^p\left( \mu \right),g\in\mL^q\left( \mu \right)$ with $\left\lVert f\right\rVert_p = \left\lVert g\right\rVert_q = 1$. Then $fg\in\lone\left( \mu \right)$ with
+        \begin{equation}
+            \left\lVert fg \right\rVert_{1}\leq 1.
+        \end{equation}
+    \end{lemma}
+    
+    \begin{proof}
+        This is a special case of Lemma 4.5, as we have
+        \begin{equation*}
+            \left\lVert fg \right\rVert_{1} \leq \frac{1}{p}\left\lVert f\right\rVert^p_p + \frac{1}{q}\left\lVert g\right\rVert^q_q = \frac{1}{p} + \frac{1}{q} = 1.
+        \end{equation*}
+    \end{proof}
+    
+    \np Note that Lemma 4.6 is a special case of Holder's inequality: it says
+    \begin{equation}
+        \left\lVert fg \right\rVert_{1} \leq 1 = \left\lVert f\right\rVert_p\left\lVert g\right\rVert_q.
+    \end{equation}
+    The general statement of Holder's inequality will follow from [4.9]. The intuition is to \textit{rescale} $f,g$ to have norm $1$, apply the special case [4.9], and then get back Holder's inequality.
+    
+    \np The following is the conclusion of this subsection.
+
+    \begin{prop}{}
+        For every $p\in\left[ 1,\infty \right)$, $\left\lVert \cdot\right\rVert_p$ is a seminorm on $\mL^p\left( \mu \right)$.
+    \end{prop}
+
+    \placeqed[See Minkowski's Inequality]
+
+    \subsection{Null-space of a Seminorm}
+    
+    
     
     
     
