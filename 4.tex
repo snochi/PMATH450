@@ -213,6 +213,101 @@
 
     \subsection{Null-space of a Seminorm}
     
+    \begin{definition}{\emph{Null-space} of a Seminorm}
+        Let $V$ be a vector space over $\R$ and let $\left\lVert \cdot\right\rVert:V\to\left[ 0,\infty \right)$ be a seminorm on $V$. We call
+        \begin{equation*}
+            N = \left\lbrace v\in V:\left\lVert v\right\rVert=0 \right\rbrace
+        \end{equation*}
+        the \emph{null-space} of $\left\lVert \cdot\right\rVert$.
+    \end{definition}
+    
+    \np Consider the above setting. Then $N$ is a linear subspace of $V$. That is,
+    \begin{flalign*}
+        && & \forall v_1,v_2\in N\left[ v_1+v_2\in N \right], && \text{\textit{closure under addition}} \\
+        && & \forall v\in N\forall \alpha\in\R\left[ \alpha v\in N \right], && \text{\textit{closure under scalar multiplication}} \\
+        && & 0_V\in N .
+    \end{flalign*}
+    This means
+    \begin{equation}
+        \text{$\left\lVert \cdot\right\rVert$ is a norm on $V$} \iff \text{$N=\left\lbrace 0_V \right\rbrace$}.
+    \end{equation}
+    
+    We now consider the space $Q=V /N$, the quotient of $V$ by $N$. 
+
+    \begin{lemma}{}
+        $\left\lVert \cdot\right\rVert_Q:Q\to\left[ 0,\infty \right)$ defined by
+        \begin{equation*}
+            \left\lVert \xi\right\rVert_Q = \left\lVert v\right\rVert
+        \end{equation*}
+        for all $\xi\in Q$, where $v\in V$ is such that $v+N=\xi$, is a norm.
+    \end{lemma}
+
+    \begin{proof}
+        To show that $\left\lVert \cdot\right\rVert_Q$ is well-defined, let $v,u\in V$ be such that $v+N=u+N$. This means $v=u+n$ for some $n\in N$, so that
+        \begin{equation*}
+            \left\lVert v\right\rVert = \left\lVert u+n\right\rVert \leq \left\lVert u\right\rVert+\left\lVert n\right\rVert = \left\lVert u\right\rVert
+        \end{equation*}
+        and that
+        \begin{equation*}
+            \left\lVert u\right\rVert = \left\lVert v-n\right\rVert \leq \left\lVert v\right\rVert+\left\lVert -n\right\rVert = \left\lVert v\right\rVert.
+        \end{equation*}
+        This means $\left\lVert v\right\rVert=\left\lVert u\right\rVert$, so $\left\lVert \cdot\right\rVert_Q$ is well-defined.
+
+        Given any $\xi=v+N, \eta=u+N$, we have
+        \begin{equation*}
+            \left\lVert \xi+\eta\right\rVert_Q = \left\lVert v+u\right\rVert \leq \left\lVert v\right\rVert+\left\lVert u\right\rVert = \left\lVert \xi\right\rVert_Q + \left\lVert \eta\right\rVert_Q.
+        \end{equation*}
+        Moreover, given any $\alpha\in\R$, $\alpha\xi = \alpha\left( v+N \right) = \alpha v+N$, so that
+        \begin{equation*}
+            \left\lVert \alpha\xi\right\rVert_Q = \left\lVert \alpha v\right\rVert = \left| \alpha \right|\left\lVert v\right\rVert = \left| \alpha \right|\left\lVert \xi\right\rVert_Q.
+        \end{equation*}
+        Finally, suppose $\left\lVert \xi\right\rVert_Q = 0$. This means
+        \begin{equation*}
+            \left\lVert v\right\rVert = \left\lVert \xi\right\rVert_Q = 0,
+        \end{equation*}
+        so that $v\in N$. But then $v+N = 0+N = 0_Q$, as needed.
+
+        Thus $\left\lVert \cdot\right\rVert_Q$ is a norm on $Q$, as required.
+    \end{proof}
+    
+    \subsection{The Space $\Lp\left( \mu \right)$}
+    
+    We fix a measure space $\left( X,\mA,\mu \right)$. Recall that for every $p\in\left[ 1,\infty \right)$ we have a vector space $\lp\left( \mu \right)$ endowed with seminorm $\left\lVert \cdot\right\rVert_p$.
+
+    \begin{notation}{$N$}
+        We are going to denote
+        \begin{equation*}
+            N = \left\lbrace f\in\bor\left( X,\R \right) : f=0\text{ a.e.-$\mu$} \right\rbrace.
+        \end{equation*}
+    \end{notation}
+
+    \begin{prop}{}
+        For every $p\in\left[ 1,\infty \right)$, $N$ is the null-space of $\left\lVert \cdot\right\rVert_p$.
+    \end{prop}
+
+    \rruleline
+
+    \begin{notation}{$Lp\left( \mu \right)$}
+        We write $\Lp\left( \mu \right)$ to denote $\lp\left( \mu \right) /N$.
+    \end{notation}
+
+    \np It follows from Lemma 4.8 and Proposition 4.9 that $\Lp\left( \mu \right)$ is a normed vector space.
+    
+    \begin{exercise}{}
+        Consider the measure space $\left( \left[ 0,1 \right],\mB_{\left[ 0,1 \right]},\lambda_{\left[ 0,1 \right]} \right)$ and $\lone\left( \mu \right)$. Find $f:\lone\left( \mu \right)$ with $\left\lVert f \right\rVert_{1}=0$ but $f\neq\underline{0}$.
+    \end{exercise}
+
+    \begin{answer}
+        Consider the function
+        \begin{equation*}
+            f = \chi_{\Q\cap\left[ 0,1 \right]}.
+        \end{equation*}
+        Then observe that $\left| f \right|=f$, where
+        \begin{equation*}
+            \int_{\left[ 0,1 \right]} f\dif\lambda_{\left[ 0,1 \right]} = \int_{\left[ 0,1 \right]} \chi_{Q\cap\left[ 0,1 \right]} \dif\lambda_{\left[ 0,1 \right]} = \lambda_{\left[ 0,1 \right]}\left( \Q\cap\left[ 0,1 \right] \right) = 0.
+        \end{equation*}
+        Thus $f\in\lone\left( \mu \right)$ with $\left\lVert f \right\rVert_{1}=0$ but $f\neq\underline{0}$.
+    \end{answer}
     
     
     
