@@ -5,7 +5,7 @@
 
 \begin{document}
 
-    \section{Hilbert Spaces}
+    \section{Hilbert Spaces and Fourier Analysis}
 
     \subsection{$\mL^p\left( \mu \right)$ Spaces and the Minkowski Inequality}
     
@@ -274,24 +274,35 @@
     
     We fix a measure space $\left( X,\mA,\mu \right)$. Recall that for every $p\in\left[ 1,\infty \right)$ we have a vector space $\lp\left( \mu \right)$ endowed with seminorm $\left\lVert \cdot\right\rVert_p$.
 
-    \begin{notation}{$N$}
+    \begin{notation}{$\mN$}
         We are going to denote
         \begin{equation*}
-            N = \left\lbrace f\in\bor\left( X,\R \right) : f=0\text{ a.e.-$\mu$} \right\rbrace.
+            \mN = \left\lbrace f\in\bor\left( X,\R \right) : f=0\text{ a.e.-$\mu$} \right\rbrace.
         \end{equation*}
     \end{notation}
 
     \begin{prop}{}
-        For every $p\in\left[ 1,\infty \right)$, $N$ is the null-space of $\left\lVert \cdot\right\rVert_p$.
+        For every $p\in\left[ 1,\infty \right)$, $\mN$ is the null-space of $\left\lVert \cdot\right\rVert_p$.
     \end{prop}
 
     \rruleline
 
-    \begin{notation}{$Lp\left( \mu \right)$}
-        We write $\Lp\left( \mu \right)$ to denote $\lp\left( \mu \right) /N$.
+    \begin{notation}{$\Lp\left( \mu \right)$}
+        We write $\Lp\left( \mu \right)$ to denote $\lp\left( \mu \right) /\mN$.
     \end{notation}
 
-    \np It follows from Lemma 4.8 and Proposition 4.9 that $\Lp\left( \mu \right)$ is a normed vector space.
+    \begin{prop}{}
+        Let $p\in\left[ 1,\infty \right)$. Consider defining $\left\lVert \cdot\right\rVert_p:\Lp\left( \mu \right)\to\left[ 0,\infty \right)$ by
+        \begin{equation*}
+            \left\lVert f+\mN\right\rVert_p = \left\lVert f\right\rVert_p,
+        \end{equation*}
+        where $\left\lVert \cdot\right\rVert_p$ on the right-hand side is the seminorm on $\lp\left( \mu \right)$.\footnotemark[1] Then $\left\lVert \cdot\right\rVert_p$ is a norm on $\Lp\left( \mu \right)$.
+        
+        \noindent
+        \begin{minipage}{\textwidth}
+            \footnotetext[1]{This is an unfortunate notation, of course.}
+        \end{minipage}
+    \end{prop}
     
     \begin{exercise}{}
         Consider the measure space $\left( \left[ 0,1 \right],\mB_{\left[ 0,1 \right]},\lambda_{\left[ 0,1 \right]} \right)$ and $\lone\left( \mu \right)$. Find $f:\lone\left( \mu \right)$ with $\left\lVert f \right\rVert_{1}=0$ but $f\neq\underline{0}$.
@@ -309,6 +320,1064 @@
         Thus $f\in\lone\left( \mu \right)$ with $\left\lVert f \right\rVert_{1}=0$ but $f\neq\underline{0}$.
     \end{answer}
     
+    \subsection{$\lp$-completeness}
+
+    We will prove that $\left( \Lp\left( \mu \right),\left\lVert \cdot\right\rVert_p \right)$ is complete, hence is a Banach space. Most of the arguments will be made for $\left( \lp\left( \mu \right),\left\lVert \cdot\right\rVert_p \right)$, and the last step of taking quotient by $\mN$ will take us to the desired conclusion about $\left( \Lp\left( \mu \right),\left\lVert \cdot\right\rVert_p \right)$.
+    
+    \np Since we will be working with a \textit{semi}normed vector space, we have to adjust the notion of completeness a bit: \textit{how does completeness work in the framework of a seminormed vector space?} It turns out that the notion of completeness works fine, but we have to be careful about limits.
+
+    \np To discuss things in full generality, let $\left( V,\left\lVert \cdot\right\rVert \right)$ be a seminormed vector space over $\R$ throughout this subsection. We do \textit{not} assume $\left\lVert \cdot\right\rVert$ to be a norm. This means
+    \begin{equation*}
+        \mN = \left\lbrace v\in V: \left\lVert v\right\rVert\neq 0 \right\rbrace
+    \end{equation*}
+    is a nontrivial subspace of $V$.
+
+    \begin{definition}{\textbf{Convergence} of a Sequence on a Seminormed Space}
+        Let $v\in V$ and let $\left( v_{n} \right)^{\infty}_{n=1}\in V^{\N}$. We say $\left( v_{n} \right)^{\infty}_{n=1}$ \emph{converges} to $v$, denoted as $v_n\to v$, to mean that
+        \begin{equation*}
+            \lim_{n\to\infty} \left\lVert v_n-v\right\rVert = 0.
+        \end{equation*}
+    \end{definition}
+    
+    \np Observe that the limit may not be unique. That is, suppose $\left( v_{n} \right)^{\infty}_{n=1}\in V^{\N}$ converges to $v\in V$. Since $\left( V,\left\lVert \cdot\right\rVert \right)$ is a seminormed vector space, there exists $z\in\mN$ with $z\neq 0$. Then observe that
+    \begin{equation*}
+        \left\lVert v_n-\left( v+z \right)\right\rVert \leq \left\lVert v_n-v\right\rVert + \left\lVert z\right\rVert = \left\lVert v_n-v\right\rVert
+    \end{equation*}
+    and that
+    \begin{equation*}
+        \left\lVert v_n-v\right\rVert \leq \left\lVert v_n-\left( v+z \right)\right\rVert + \left\lVert z\right\rVert = \left\lVert v_n-\left( v-z \right)\right\rVert
+    \end{equation*}
+    for all $n\in\N$. This means $\lim_{n\to\infty}\left\lVert v_n-\left( v+z \right)\right\rVert=0$, so that $\left( v_{n} \right)^{\infty}_{n=1}$ converges to $v+z$ as well.
+    
+    \begin{definition}{\textbf{Cauchy} Sequence on a Seminormed Space}
+        Let $\left( v_{n} \right)^{\infty}_{n=1}\in V^{\N}$. We say $\left( v_{n} \right)^{\infty}_{n=1}$ is \emph{Cauchy} if
+        \begin{equation*}
+            \forall\epsilon>0\exists n_0\in\N\forall n,m\geq n_0\left[ \left\lVert v_n-v_m\right\rVert<\epsilon \right].
+        \end{equation*}
+    \end{definition}
+    
+    \begin{definition}{\textbf{$\frac{1}{2}$-geometric} Sequence on a Seminormed Space}
+        Let $\left( v_{n} \right)^{\infty}_{n=1}\in V^{\N}$. We say $\left( v_{n} \right)^{\infty}_{n=1}$ is $\frac{1}{2}$\emph{-geometric} if
+        \begin{equation*}
+            \forall n\in\N\left[ \left\lVert v_n-v_{n-1}\right\rVert<\frac{1}{2^n} \right].
+        \end{equation*}
+    \end{definition}
+    
+    \np Given an $\frac{1}{2}$-geometric sequence $\left( v_{n} \right)^{\infty}_{n=1}\in V^{\N}$ and $n,m\in\N$ with $m<n$, we have
+    \begin{equation*}
+        \left\lVert v_m-v_n\right\rVert = \left\lVert \left( v_m-v_{m+1} \right)+\left( v_{m+1}-v_{m+2} \right)+\cdots+\left( v_{n-1}-v_n \right)\right\rVert < \sum^{n}_{j=m+1} \frac{1}{2^j}.
+    \end{equation*}
+    
+    \np Given $\left( v_{n} \right)^{\infty}_{n=1}\in V^{\N}$, we have the following implications:
+    \begin{equation}
+        \text{$\left( v_{n} \right)^{\infty}_{n=1}$ is convergent} \implies \text{$\left( v_{n} \right)^{\infty}_{n=1}$ is Cauchy}
+    \end{equation}
+    and that
+    \begin{equation}
+        \text{$\left( v_{n} \right)^{\infty}_{n=1}$ is $\frac{1}{2}$-geometric} \implies \text{$\left( v_{n} \right)^{\infty}_{n=1}$ is Cauchy}.
+    \end{equation}
+    A weak converse of [4.12] is that
+    \begin{equation}
+        \text{$\left( v_{n} \right)^{\infty}_{n=1}$ is Cauchy}\implies\text{there are $n_1<n_2<\cdots$ in $\N$ such that $\left( v_{n_j} \right)^{\infty}_{j=1}$ is $\frac{1}{2}$-geometric}.
+    \end{equation}
+    The converse of [4.11] is the definition of completeness.
+
+    \begin{definition}{\textbf{Complete} Seminormed Space}
+        We say $\left( V,\left\lVert \cdot\right\rVert \right)$ is \emph{complete} if for every Cauchy sequence $\left( v_{n} \right)^{\infty}_{n=1}\in V^{\N}$, there exists $v\in V$ such that $v_n\to v$.
+    \end{definition}
+    
+    \np Now we fix a measure space $\left( X,\mA,\mu \right)$ and $p\in\left[ 1,\infty \right)$, and we look at the seminormed vector space $\left( \lp\left( \mu \right),\left\lVert \cdot\right\rVert_p \right)$. We will prove that $\left( \lp\left( \mu \right),\left\lVert \cdot\right\rVert_p \right)$ is complete. In view of what we sah in [4.13], it will be sufficient to prove that every $\frac{1}{2}$-geometric sequence with respect to $\left\lVert \cdot\right\rVert_p$ is convergent. We start towards that by recording a general \textit{convergence mechanism} which can be used in this kind of situation.
+
+    \begin{lemma}{}
+        Let $X$ be a nonempty set and let $\left( f_{n} \right)^{\infty}_{n=1}\in \left( \R^X \right)^{\N}$. For each $n\in\N$, let $h_n:X\to\left[ 0,\infty \right)$ be defined as
+        \begin{equation*}
+            h_n = \sum^{n}_{m=1} \left| f_m-f_{m-1} \right|
+        \end{equation*}
+        with the convention that $f_0=0$. Denote
+        \begin{equation*}
+            Z = \left\lbrace x\in X: \lim_{n\to\infty}h_n\left( x \right)=\infty \right\rbrace.
+        \end{equation*}
+        Then for every $x\in X\setminus Z$, $\left( f_{n}\left( x \right) \right)^{\infty}_{n=1}$ is convergent in $\R$.
+    \end{lemma}
+    
+    \begin{proof}
+        We pick $x\in X\setminus Z$ and verify that $\left( f_{n}\left( x \right) \right)^{\infty}_{n=1}$ is convergent. As is always the case with sequences of real numbers, it will be sufficient to verify that 
+        \begin{equation}
+            \text{\textit{$\left( f_{n}\left( x \right) \right)^{\infty}_{n=1}$ is a Cauchy sequence.}}
+        \end{equation}
+
+        So in connection to $x$ picked above, suppose we are also given $\epsilon>0$. We want to find $n_0\in\N$ such that
+        \begin{equation}
+            \text{\textit{for all $n>m\geq n_0$, we have $\left| f_m\left( x \right)-f_n\left( x \right) \right|<\epsilon$.}}
+        \end{equation}
+        Since $x$ is in $X\setminus Z$, by definition of $h_n$'s, $\left( h_{n}\left( x \right) \right)^{\infty}_{n=1}$ is an increasing sequence that has a finite limit, say $l\in\left[ 0,\infty \right)$. In connection to $\epsilon$ that was given, we have $n_0\in\N$ such that $h_{n_0}\left( x \right)>l-\epsilon$. We show that this $n_0$ does the job for [4.15]:
+        \begin{flalign*}
+            && \left| f_m\left( x \right)-f_n\left( x \right) \right| & = \left| \left( f_m\left( x \right)-f_{m+1}\left( x \right) \right) + \left( f_{m+1}\left( x \right) \right)-f_{m+2}\left( x \right)+\cdots+\left( f_{n-1}\left( x \right)-f_n\left( x \right) \right) \right|&& \\ 
+            && & \leq \left| f_m\left( x \right)-f_{m+1}\left( x \right) \right|+\left| f_{m+1}\left( x \right)-f_{m+2}\left( x \right) \right|+\cdots+\left| f_{n-1}\left( x \right)-f_n\left( x \right) \right| && \\
+            && & = h_n\left( x \right)-h_M\left( x \right) && \\
+            && & < l - \left( l-\epsilon \right) && \substack{\text{since $h_n\left( x \right)\leq l$ and}\\\text{$h_m\left( x \right)\geq h_{n_0}\left( x \right)>l-\epsilon$}} \\
+            && & = \epsilon.
+        \end{flalign*}
+        Thus $\left| f_m\left( x \right)-f_n\left( x \right) \right|<\epsilon$, as required.
+    \end{proof}
+    
+    \begin{prop}{}
+        Let $\left( f_{n} \right)^{\infty}_{n=1}\in\lp\left( \mu \right)^{\N}$ be such that $\left\lVert f_n-f_{n+1}\right\rVert_p<\frac{1}{2^n}$ for all $n\in\N$. Consier $Z$ from Lemma 4.11 and define $f:X\to\R$ by
+        \begin{equation*}
+            f\left( x \right) = 
+            \begin{cases} 
+                0 & \text{if $x\in Z$}\\
+                \lim_{n\to\infty} f_n\left( x \right) & \text{if $x\in X\setminus Z$}
+            \end{cases}
+        \end{equation*}
+        for all $x\in X$. Then $f\in\lp\left( \mu \right)$ with $\lim_{n\to\infty}\left\lVert f_n-f\right\rVert_p=0$.
+    \end{prop}
+
+    \placeqed[tl;dr]
+
+    \clearpage
+
+    \begin{cor}{}
+        The seminormed vector space $\left( \lp\left( \mu \right),\left\lVert \cdot\right\rVert_p \right)$ is complete.
+    \end{cor}	
+
+    \rruleline
+
+    \begin{cor}{}
+        The normed vector space $\left( \Lp\left( \mu \right),\left\lVert \cdot\right\rVert_p \right)$ is a Banach space.
+    \end{cor}	
+    
+    \rruleline
+    
+    \np A byproduct of how we ran the proof of Proposition 4.12 is that we can connect convergence with respect to $\left\lVert \cdot\right\rVert_p$ to a notion of \textit{almost everywhere} convergence, which is defined as follows.
+
+    \begin{definition}{\textbf{Converges Almost Everywhere}}
+        Let $\left( X,\mA,\mu \right)$ be a measure space, let $f\in\bor\left( X,\R \right)$, and let $\left( f_{n} \right)^{\infty}_{n=1}\in\bor\left( X,\R \right)^{\N}$. We say $\left( f_{n} \right)^{\infty}_{n=1}$ \emph{converges} to $f$ \emph{almost everywhere} with respect to $\mu$ (or \emph{a.e.-$\mu$} for short) to mean that there exists a negligible set $Z\in\mA$ such that
+        \begin{equation*}
+            \lim_{n\to\infty}f_n\left( x \right)=f\left( x \right)
+        \end{equation*}
+        for all $x\in X\setminus Z$.
+    \end{definition}
+    
+    \np The relevance of Def'n 4.10 comes up as follows. Upon examining the proof of Proposition of 4.12, it is quite obvious that the function $f$ considered there also has the property that $\left( f_{n} \right)^{\infty}_{n=1}$ converges to $f$ in the a.e.-$\mu$ sense. Indeed, the convergence $f_n\left( x \right)\to f\left( x \right)$ may only fail for points $x$ in the set $Z$, and $\mu\left( Z \right)=0$ as in the proof. We can therefore also record the following corollary.
+
+    \begin{cor}{}
+        Let $\left( X,\mA,\mu \right)$ be a measure space, let $p\in\left[ 1,\infty \right)$, and let $\left( f_{n} \right)^{\infty}_{n=1}\in\lp\left( \mu \right)^{\N}$ be such that $\left\lVert f_n-{f_{n+1}}\right\rVert_p<\frac{1}{2^n}$. Then there exists $f\in\lp\left( \mu \right)$ such that $\lim_{n\to\infty}f_n=f$ a.e.-$\mu$.
+    \end{cor}	
+
+    \rruleline
+    
+    \subsection{Hilbert Spaces}
+
+    \begin{recall}{\textbf{Inner Product Space} over $\R$}
+        Let $V$ be an $\R$-vector space. We say $\left\langle \cdot, \cdot\right\rangle:V\times V\to\R$ is an \emph{inner product} on $V$ if
+        \begin{enumerate}
+            \item for all $u,v,w\in V, a\in\R$, we have $\left\langle au+v, w\right\rangle = a\left\langle u, w\right\rangle+\left\langle v, w\right\rangle$;\hfill\textit{linearity at the first argument}
+            \item for all $u,v\in V$, we have $\left\langle u, v\right\rangle=\left\langle v, u\right\rangle$; and\hfill\textit{symmetry}
+            \item for all nonzero $v\in V$, we have $\left\langle v, v\right\rangle>0$.\hfill\textit{positive definiteness}
+        \end{enumerate}
+        Whenever $\left\langle \cdot, \cdot\right\rangle$ is an inner product on $V$, we say $\left( V,\left\langle \cdot, \cdot\right\rangle \right)$ is an \emph{inner product space}.
+    \end{recall}
+    
+    \np Observe that, for any $v\in V$,
+    \begin{equation*}
+        \left\langle 0_V, v\right\rangle = \left\langle 0v, v\right\rangle = 0\left\langle v, v\right\rangle = 0
+    \end{equation*}
+    by using the linearity at the first argument.
+
+    \begin{prop}{Cauchy-Schwarz Inequality}
+        Let $\left( V,\left\langle \cdot, \cdot\right\rangle \right)$ be an inner product space. Then
+        \begin{equation*}
+            \left\langle v, w\right\rangle^{2} \leq \left\langle v, v\right\rangle\left\langle w, w\right\rangle
+        \end{equation*}
+        for all $v,w\in V$.
+    \end{prop}
+
+    \placeqed[MATH 245]
+    
+    \begin{prop}{}
+        Let $\left( V,\left\langle \cdot, \cdot\right\rangle \right)$ be an inner product space. Then $\left\lVert \cdot\right\rVert:V\to\R$ by
+        \begin{equation*}
+            \left\lVert v\right\rVert = \sqrt{\left\langle v, v\right\rangle}
+        \end{equation*}
+        is a norm on $V$.
+    \end{prop}
+    
+    \placeqed[MATH 245]
+    
+    \begin{recall}{\textbf{Norm} Induced by the Inner Product}
+        Consider the setting of Proposition 4.14. We call $\left\lVert \cdot\right\rVert$ the \emph{norm} induced by $\left\langle \cdot, \cdot\right\rangle$.
+    \end{recall}
+    
+    \begin{definition}{\textbf{Hilbert Space}}
+        Let $\left( V,\left\langle \cdot, \cdot\right\rangle \right)$ be an inner product space and let $\left\lVert \cdot\right\rVert$ be the norm induced by $\left\langle \cdot, \cdot\right\rangle$. If $\left\lVert \cdot\right\rVert$ induces a complete metric on $V$, then we say $\left\langle V, \left\langle \cdot, \cdot\right\rangle\right\rangle$ is a \emph{Hilbert space}.
+    \end{definition}
+
+    \np The space $\LL^{2}\left( \mu \right)$ is special among $\Lp\left( \mu \right)$ spaces in the sense that the conjugate exponent $q$ of $p=2$ requires $\frac{1}{p}+\frac{1}{q}=1$, which means $q=p=2$. So then Holder's inequality says, given $f,g\in\mL^{2}\left( \mu \right)$, $fg\in\lone\left( \mu \right)$ and
+    \begin{equation*}
+        \left\lVert fg \right\rVert_{1} \leq \left\lVert f\right\rVert_2 \left\lVert g\right\rVert_2.
+    \end{equation*}
+    This suggests an inner product space structure on $\LL^{2}\left( \mu \right)$.
+    
+    \begin{prop}{}
+        The map $\left\langle \cdot, \cdot\right\rangle:\LL^2\left( \mu \right)\times\LL^2\left( \mu \right)\to\R$ by
+        \begin{equation*}
+            \left\langle f+\mN, g+\mN\right\rangle = \int^{}_{X}fg\dif\mu
+        \end{equation*}
+        for all $f+\mN,g+\mN\in\LL^{2}\left( \mu \right)$ is a complete inner product on $\LL^{2}\left( \mu \right)$. Moreover, the norm induced by $\left\langle \cdot, \cdot\right\rangle$ is $\left\lVert \cdot\right\rVert_2$.
+    \end{prop}
+
+    \begin{proof}
+        Given any $f+\mN,g+\mN\in\LL^{2}\left( \mu \right)$, $f,g\in\mL^{2}\left( \mu \right)$ so that $fg\in\lone\left( \mu \right)$ by Holder's inequality. This means $\int_Xfg\dif\mu$ is well-defined.
+
+        Moreover, if $f_1,g_1\in\mL^{2}\left( \mu \right)$ are such that $f+\mN=f_1+\mN$ and $g+\mN=g_1+\mN$, $fg=f_1g_1$ a.e.-$\mu$, so that $\left\langle f+\mN, g+\mN\right\rangle = \left\langle f_1+\mN, g_1+\mN\right\rangle$. Hence $\left\langle \cdot, \cdot\right\rangle$ is well-defined.
+
+        Now let $f,g,h\in\mL^{2}\left( \mu \right), a\in\R$. Then
+        \begin{equation*}
+            \begin{aligned}
+                \left\langle af+g+\mN, h+\mN\right\rangle & = \int_X\left( af+g \right)h\dif\mu = a\int_Xfh\dif\mu+\int_Xgh\dif\mu = a\left\langle f+\mN, h+\mN\right\rangle+\left\langle g+\mN, h+\mN\right\rangle, \\
+                \left\langle f+\mN, g+\mN\right\rangle & = \int^{}_{X}fg\dif\mu = \int^{}_{X}gf\dif\mu = \left\langle g, f\right\rangle, \\
+                \left\langle f+\mN, f+\mN\right\rangle & = \int^{}_{X}f^{2}\dif\mu = \left\lVert f \right\rVert_{2}^{2} = \left\lVert f+\mN\right\rVert_2^{2},
+            \end{aligned} 
+        \end{equation*}
+        where the last line shows $\left\langle \cdot, \cdot\right\rangle$ is positive definite. It then shows that $\left\lVert \cdot \right\rVert_{2}$ is induced by $\left\langle \cdot, \cdot\right\rangle$. But we know that $\left\lVert \cdot \right\rVert_{2}$ is complete (Corollary 4.12.1). Thus $\left( \LL^{2}\left( \mu \right),\left\langle \cdot, \cdot\right\rangle \right)$ is a Hilbert space.
+    \end{proof}
+
+    \subsection{Geometry of Hilbert Spaces}
+    
+    \begin{recall}{\textbf{Convex} Subset of an $\R$-vector Space}
+        Let $V$ be an $\R$-vector space. Given any $u,v\in V$, we define the \emph{line segment} with endpoints $u,v$, denoted as $\co\left( u,v \right)$, by
+        \begin{equation*}
+            \co\left( u,v \right) = \left\lbrace \left( 1-t \right)v+tw: t\in\left[ 0,1 \right] \right\rbrace.
+        \end{equation*}
+
+        If $C\subseteq V$ is such that, for all $u,v\in C$, $\co\left( u,v \right)$ is contained in $C$, then we say $C$ is \emph{convex}.
+    \end{recall}
+
+    \begin{exercise}{}
+        Let $\left( V,\left\lVert \cdot\right\rVert \right)$ be a normed $\R$-vector space. Prove that, if $C\subseteq V$ is convex, then $\cl\left( C \right)$ is also convex.
+    \end{exercise}
+
+    \rruleline
+    
+    \begin{prop}{}
+        Let $\left( V,\left\langle \cdot, \cdot\right\rangle \right)$ be a Hilbert space and let $C\subseteq V$ be a nonempty closed convex set. Then for all $v\in V\setminus C$, there exists unique $w_0\in C$ such that
+        \begin{equation*}
+            \left\lVert v-w_0\right\rVert = \inf_{w\in C}\left\lVert v-w\right\rVert.
+        \end{equation*}
+    \end{prop}
+    \clearpage
+
+    \begin{proof}
+        Suppose $v\notin C$ (otherwise, we may set $w_0=v$). Denote
+        \begin{equation*}
+            \alpha = \inf_{w\in C}\left\lVert v-w\right\rVert.
+        \end{equation*}
+        We claim that 
+        \begin{equation}
+            \alpha>0.
+        \end{equation}
+        For contradiction, suppose that $\alpha=0$. Then for every $n\in\N$, there is $w_n\in C$ such that $\left\lVert v-w_n\right\rVert<\frac{1}{n}$. This means
+        \begin{equation*}
+            \lim_{n\to\infty} \left\lVert v-w_n\right\rVert = \lim_{n\to\infty} \frac{1}{n} = 0.
+        \end{equation*}
+        But $\left\lVert \cdot\right\rVert$ is a norm on $V$, so it follows that $v=\lim_{n\to\infty}w_n\in\cl\left( C \right)=C$. This contradicts the assumption that $v\notin C$. Hence [4.16] is verified.
+
+        We now have to show that
+        \begin{equation}
+            \text{\textit{there exists unique $w_0\in C$ such that $\left\lVert v-w_0\right\rVert=\alpha$.}}
+        \end{equation}
+        
+        From the definition of $\alpha$ as an infimum, we see that, for all $n\in\N$ there exists $w_n\in\phi$ such that
+        \begin{equation}
+            \alpha\leq\left\lVert v-w_n\right\rVert<\alpha+\frac{1}{n}.\footnotemark[1]
+        \end{equation}
+        We claim that
+        \begin{equation}
+            \forall m,n\in\N \left[ \left\lVert w_m-w_n\right\rVert^{2}\leq 2\left( \frac{2\alpha}{m}+\frac{2\alpha}{n}+\frac{1}{m^{2}}+\frac{1}{n^{2}} \right) \right].
+        \end{equation}
+        To prove [4.19], we will use the \textit{parallelogram law}:
+        \begin{equation}
+            \forall x,y\in V \left[ \left\lVert x+y\right\rVert^{2}+\left\lVert x-y\right\rVert^{2} = 2\left( \left\lVert x\right\rVert^{2}+\left\lVert y\right\rVert^{2} \right) \right].
+        \end{equation}
+        Observe that, for all $m,n\in\N$,
+        \begin{flalign*}
+            && \left\lVert w_m-w_n\right\rVert^{2} & = \left\lVert \left( w_m-v \right)-\left( w_n-v \right)\right\rVert^{2} && \\ 
+            && & = 2\left( \left\lVert w_m-v\right\rVert^{2}+\left\lVert w_n-v\right\rVert^{2} \right)-\left\lVert \left( w_m-v \right)+\left( w_n-v \right)\right\rVert^{2} && \text{by [4.20]} \\
+            && & \leq 2\left( \left( \alpha+\frac{1}{m} \right)^{2}+\left( \alpha+\frac{1}{n} \right)^{2} \right) - \left\lVert -2\left( v-\frac{w_m+w_n}{2} \right)\right\rVert^{2} && \text{by [4.18]} \\
+            && & \leq 2\left( \left( \alpha+\frac{1}{m} \right)^{2}+\left( \alpha+\frac{1}{n} \right)^{2} \right) - 4\alpha^{2} && \\
+            && & = 2\left( \frac{2\alpha}{m}+\frac{1}{m^{2}}+\frac{2\alpha}{n}+\frac{1}{n^{2}} \right),
+        \end{flalign*}
+        where we have
+        \begin{equation*}
+            \left\lVert -2\left( v-\frac{w_m+w_n}{2} \right)\right\rVert = 2 \left\lVert v-\frac{w_m+w_n}{2}\right\rVert \geq 2\alpha
+        \end{equation*}
+        by observing that $\frac{w_m+w_n}{2}\in C$ by the convexity of $C$.
+
+        As a corollary to [4.19], we have
+        \begin{equation}
+            \text{\textit{$\left( w_{n} \right)^{\infty}_{n=1}$ is Cauchy.}}
+        \end{equation}
+        Given any $\epsilon>0$, choose $n_0\in\N$ such that
+        \begin{equation*}
+            2\left( \frac{4\alpha}{n_0}+\frac{2}{n_0^{2}} \right) < \epsilon^{2}.
+        \end{equation*}
+        Then for all $m,n\geq n_0$, we have
+        \begin{flalign*}
+            && \left\lVert w_n-w_m\right\rVert & \leq \sqrt{2\left( \frac{2\alpha}{m}+\frac{2\alpha}{n}+\frac{1}{m^{2}}+\frac{1}{n^{2}} \right)}&& \text{[4.19]}\\
+            && & \leq \sqrt{2\left( \frac{4\alpha}{n_0}+\frac{2}{n_0^{2}} \right)} < \sqrt{\epsilon^{2}} = \epsilon.
+        \end{flalign*}
+        Hence [4.21] is verified.
+        
+        Since $\left( V,\left\langle \cdot, \cdot\right\rangle \right)$ is complete, it follows that $\left( w_{n} \right)^{\infty}_{n=1}$ is convergent. This means we may write
+        \begin{equation*}
+            w_0 = \lim_{n\to\infty} w_n.
+        \end{equation*}
+        Note that $w_0\in C$, since every $w_n\in C$ and $C$ is closed. Consequently, 
+        \begin{equation*}
+            \lim_{n\to\infty}\left\lVert w_n-v\right\rVert = \left\lVert w_0-v\right\rVert = \alpha,
+        \end{equation*}
+        where the last equality holds by the squeeze theorem on [4.18].
+
+        The uniqueness part of [4.17] will be on an assignment.
+        
+        \noindent
+        \begin{minipage}{\textwidth}
+            \footnotetext[1]{From [4.18], it might be tempting to extract a convergent subsequence of $\left( w_{n} \right)^{\infty}_{n=1}$; this only works in \textit{finite} dimensional cases.}
+        \end{minipage}
+    \end{proof}
+
+    \begin{exercise}{}
+        Let $\left( V,\left\lVert \cdot\right\rVert \right)$ be a normed vector space.
+        \begin{enumerate}
+            \item Let $W$ be a linear subspace of $V$. Prove that $\cl\left( W \right)$ is also a linear subspace of $V$.
+            \item Let $W$ be a finite dimensional linear subspace of $V$. Prove that $W$ is closed.
+        \end{enumerate}
+    \end{exercise}
+
+    \begin{proof}[Proof of (a)]
+        Since $W$ is a linear subspace of $V$, $0_V\in W\subseteq\cl\left( W \right)$.
+
+        Let $v,w\in\cl\left( W \right),a\in\R$. We have to show $u=av+w\in\cl\left( W \right)$. Since $v,w\in\cl\left( W \right)$, there exist sequences $\left( v_{n} \right)^{\infty}_{n=1},\left( w_{n} \right)^{\infty}_{n=1}\in W^{\N}$ such that $v_n\to v, w_n\to w$. Define $\left( u_{n} \right)^{\infty}_{n=1}$ by
+        \begin{equation*}
+            u_n = av_n+w_n
+        \end{equation*}
+        for all $n\in\N$. Then $\left( u_{n} \right)^{\infty}_{n=1}\in W^{\N}$, since $W$ is closed under linear combination. Moreover, since $v_n\to v, w_n\to w$, it follows $u_n\to av+w=u$. Hence $u\in\cl\left( W \right)$.
+        \qedplacedtrue
+    \end{proof}
+
+    \begin{proof}[Proof of (b)]
+        Let $\left\lbrace w_1,\ldots,w_d \right\rbrace$ be a basis for $W$, where $d=\dim\left( W \right)$. Let $\left( v_{n} \right)^{\infty}_{n=1}\in W^{\N}$ be convergent in $V$, where we have to show $\left( v_{n} \right)^{\infty}_{n=1}$ converges to a point in $W$. 
+
+        For each $n\in\N$, write
+        \begin{equation*}
+            v_n = \sum^{d}_{j=1} a^{\left( n \right)}_jw_j
+        \end{equation*}
+        for some $a^{\left( n \right)}_1,\ldots,a^{\left( n \right)}_d\in\R$. We claim that
+        \begin{equation}
+            \text{\textit{each sequence $\left( a^{\left( n \right)}_{j} \right)^{\infty}_{n=1}$ converges to a point $a_j\in\R$.}}
+        \end{equation}
+        Suppose [4.22] is false, for contradiction. Then $\left( a^{\left( n \right)}_{j=1} \right)^{\infty}_{j=1}$ is not Cauchy, which implies $\left( v_{n} \right)^{\infty}_{n=1}$ is not Cauchy, hence not convergent. 
+
+        Now observe that $v_n\to \sum^{d}_{j=1}a_jw_j$.
+    \end{proof}
+    
+    \begin{definition}{\textbf{Orthogonal} Subsets of an Inner Product Space}
+        Let $\left( V,\left\langle \cdot, \cdot\right\rangle \right)$ be an inner product space. For all $v,w\in V$, we say $v,w$ are \textit{orthogonal} to each other, denoted as $v\perp w$, when $\left\langle v, w\right\rangle=0$.
+
+        Given nonempty $A,B\in V$, we say $A,B$ are \textit{orthogonal} to each other, denoted as $A\perp B$, to mean that $v\perp w$ for all $v\in A, w\in B$.
+    \end{definition}
+    
+    \begin{prop}{}
+        Consider the setting of Proposition 4.17. If $C$ is a closed linear subspace of $V$, then $v-w_0$ is orthogonal to $W$.
+    \end{prop}
+
+    \rruleline
+
+    \np Proposition 4.17 suggests the following definition.
+
+    \begin{definition}{\textbf{Orthogonal Projection} of a Vector onto a Closed Subspace}
+        Let $\left( V,\left\langle \cdot, \cdot\right\rangle \right)$ be a Hilbert space and let $W$ be a closed linear subspace of $V$. Let $v\in V$ and let $w_0\in W$ be the unique vector in $W$, provided by Proposition 4.17 (with $C=W$), which has
+        \begin{equation*}
+            \left\lVert v-w_0\right\rVert = \inf_{w\in W}\left\lVert v-w\right\rVert.
+        \end{equation*}
+        We call $w_0$ the \emph{orthogonal projection} of $v$ onto $W$.
+    \end{definition}
+
+    \subsection{Orthogonal Complements}
+
+    We fix a Hilbert space $\left( V,\left\langle \cdot, \cdot\right\rangle \right)$ and put into evidence a number of useful facts related to the orthogonality relation between vectors in $V$.
+    
+    \begin{definition}{\textbf{Orthogonal Complement} of a Subset}
+        Let $A\subseteq V$ be nonempty. The \emph{orthogonal complement} of $A$, denoted as $A^{\perp}$, is defined as
+        \begin{equation*}
+            A^{\perp} = \left\lbrace z\in V: \forall v\in A\left[ \left\langle v, z\right\rangle=0 \right] \right\rbrace.
+        \end{equation*}
+    \end{definition}
+
+    \begin{exercise}{}
+        Prove that for every nonempty $A\subseteq V$, $A^{\perp}$ is a closed linear subspace of $V$.
+    \end{exercise}
+
+    \begin{proof}
+        Since $\left\langle v, 0_V\right\rangle= 0$ for all $v\in A$, $0_V\in A^{\perp}$.
+
+        Let $x,y\in A^{\perp}, a\in\R$. We have to show $z=ax+y\in A^{\perp}$. Let $v\in A$. Then observe that
+        \begin{equation*}
+            \left\langle v, z\right\rangle = \left\langle v, ax+y\right\rangle = a\left\langle v, x\right\rangle+\left\langle v, y\right\rangle = a0+0 = 0.
+        \end{equation*}
+        Hence $z\in A^{\perp}$.
+
+        Let $\left( x_{n} \right)^{\infty}_{n=1}$ be a convergent sequence on $A^{\perp}$, where we have to show $\left( x_{n} \right)^{\infty}_{n=1}$ converges to a point in $A^{\perp}$. Let $x=\lim_{n\to\infty}x_n$. Then observe that, given any $v\in A$,
+        \begin{equation*}
+            \left\langle v, x\right\rangle = \left\langle v, \lim_{n\to\infty}x_n\right\rangle = \lim_{n\to\infty}\left\langle v, x_n\right\rangle = 0
+        \end{equation*}
+        by using the continuity of $\left\langle \cdot, \cdot\right\rangle$.
+    \end{proof}
+
+    \begin{exercise}{}
+        Let $A,B\subseteq V$ be nonempty. Prove that, if $A\subseteq B$, then $B^{\perp}\subseteq A^{\perp}$.
+    \end{exercise}
+    
+    \begin{proof}
+        Let $z\in B^{\perp}$. Then given any $v\in A$, since $A\subseteq B$, $v\in B$, and consequently $\left\langle v, z\right\rangle=0$. Hence $v\in A^{\perp}$, implying $B^{\perp}\subseteq A^{\perp}$.
+    \end{proof}
+    
+    \begin{definition}{\textbf{Closed Linear Span} of a Set}
+        Let $A\subseteq V$ be nonempty. We define the \emph{closed linear span} of $A$, denoted as $\clspn\left( A \right)$, is defined as
+        \begin{equation*}
+            \clspn\left( A \right) = \cl\left( \spn\left( A \right) \right).
+        \end{equation*}
+    \end{definition}
+
+    \np Since the closure of a linear subspace is a closed linear subspace, it follows that $\clspn\left( A \right)$ is a closed linear subspace of $V$. It is easy to see that $\clspn\left( A \right)$ is in fact the \textit{smallest} closed linear subspace of $V$ that contains $A$.
+    
+    \begin{prop}{}
+        Let $A\subseteq V$ be nonempty and let $W=\clspn\left( W \right)$. Then $A^{\perp}=W^{\perp}$.
+    \end{prop}
+    
+    \begin{proof}
+        Since $A\subseteq W$ by definition, we have $A^{\perp}\supseteq W^{\perp}$. Hence it suffices to show $A^{\perp}\subseteq W^{\perp}$. Let $z\in A^{\perp}$ and let $v\in W$. Since $v\in W = \clspn\left( A \right)$, there exists $\left( v_{n} \right)^{\infty}_{n=1}\in\spn\left( A \right)^{\N}$ that converges to $v$. Now, for all $n\in\N$, $\left\langle z, v_n\right\rangle=0$, since $v_n$ is a linear combination of elements of $A$ and every element of $A$ is orthogoanl to $z$. Hence it follows that
+        \begin{equation*}
+            \left\langle z, v\right\rangle = \left\langle z, \lim_{n\to\infty}v_n\right\rangle = \lim_{n\to\infty}\left\langle z, v_n\right\rangle = 0.
+        \end{equation*}
+        This means $z\in W^{\perp}$, so that $A^{\perp}\subseteq W^{\perp}$, as needed.
+    \end{proof}
+    
+    \begin{exercise}{}
+        Let $W$ be a closed linear subspace of $V$. Prove that $W\cap W^{\perp}=\left\lbrace 0_V \right\rbrace$.
+    \end{exercise}
+    
+    \begin{proof}
+        Suppose for contradiction there is $v\in W\cap W^{\perp}$ with $v\neq 0_V$. This means $\left\langle v, v\right\rangle=0$, contradicting the positive definiteness of $\left\langle \cdot, \cdot\right\rangle$.
+    \end{proof}
+    
+    \begin{prop}{}
+        Let $W$ be a closed linear subspace of $V$ and let $v\in V$. Let $w_0,z_0$ be the orthogonal projections of $v$ onto $W,W^{\perp}$, respectively. Then
+        \begin{enumerate}
+            \item $w_0+z_0=v$; and
+            \item if there is $w\in W, z\in W^{\perp}$ such that $w+z=v$, then $w=w_0, z=z_0$.
+        \end{enumerate}
+    \end{prop}
+
+    \rruleline
+
+    \begin{cor}{}
+        Let $W$ be a closed linear subspace of $V$. Then $\left( W^{\perp} \right)^{\perp}=W$.
+    \end{cor}	
+
+    \rruleline
+    
+    \subsection{Countable Orthonormal Basis}
+
+    We start our discussion of Fourier coefficients and Fourier expansion for a function in $\LLL^{2}\left( \lambda_{\left[ -\pi,\pi \right]} \right)$, where $\lambda_{\left[ -\pi,\pi \right]}$ is the Lebesgue measure on the Borel $\sigma$-algebra of $\left[ -\pi,\pi \right]$. The results we want to obtain are actually holding in the more general framework of a Hilbert space where we have spotted an infinite countable orthonormal basis. These results also become more transparent if we discuss them in the general Hilbert space framework; so, for the moment, the space $\LLL^{2}\left( \lambda_{\left[ -\pi,\pi \right]} \right)$ will be disguised as a Hilbert space $V$. In the next lecture we will let $V$ become the required $\LLL^{2}$-space, and we will clarify what is the orthonormal basis that we want to work with.
+    
+    \begin{definition}{\textbf{Orthonormal Basis} of a Hilbert Space}
+        Let $\left( V,\left\langle \cdot, \cdot\right\rangle \right)$ be a Hilbert space and let $\left\lbrace \xi_i \right\rbrace^{\infty}_{i=0}\subseteq V$. If
+        \begin{enumerate}
+            \item $\left\langle \xi_i, \xi_j\right\rangle = \delta_{i,j}$ (where $\delta_{i,j}$ is the Kronecker delta) for all $i,j\in\N\cup\left\lbrace 0 \right\rbrace$; and\hfill\textit{orthonormality}
+            \item $\clspn\left( \left\lbrace \xi_i \right\rbrace^{\infty}_{i=0} \right)=V$;\hfill\textit{density of span}
+        \end{enumerate}
+        then we say $\left\lbrace \xi_i \right\rbrace^{\infty}_{i=0}$ is an \emph{orthonormal basis} for $V$.
+    \end{definition}
+    
+    \np Let $\left( V,\left\langle \cdot, \cdot\right\rangle \right)$ be a Hilbert space and let $\mX = \left\lbrace \xi_i \right\rbrace^{\infty}_{i=0}$ be an orthonormal basis for $V$. We easily see that vectors in $\mX$ are distinct, for if $\xi_i=\xi_j$ for some $i\neq j$ in $\N\cup\left\lbrace 0 \right\rbrace$, then we have
+    \begin{equation*}
+        0 = \delta_{i,j} = \left\langle \xi_i, \xi_j\right\rangle = \left\langle \xi_i, \xi_i\right\rangle = \delta_{i,i} = 1,
+    \end{equation*}
+    which is a contradiction.
+
+    There are several ways to think of the condition $\clspn\left( \mX \right)=V$.
+    \begin{enumerate}
+        \item One is to simply recall that $\clspn\left( \mX \right) = \cl\left( \spn\left( \mX \right) \right)$. Hence if we denote
+            \begin{equation}
+                S = \spn\left( \mX \right) = \left\lbrace v\in V: \exists n\in\N\cup\left\lbrace 0 \right\rbrace\exists\alpha_0,\ldots,\alpha_n\in\R\left[ v = \sum^{n}_{i=0}\alpha_i\xi_i \right] \right\rbrace,
+            \end{equation}
+            we have that $\cl\left( S \right)=V$. In other words, ths span $S$ of $\mX$ is dense in $V$.
+        \item A second way goes by using the interpretation of $\clspn\left( \mX \right)$ as the smallest possible closed linear subspace containing $\mX$. The condition says that this subspace has to be, in fact, the full space $V$. So the condition can be rephrased as
+            \begin{equation}
+                \text{\textit{if $U$ is a closed linear subspace of $V$ containing $\mX$, then $U=V$.}}
+            \end{equation}
+        \item Finally, we take advantage of the operation $\perp$. If the condition holds, then we obtain that
+            \begin{equation*}
+                \mX^{\perp} = \left( \clspn\left( \mX \right) \right)^{\perp} = V^{\perp} = \left\lbrace 0_V \right\rbrace.
+            \end{equation*}
+            Conversely, if $\mX^{\perp}=\left\lbrace 0_V \right\rbrace$, then we have
+            \begin{equation*}
+                \clspn\left( \mX \right) = \left( \mX^{\perp} \right)^{\perp} = \left\lbrace 0_V \right\rbrace^{\perp} = V.
+            \end{equation*}
+            Hence the condition $\clspn\left( \mX \right) = V$ is equivalent to $\mX^{\perp} = \left\lbrace 0_V \right\rbrace$. In words:
+            \begin{equation}
+                \text{\textit{if $v\in V$ is such that $\left\langle v, \xi_i\right\rangle=0$ for all $i\in\N\cup\left\lbrace 0 \right\rbrace$, then $v=0_V$.}}
+            \end{equation}
+    \end{enumerate}
+    These observations can be strengthened to a statement about linear independence.
+
+    \begin{prop}{}
+        Let $\left( V,\left\langle \cdot, \cdot\right\rangle \right)$ be a Hilbert space and let $\mX=\left\lbrace \xi_i \right\rbrace^{\infty}_{i=0}\subseteq V$ be an orthonormal basis for $V$.
+        \begin{enumerate}
+            \item For every $n\in\N\cup\left\lbrace 0 \right\rbrace$, $\xi_0,\ldots,\xi_n$ are linearly independent.
+            \item For every $n\in\N\cup\left\lbrace 0 \right\rbrace$, let us write
+                \begin{equation*}
+                    V_n = \spn\left( \xi_0,\ldots,\xi_n \right).
+                \end{equation*}
+                Then $V_n$ is an $\left( n+1 \right)$-dimensional linear subspace of $V$, where $\xi_0,\ldots,\xi_n$ form a basis. The norms of the vectors from $V_n$ satisfy
+                \begin{equation*}
+                    \left\lVert \sum^{n}_{i=0}\alpha_i\xi_i\right\rVert = \sqrt{\sum^{n}_{i=0}\alpha_i^{2}}
+                \end{equation*}
+                for all $\alpha_0,\ldots,\alpha_n\in\R$.
+            \item The subspaces $V_0,V_1,\ldots$ satisfy 
+                \begin{equation*}
+                    V_0\subseteq V_1\subseteq\cdots
+                \end{equation*}
+                with
+                \begin{equation*}
+                    \spn\left( \mX \right) = \bigcup^{\infty}_{n=0}V_n.
+                \end{equation*}
+                As a result, $\bigcup^{\infty}_{n=0}V_n$ is a linear subspace of $V$.
+        \end{enumerate}
+    \end{prop}
+    
+    \begin{proof}[Proof of (a)]
+        Suppose $\xi_0,\ldots,\xi_n$ are not linearly independent, for contradiction. This means
+        \begin{equation*}
+            \xi_0 = \sum^{n}_{i=1}\alpha_i\xi_i
+        \end{equation*}
+        for some nonzero $\left( \alpha_1,\ldots,\alpha_n \right)\in\R^n$. Then we have $i\in\left\lbrace 1,\ldots,n \right\rbrace$ such that $\alpha_i\neq 0$, so that
+        \begin{equation*}
+            0 = \left\langle \xi_0, \xi_i\right\rangle = \sum^{n}_{j=1}\alpha_j\left\langle \xi_j, \xi_i\right\rangle = \alpha_i \neq 0,
+        \end{equation*}
+        which is a contradiction.
+        \qedplacedtrue
+    \end{proof}
+
+    \begin{proof}[Proof of (b)]
+        Since $\xi_0,\ldots,\xi_n$ are linearly independent, it follows $V_n = \spn\left\lbrace \xi_i \right\rbrace^{n}_{i=0}$ is an $\left( n+1 \right)$-dimensional subspace of $V$, with a basis $\left\lbrace \xi_i \right\rbrace^{n}_{i=0}$. Now, given any $\alpha_0,\ldots,\alpha_n\in\R$, we have
+        \begin{equation*}
+            \left\lVert \sum^{n}_{i=0}\alpha_i\xi_i\right\rVert = \sqrt{\left\langle \sum^{n}_{i=0}\alpha_i\xi_i, \sum^{n}_{j=0}\alpha_j\xi_j\right\rangle} = \sqrt{\sum^{n}_{i,j=0}\alpha_i\alpha_j\left\langle \xi_i, \xi_j\right\rangle} = \sqrt{\sum^{n}_{i=0}\alpha_i^{2}}.
+        \end{equation*}
+        \qedplacedtrue
+    \end{proof}
+
+    \begin{proof}[Proof of (c)]
+        Since $\left\lbrace \xi_i \right\rbrace^{n}_{i=0}\subseteq\left\lbrace \xi_i \right\rbrace^{m}_{i=0}$ for all $n\leq m$ in $\N\cup\left\lbrace 0 \right\rbrace$, we have $V_0\subseteq V_1\subseteq\cdots$. Since $\left\lbrace \xi_i \right\rbrace^{n}_{i=0}\subseteq\mX$ for all $n\in\N\cup\left\lbrace 0 \right\rbrace$, $V_n=\spn\left\lbrace \xi_i \right\rbrace^{n}_{i=0}\subseteq\spn\left( \mX \right)$ for all $n\in\cup\N\left\lbrace 0 \right\rbrace$. It follows $\bigcup^{\infty}_{n=0} V_n\subseteq\spn\left( \mX \right)$.
+
+        Conversely, given any $v\in\spn\left( \mX \right)$, we have $n\in\N\cup\left\lbrace 0 \right\rbrace$ and $\alpha_0,\ldots,\alpha_n\in\R$ such that $v=\sum^{n}_{i=0}\alpha_i\xi_i$, so that $v\in V_n\subseteq\bigcup^{\infty}_{m=0}V_m$. Thus $\bigcup^{\infty}_{n=0}V_n = \mX$.
+    \end{proof}
+    
+    \np Let $\left( V,\left\langle \cdot, \cdot\right\rangle \right)$ be a Hilbert space and let $\mX = \left\lbrace \xi_i \right\rbrace^{\infty}_{i=0}\subseteq V$ be an orthonormal basis for $V$. The existence of the orthonormal basis $\mX$ has the consequence that the Hilbert space we are dealing with a \textit{separable, infinite dimensional} Hilbert space. That is, the vector space $V$ is infinite dimensional andit is separable (it admits a countable dense subset) with respect to the norm $\left\lVert \cdot\right\rVert$ associated to the inner product.
+
+    The fact that $V$ is infinite dimensional comes as an obvious consequence of Proposition 4.20, which shows that $V$ has finite dimensional linear subspaces of arbitrary large dimension.
+
+    In order to check that $V$ is separable in the metric given by its norm, we make an adjustment in the nature of the coefficients $\alpha_i$'s used in [4.23]. That is, we put
+    \begin{equation*}
+        S_0 = \left\lbrace v\in V: \exists n\in\N\cup\left\lbrace 0 \right\rbrace\exists\alpha_0,\ldots,\alpha_n\in\Q\left[ v=\sum^{n}_{i=0}\alpha_i\xi_i \right] \right\rbrace.
+    \end{equation*}
+    It is quite straightforward to show that $S_0$ is a countable set. Let us also argue that $S_0$ is dense in $V$.
+
+    \begin{lemma}{}
+        Let $v\in V$ and $\epsilon>0$ be given. There exists $w\in S_0$ such that $\left\lVert v-w\right\rVert<\epsilon$.
+    \end{lemma}
+
+    \begin{proof}
+        Let $S=\spn\left( \mX \right)$. We noticed that $\cl\left( S \right)=V$. In particular, we have that $v\in\cl\left( S \right)$, and we can therefore find $v'\in S$ such that $\left\lVert v-v'\right\rVert< \frac{\epsilon}{2}$. Now $v'$ can be written in the form
+        \begin{equation*}
+            v' = \sum^{n}_{i=0}\alpha_i\xi_i
+        \end{equation*}
+        for some $n\in\N\cup\left\lbrace 0 \right\rbrace$ and $\alpha_0,\ldots,\alpha_n\in\R$. Let $r_0,\ldots,r_n\in\Q$ be such that $\left| r_i-\alpha_i \right| < \frac{\epsilon}{\sqrt{4\left( n+1 \right)}}$ for every $i\in\left\lbrace 0,\ldots,n \right\rbrace$ and conside the vector
+        \begin{equation*}
+            w = \sum^{n}_{i=0}r_i\xi_i\in S_0.
+        \end{equation*}
+        Then we have
+        \begin{equation*}
+            \left\lVert v'-w\right\rVert^{2} = \left\lVert \sum^{n}_{i=0}\left( \alpha_i-r_i \right)\xi_i\right\rVert^{2} = \sum^{n}_{i=0} \left( \alpha_i-r_i \right)^{2} < \sum^{n}_{i=0} \left( \frac{\epsilon}{\sqrt{4\left( n+1 \right)}} \right)^{2} = \frac{\epsilon^{2}}{4}
+        \end{equation*}
+        so that $\left\lVert v'-w\right\rVert<\frac{\epsilon}{2}$. Thus
+        \begin{equation*}
+            \left\lVert w-v\right\rVert\leq \left\lVert w-v'\right\rVert+\left\lVert v'-v\right\rVert < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon,
+        \end{equation*}
+        as required.
+    \end{proof}
+
+    \np It is not hard to verify that Lemma 4.21 has a converse, stated as follows.
+
+    \begin{prop}{}
+        Let $\left( V,\left\langle \cdot, \cdot\right\rangle \right)$ be a Hilbert space. If $\left( V,\left\langle \cdot, \cdot\right\rangle \right)$ is separable and infinite dimensional, then $V$ admits an orthonormal basis.
+    \end{prop}
+
+    \placeqed[Assignment!]
+    
+    \clearpage
+    \np It is nice to know that an orthonormal basis can always be found if we know that the Hilbert space is separable and infinite dimensional. But we will not need to rely on this fact in our incoming discussion of $\LLL^{2}\left( \lambda_{\left[ -\pi,\pi \right]} \right)$. Indeed, in the case of $\LLL^{2}\left( \lambda_{\left[ -\pi,\pi \right]} \right)$, we will have available an explicit construction of orthonormal basis that we want to use, so we will not need to invoke the general orthonormal basis existence result.
+    
+    \np For the upcoming discussion, fix a Hilbert space $\left( V,\left\langle \cdot, \cdot\right\rangle \right)$ and an orthonormal basis $\mX = \left\lbrace \xi_i \right\rbrace^{\infty}_{i=1}\subseteq V$ for $V$.
+
+    \begin{definition}{\textbf{$i$-th Coefficient} of a Vector}
+        Let $v\in V$. For every $i\in\N\cup\left\lbrace 0 \right\rbrace$, we call
+        \begin{equation*}
+            c_i = \left\langle v, \xi_i\right\rangle
+        \end{equation*}
+        the \emph{$i$-th coefficient} of $v$ with respect to $\mX$. In short, we will refer to $\left( c_{i} \right)^{\infty}_{i=0}$ the (sequence of) \emph{$\mX$-coefficients} of $v$.
+    \end{definition}
+    
+    \np Let us make the observation that the sequence of $\mX$-coefficients of a vector $v\in V$ will uniquely determine what $v$ is.
+
+    \begin{prop}{}
+        Let $v,v'\in V$ and let $\left( c_{i} \right)^{\infty}_{i=0},\left( c'_{i} \right)^{\infty}_{i=0}$ be the sequences of $\mX$-coefficients of $v,v'$, respectively. If $c_i=c'_i$ for all $i\in\N\cup\left\lbrace 0 \right\rbrace$, then $v=v'$.
+    \end{prop}
+
+    \begin{proof}
+        Observe that, for all $i\in\N\cup\left\lbrace 0 \right\rbrace$, we have
+        \begin{equation*}
+            \left\langle v-v', \xi_i\right\rangle = \left\langle v, \xi_i\right\rangle-\left\langle v', \xi_i\right\rangle = c_i-c_i = 0.
+        \end{equation*}
+        It follows from [4.25] that $v-v'=0_V$, so that $v=v'$.
+    \end{proof}
+
+    \np We next look at how a vector $v\in V$ is approximated with linear combinations created by using $\mX$-coefficients. To this end we use the finite dimensional spaces $V_n = \spn\left\lbrace \xi_i \right\rbrace^{n}_{i=0}$.
+
+    \begin{lemma}{Bessel's Inequality}
+        Let $v\in V$ and let $\left( c_{i} \right)^{\infty}_{i=1}$ be the sequence of $\mX$-coefficients of $v$. Then
+        \begin{equation*}
+            \sum^{n}_{i=0}c_i^{2} \leq\left\lVert v\right\rVert^{2}
+        \end{equation*}
+        for all $n\in\N\cup\left\lbrace 0 \right\rbrace$.
+    \end{lemma}
+
+    \begin{proof}
+        Let $v_n = \sum^{n}_{i=0}c_i\xi_i$. Then, for every $i\leq N$,
+        \begin{equation}
+            \left\langle v-v_n, \xi_i\right\rangle = \left\langle v, \xi_i\right\rangle-\left\langle v_n, \xi_i\right\rangle = c_i-c_i = 0.
+        \end{equation}
+        Since $v_n$ is a linear combination of $\xi_0,\ldots,\xi_n$, it follows
+        \begin{equation*}
+            \left\langle v_n, v-v_n\right\rangle = 0.
+        \end{equation*}
+        Thus by the Pythagorean equality,
+        \begin{equation*}
+            \sum^{n}_{i=0}c_i^{2} = \left\lVert v_n\right\rVert^{2} \leq \left\lVert v_n\right\rVert^{2} + \left\lVert v-v_n\right\rVert^{2} = \left\lVert v\right\rVert^{2}.
+        \end{equation*}
+    \end{proof}
+
+    \begin{prop}{}
+        Let $v\in V$ and let $\left( c_{i} \right)^{\infty}_{i=0}$ be the $\mX$-coefficients of $v$. For all $n\in\N\cup\left\lbrace 0 \right\rbrace$, define
+        \begin{equation*}
+            v_n = \sum^{n}_{i=0}c_i\xi_i.
+        \end{equation*}
+        \begin{enumerate}
+            \item For all $n\in\N\cup\left\lbrace 0 \right\rbrace$, $v_n$ is the orthogonal projection of $v$ onto $V_n = \spn\left\lbrace \xi_i \right\rbrace^{n}_{i=0}$. That is,
+                \begin{equation*}
+                    \left\lVert v-v_n\right\rVert = \inf\left\lbrace \left\lVert v-\sum^{n}_{i=0}\alpha_i\xi_i\right\rVert: \alpha_0,\ldots,\alpha_n\in\R \right\rbrace.
+                \end{equation*}
+
+            \item We have
+                \begin{equation*}
+                    \lim_{n\to\infty} \left\lVert v_n-v\right\rVert = 0.
+                \end{equation*}
+        \end{enumerate}
+    \end{prop}
+
+    \begin{proof}[Proof of (a)]
+        By [4.26], we have that $v-v_n\in V_n^{\perp}$. This means $v_n\in V_n, v-v_n\in V_n^{\perp}$ are such that $v_n + \left( v-v_n \right) = v$. This means $v_n$ is the orthogonal projection of $v$ onto $V_n$.
+        \qedplacedtrue
+    \end{proof}
+
+    \begin{proof}[Proof of (b)]
+        By Bessel's equality and the monotone convergence theorem (for sequences), the series $\sum^{\infty}_{n=0}c_i^{2}$ is convergent. This means, for all $\epsilon>0$, there is $N\in\N$ such that
+        \begin{equation*}
+            \sum^{\infty}_{i=N} c_i^{2} < \epsilon.
+        \end{equation*}
+        Then given any $m,n>N$ (say $n<m$ for convenience), we have
+        \begin{equation*}
+            \left\lVert v_m-v_n\right\rVert^{2} = \sum^{m}_{i=n} c_i^{2} \leq \sum^{m}_{i=N} c_i^{2} \leq \sum^{\infty}_{i=N} c_i^{2} < \epsilon.
+        \end{equation*}
+        This shows that $\left( v_{n} \right)^{\infty}_{n=0}$ is Cauchy, so by the completeness of $V$, $v_n\to w$ for some $w\in V$. It remains to show that $v=w$.
+
+        But by using the continuity of $\left\langle \cdot, \cdot\right\rangle$ at each argument,
+        \begin{equation*}
+            \left\langle w, \xi_i\right\rangle = \left\langle \lim_{n\to\infty}v_n, \xi_i\right\rangle = \lim_{n\to\infty}\left\langle v_n, \xi_i\right\rangle = c_i = \left\langle v, \xi_i\right\rangle.
+        \end{equation*}
+        This means $w,v$ have the same sequence of $\mX$-coefficients, so by Proposition 4.23, $w=v$, as required.
+    \end{proof}
+
+    \np The statement of (b) of Proposition 4.25 could equivalently be phrased as saying that $\lim_{n\to\infty}v_n=v$, where the limit is considered in the metric defined by the norm $\left\lVert \cdot\right\rVert$. Since the $v_n$'s are precisely the finite partial sums of the series $\sum^{\infty}_{i=0}c_i\xi_i$, one can thus say that Proposition 4.25 provides us with a representation of $v$ as the sum of a convergent series in $V$:
+    \begin{equation*}
+        v = \sum^{\infty}_{i=0}c_i\xi_i.
+    \end{equation*}
+    This way of phrasing Proposition 4.25 is known as the \textit{Riesz-Fischer theorem}.
+
+    A useful consequence of the Riesz-Fischer theorem is the following statement about norms of vectors in our Hilbert space $V$.
+
+    \begin{prop}{Parseval's Identity}
+        Let $v\in V$ and let $\left( c_{i} \right)^{\infty}_{i=0}$ be the $\mX$-coefficients of $v$. Then
+        \begin{equation*}
+            \left\lVert v\right\rVert^{2} = \sum^{\infty}_{i=0}c_i^{2}.
+        \end{equation*}
+    \end{prop}
+    
+    \begin{proof}
+        For all $n\in\N\cup\left\lbrace 0 \right\rbrace$, let $v_n\in V_n$ be defined as $v_n = \sum^{n}_{i=0}c_i\xi_i$. Then by Proposition 4.25, we have $\lim_{n\to\infty}v_n = v$. It follows that $\lim_{n\to\infty}\left\lVert v_n\right\rVert = \left\lVert v\right\rVert$. Thus,
+        \begin{equation*}
+            \left\lVert v\right\rVert^{2} = \lim_{n\to\infty}\left\lVert v_n\right\rVert^{2} = \lim_{n\to\infty} \sum^{n}_{i=0}c_i^{2} = \sum^{\infty}_{i=0}c_i^{2}.
+        \end{equation*}
+    \end{proof}
+
+    \np The next corollary records a consequence of Parseval's identity which is related to a tatement known as the \textit{Riemann-Lebesgue theorem}. We will see shortly the Riemann-Lebesggue theorem stated precisely in the setting of functions on the interval $\left[ -\pi,\pi \right]$.
+
+    \begin{cor}{}
+        Let $v\in V$ and let $\left( c_{i} \right)^{\infty}_{i=0}$ be the $\mX$-coefficients of $v$. Then $\lim_{i\to\infty}c_i=0$.
+    \end{cor}	
+
+    \placeqed[Quite Clear!]
+    
+    \clearpage
+
+    \subsection{$\LLL^{2}\left( \lambda_{\left[ -\pi,\pi \right]} \right)$ and Its Natural Orthonormal Basis}
+    
+    The goal of this subsection is to see what the results from the previous subsection tells us about hte special Hilbert space
+    \begin{equation*}
+        V = \LLL^{2}\left( \lambda_{\left[ -\pi,\pi \right]} \right).
+    \end{equation*}
+    In order to invoke what we did in the previous subsection, we first need to clarify what is the orthonormal basis of $\LLL^{2}\left( \lambda_{\left[ -\pi,\pi \right]} \right)$ that we want to work with.
+
+    \begin{notation}{$\phi_n, \xi_n$}
+        We define functions $\phi_0,\phi_1,\ldots:\left[ -\pi,\pi \right]\to\R$ in the way described as follows. 
+
+        First we let $\phi_0:\left[ -\pi,\pi \right]\to\R$ be the function identically equal to $\frac{1}{\sqrt{2\pi}}$.
+
+        For every $k\in\N$, we define $\phi_{2k-1}, \phi_{2k}$ by putting
+        \begin{equation*}
+            \begin{aligned}
+                \phi_{2k-1}\left( t \right) & = \frac{1}{\sqrt{\pi}}\sin\left( kt \right) \\
+                \phi_{2k}\left( t \right) & = \frac{1}{\sqrt{\pi}}\cos\left( kt \right)
+            \end{aligned} 
+        \end{equation*}
+        for all $t\in\left[ -\pi,\pi \right]$. It is clear that for every $n\in\N\cup\left\lbrace 0 \right\rbrace$, we have $\phi_n\in C\left( \left[ -\pi,\pi \right],\R \right)$, which implies in particular that $\phi_n\in\mL^{2}\left( \lambda_{\left[ -\pi,\pi \right]} \right)$. It thus makes sense to put 
+        \begin{equation*}
+            \xi_n = \hat{\phi_n}
+        \end{equation*}
+        for all $n\in\N$, where $\hat{\phi_n}$ denotes the coset $\phi_n+\mN$ ($\mN$ is the null space of the seminorm on $\mL^{2}\left( \lambda_{\left[ -\pi,\pi \right]} \right)$).
+    \end{notation}
+    
+    \np The family of vectors $\left\lbrace \xi_n \right\rbrace^{\infty}_{n=0}$ is our candidate of orthonormal basis for the space $\LLL^{2}\left( \lambda_{\left[ -\pi,\pi \right]} \right)$.
+    
+    \np For each even $n\in\N\cup\left\lbrace 0 \right\rbrace$, $\phi_n$ is an even function (i.e. $\phi_n\left( -t \right)=\phi_n\left( t \right)$ for all $t\in\left[ -\pi,\pi \right]$). On the other hand, for an odd $n\in\N\cup\left\lbrace 0 \right\rbrace$, $\phi_n$ is an odd function (i.e. $\phi_n\left( -t \right)=-\phi_n\left( t \right)$ for all $t\in\left[ -\pi,\pi \right]$).
+
+    \np The normalization constant $\frac{1}{\sqrt{\pi}}$ in the definitions of $\phi_n$'s have the role to ensure that
+    \begin{equation}
+        \int^{}_{\left[ -\pi,\pi \right]}\phi^{2}_n \dif\lambda_{\left[ -\pi,\pi \right]} = 1
+    \end{equation}
+    for all $n\in\N\cup\left\lbrace 0 \right\rbrace$. This can be checked by using Riemann integrals.
+
+    When putting on \textit{hats}, [4.27] implies
+    \begin{equation*}
+        \left\lVert \xi_n\right\rVert = 1
+    \end{equation*}
+    for all $n\in\N\cup\left\lbrace 0 \right\rbrace$.
+
+    \np We can also prove the following.
+
+    \begin{exercise}{}
+        Prove that for all $m\neq n$ in $\N\cup\left\lbrace 0 \right\rbrace$, we have
+        \begin{equation*}
+            \int_{-\pi,\pi}\phi_m\phi_n\dif\lambda_{\left[ -\pi,\pi \right]} = 0.
+        \end{equation*}
+    \end{exercise}
+
+    \rruleline
+
+    \np From above, we infer that $\left\lbrace \xi_n \right\rbrace^{\infty}_{n=0}$ is an orthonormal subset of $V$. Our next job is to prove that $\clspn\left\lbrace \xi_n \right\rbrace^{\infty}_{n=1}=V$. This will come out as an application of the Stone-Weierstrass theorem, which enters the game by way of the following two lemmas.
+    
+    \begin{lemma}{}
+        Let
+        \begin{equation}
+            \mT = \spn\left\lbrace \phi_n \right\rbrace^{\infty}_{n=0} \subseteq C\left( \left[ -\pi,\pi \right],\R \right).
+        \end{equation}
+        Then $\mT$ is closed under multiplication, and is therefore an algebra of continuous functions on $\left[ -\pi,\pi \right]$.
+    \end{lemma}
+
+    \placeqed[Use Trigonometric Identities]
+    
+    \np $C\left( \left[ -\pi,\pi \right],\R \right)$ is a Banach space when considered with the norm $\left\lVert \cdot\right\rVert_{\infty}$ defined by
+    \begin{equation*}
+        \left\lVert f \right\rVert_{\infty} = \sup_{t\in\left[ -\pi,\pi \right]} \left| f\left( t \right) \right|
+    \end{equation*}
+for all $f\in C\left( \left[ -\pi,\pi \right],\R \right)$. We chase the preceding lemma with a statement about the $\left\lVert \cdot\right\rVert_\infty$-closure of $\mT$.
+
+    \begin{lemma}{}
+        Let $\mT$ be defined as in [4.28]. Then
+        \begin{equation*}
+            \left\lVert \cdot \right\rVert_{\infty}-\cl\left( \mT \right) = \left\lbrace \phi\in C\left( \left[ -\pi,\pi \right],\R \right): \phi\left( -\pi \right)=\phi\left( \pi \right) \right\rbrace.
+        \end{equation*}
+    \end{lemma}
+
+    \placeqed[Use Stone-Weierstrass]
+
+    \np Having made the above preparations, we can now claim that our choice of $\xi_n$'s produces indeed an orthonormal basis for the space $\LLL^{2}\left( \lambda_{\left[ -\pi,\pi \right]} \right)$.
+
+    \begin{prop}{}
+        $\clspn\left\lbrace \xi_n \right\rbrace^{\infty}_{n=0}=V$.
+    \end{prop}
+
+    \rruleline
+
+    \subsection{Fourier Series in $\LLL^{2}\left( \lambda_{\left[ -\pi,\pi \right]} \right)$}
+
+    In this subsection we enjoy the benefits of having pinned down an orthonormal basis for the $\LLL^{2}$-space under consideration. We have seen that it is very useful that every vector in the space we consider what we called \textit{$\mX$-coefficients} of that vector, with an orthonormal basis $\mX=\left\lbrace \xi_i \right\rbrace^{\infty}_{i=0}$ for the space. In the case at hand, these $\mX$-coefficients are precisely what one calls \textit{Fourier coefficients}. Their explicit definition is recorded below. Note that in the next definition there is no problem to introduce Fourier coefficients for an actual function $f\in\mL^{2}\left( \lambda_{\left[ -\pi,\pi \right]} \right)$.
+
+    \begin{definition}{\textbf{Fourier Coefficient} of a Function}
+        Let $f\in\mL^{2}\left( \lambda_{\left[ -\pi,\pi \right]} \right)$. For all $n\in\N\cup\left\lbrace 0 \right\rbrace$, we call
+        \begin{equation*}
+            c_n = \left\langle f, \phi_n\right\rangle = \int^{}_{\left[ -\pi,\pi \right]}f\phi_n\dif\lambda_{\left[ -\pi,\pi \right]}
+        \end{equation*}
+        the \emph{$N$-th Fourier coefficient} of $f$.
+    \end{definition}
+    
+    \np When spelled out explicitly, the Fourier coefficients of $f$ are thus described as follows. First, we have
+    \begin{equation*}
+        c_0 = \frac{1}{\sqrt{2\pi}}\int_{\left[ -\pi,\pi \right]}f\dif\lambda_{\left[ -\pi,\pi \right]}.
+    \end{equation*}
+    Then for every $k\in\N$, we have
+    \begin{equation*}
+        \begin{aligned}
+            c_{2k-1} & = \frac{1}{\sqrt{\pi}} \int_{\left[ -\pi,\pi \right]}f\left( t \right)\sin\left( kt \right)\dif\lambda_{\left[ -\pi,\pi \right]}\left( t \right) , \\
+            c_{2k} & = \frac{1}{\sqrt{\pi}} \int_{\left[ -\pi,\pi \right]}f\left( t \right)\cos\left( kt \right)\dif\lambda_{\left[ -\pi,\pi \right]}\left( t \right) .
+        \end{aligned} 
+    \end{equation*}
+    Let us then restate, in our present terminology, the two main results from Subsection 8: the Riesz-Fischer theorem and Parseval's identity.
+
+    \begin{prop}{Riesz-Fischer Theorem}
+        Let $f\in\mL^{2}\left( \lambda_{\left[ -\pi,\pi \right]} \right)$ and let $\left( c_{i} \right)^{\infty}_{i=0}$ be the Fourier coefficients of $f$. For every $n\in\N\cup\left\lbrace 0 \right\rbrace$ consider the trigonometric polynomial
+        \begin{equation*}
+            p_n = \sum^{n}_{i=0}c_i\phi_i.
+        \end{equation*}
+        Then $\lim_{n\to\infty} \left\lVert p_n-f \right\rVert_{2} = 0$.
+    \end{prop}
+
+    \placeqed[Quite Clear!]
+
+    \np Same as we discussed in Subsection 8, the conclusion of the Riesz-Fischer theorem can  be viewed as a representation of $f$ in the form of a $\left\lVert \cdot \right\rVert_{2}$-convergent series,
+    \begin{equation*}
+        f = \sum^{\infty}_{i=0} c_i\phi_i.
+    \end{equation*}
+    The series on the right-hand side goes under the name of \textit{Fourier series} of $f$.
+
+    Concerning the description of the $\left\lVert \cdot \right\rVert_{2}$-norm of $f$ in terms of its Fourier coefficients, Parseval's identity now takes the following form.
+
+    \begin{prop}{Parseval's Identity}
+        Let $f\in\mL^{2}\left( \lambda_{\left[ -\pi,\pi \right]} \right)$ and let $\left( c_{i} \right)^{\infty}_{i=0}$ be the Fourier coefficients of $f$. Then 
+        \begin{equation*}
+            \left\lVert f \right\rVert_{2}^{2} = \sum^{\infty}_{i=0} c_i^{2}.
+        \end{equation*}
+    \end{prop}
+
+    \placeqed[Quite Clear!]
+
+    \begin{cor}{}
+        Let $f\in\mL^{2}\left( \lambda_{\left[ -\pi,\pi \right]} \right)$ and let $\left( c_{i} \right)^{\infty}_{i=0}$ be the Fourier coefficients of $f$. Then 
+        \begin{equation*}
+            \lim_{i\to\infty}c_i = 0.
+        \end{equation*}
+    \end{cor}	
+
+    \rruleline
+    
+    \subsection{Fourier Coefficients for $\lone$-functions}
+
+    Let $f\in\lone\left( \lambda_[\left[ -\pi,\pi \right]] \right)$ and let $n\in\N\cup\left\lbrace 0 \right\rbrace$. Then it makes sense to consider
+    \begin{equation}
+        c_n = \int^{}_{\left[ -\pi,\pi \right]}f\phi_n\dif\lambda_{\left[ -\pi,\pi \right]}.
+    \end{equation}
+
+    \begin{definition}{}
+        Let $f\in\lone\left( \lambda_{\left[ -\pi,\pi \right]} \right)$ and let $n\in\N\cup\left\lbrace 0 \right\rbrace$. We call $c_n$ in [4.29] the \emph{$n$-th Fourier coefficient} of $f$.
+    \end{definition}
+
+    \np We have estimates on $c_n$ given by
+    \begin{equation}
+        \left| c_n \right| \leq \frac{1}{\sqrt{\pi}} \left\lVert f \right\rVert_{1},
+    \end{equation}
+    which comes directly from the definition of $\phi_n$'s.
+
+    First, observe that
+    \begin{equation*}
+        \left| f\phi_n \right| \leq \frac{1}{\sqrt{\pi}} \left| f \right|,
+    \end{equation*}
+    so that
+    \begin{equation*}
+        \int^{}_{\left[ -\pi,\pi \right]} \left| f\phi_n \right|\dif\lambda_{\left[ -\pi,\pi \right]} \leq \int^{}_{\left[ -\pi,\pi \right]} \frac{1}{\sqrt{\pi}}\left| f \right|\dif\lambda_{\left[ -\pi,\pi \right]} = \frac{1}{\sqrt{\pi}} \left\lVert f \right\rVert_{1},
+    \end{equation*}
+    showing $f\phi_n\in\lone\left( \lambda_{\left[ -\pi,\pi \right]} \right)$, which justifies the definition [4.29].
+
+    Furthermore,
+    \begin{equation*}
+        \left| c_n \right| = \left| \int_{\left[ -\pi,\pi \right]}f\phi_n\dif\lambda_{\left[ -\pi,\pi \right]} \right| \leq 
+        \int^{}_{\left[ -\pi,\pi \right]} \left| f\phi_n \right|\dif\lambda_{\left[ -\pi,\pi \right]} \leq \frac{1}{\sqrt{\pi}} \left\lVert f \right\rVert_{1},
+    \end{equation*}
+    yielding [4.30].
+    
+    \np The above discussion is relevant to Fourier analysis for $\lone$-functions, since $\lone\left( \lambda_{\left[ -\pi,\pi \right]} \right)$ properly contains $\mL^{2}\left( \lambda_{\left[ -\pi,\pi \right]} \right)$. Fourier analysis for $\lone$-functions turns out to be more difficult than for $\mL^{2}$. We can nevertheless establish a property which continues to work in $\lone$-framework -- \textit{Riemann-Lebesgue theorem}.
+
+    \begin{notation}{$\underline{c}_n$}
+        For each $n\in\N\cup\left\lbrace 0 \right\rbrace$, let $\underline{c}_n:\lone\left( \lambda_{\left[ -\pi,\pi \right]} \right)\to\R$ be defined by
+        \begin{equation*}
+            \underline{c}_n\left( f \right) = \text{$n$-th Fourier coefficient of $f$} = \int^{}_{\left[ -\pi,\pi \right]} f\phi_n\dif\lambda_{\left[ -\pi,\pi \right]}.
+        \end{equation*}
+    \end{notation}
+    
+    \np Observe that each $\underline{c}_n$ is a linear functional:
+    \begin{equation*}
+        \underline{c}_n\left( af+g \right) = \int^{}_{\left[ -\pi,\pi \right]} \left( af+g \right)\phi_n\dif\lambda_{\left[ -\pi,\pi \right]} = a\int^{}_{\left[ -\pi,\pi \right]}f\phi_n\dif\lambda_{\left[ -\pi,\pi \right]} + \int^{}_{\left[ -\pi,\pi \right]}g\phi_n\dif\lambda_{\left[ -\pi,\pi \right]} = a\underline{c}_n\left( f \right)+\underline{c}_n\left( g \right).
+    \end{equation*}
+    We also have
+    \begin{equation*}
+        \left| \underline{c}_n\left( f \right) \right| \leq \frac{1}{\sqrt{\pi}} \left\lVert f \right\rVert_{1} 
+    \end{equation*}
+    for all $f\in\lone\left( \lambda_{\left[ -\pi,\pi \right]} \right)$ by [4.30]. This means $\underline{c}_n$ is bounded. Combining linearity and boundedness, we obtain that
+    \begin{equation*}
+        \left| \underline{c}_n\left( f \right)-\underline{c}_n\left( g \right) \right| \leq \frac{1}{\sqrt{\pi}} \left\lVert f-g \right\rVert_{1}
+    \end{equation*}
+    for all $f,g\in\lone\left( \lambda_{\left[ -\pi,\pi \right]} \right)$, showing that $\underline{c}_n$ is $\frac{1}{\sqrt{\pi}}$-Lipschitz.
+
+    \np For any $f\in\mL^{2}\left( \lambda_{\left[ -\pi,\pi \right]} \right)$, we know that (Corollary 4.31.1)
+    \begin{equation*}
+        \lim_{n\to\infty}\underline{c}_n\left( f \right) = 0
+    \end{equation*}
+    as a consequence of Parseval's identity. This contiues to hold for any $f\in\lone\left( \lambda_{\left[ -\pi,\pi \right]} \right)$.
+
+    \begin{theorem}{Riemann-Lebesgue Theorem}
+        Let $f\in\lone\left( \lambda_{\left[ -\pi,\pi \right]} \right)$. Then
+        \begin{equation}
+            \lim_{n\to\infty} \underline{c}_n\left( f \right) = 0.
+        \end{equation}
+    \end{theorem}
+    
+    \begin{proof}
+        Fix $f\in\lone\left( \lambda_{\left[ -\pi,\pi \right]} \right)$, for which we will verify [4.31] holds. Let $\epsilon>0$ be given. We have to find $n_0\in\N$ such that 
+        \begin{equation}
+            \text{\textit{for all $n\geq n_0$ we have $\left| \underline{c}_n\left( f \right) \right|<\epsilon$.}}
+        \end{equation}
+        Since $C\left( \left[ -\pi,\pi \right],\R \right)$ is dense in $\lone\left( \lambda_{\left[ -\pi,\pi \right]} \right)$, there is $g\in C\left( \left[ -\pi,\pi \right],\R \right)$ such that
+        \begin{equation*}
+            \left\lVert f-g\right\rVert_1 < \frac{\epsilon}{2}.
+        \end{equation*}
+        Moreover, sicne $g\in C\left( \left[ -\pi,\pi \right],\R \right)\subseteq\mL^{2}\left( \lambda_{\left[ -\pi,\pi \right]} \right)$, we have that
+        \begin{equation*}
+            \lim_{n\to\infty}\underline{c}_n\left( g \right) = 0.
+        \end{equation*}
+        Hence we have $n_0\in\N$ such that
+        \begin{equation*}
+            \left| \underline{c}_n\left( g \right) \right| < \frac{\epsilon}{2}
+        \end{equation*}
+        for all $n\geq n_0$.
+
+        We now claim that this particular $n_0$ satisfies [4.32]: given any $n\geq n_0$
+        \begin{equation*}
+            \left| \underline{c}_n\left( f \right) \right| = \left| \left( \underline{c}_n\left( f \right)-\underline{c}_n\left( g \right) \right)+\underline{c}_n\left( g \right) \right| \leq \left| \underline{c}_n\left( f \right)-\underline{c}_n\left( g \right) \right|+\left| \underline{c}_n\left( g \right) \right| \leq \frac{1}{\sqrt{\pi}}\left\lVert f-g \right\rVert_{1} + \frac{\epsilon}{2} < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon.
+        \end{equation*}
+    \end{proof}
+    
+    \subsection{Kernels and Fejer's Theorem}
+
+    In this sectino, we look at a continuous function on $\left[ -\pi,\pi \right]$: let
+    \begin{equation*}
+        f\in C\left( \left[ -\pi,\pi \right],\R \right).
+    \end{equation*}
+    Since $f$ is continuous, $f\in\lone\left( \lambda_{\left[ -\pi,\pi \right]} \right)$, so has Fourier coefficients:
+    \begin{equation*}
+        c_i = \int^{}_{\left[ -\pi,\pi \right]} f\phi_i\dif\lambda_{\left[ -\pi,\pi \right]} = \int^{\pi}_{-\pi} f\left( t \right)\phi_i\left( t \right)\dif t,
+    \end{equation*}
+    where the last equality follows from the fact that $f$ is continuous.
+
+    Consider the trigonometric polynomials
+    \begin{equation*}
+        \psi_n = \sum^{n}_{i=0} c_i\phi_i
+    \end{equation*}
+    for all $n\in\N\cup\left\lbrace 0 \right\rbrace$. Since $f\in\mL^{2}\left( \lambda_{\left[ -\pi,\pi \right]} \right)$ in particular, the Riesz-Fischer theorem tells us that $\psi_n\to f$ as $n\to\infty$ with respect to $\left\lVert \cdot \right\rVert_{2}$. That is,
+    \begin{equation}
+        \lim_{n\to\infty} \left\lVert \psi_n-f \right\rVert_{2} = 0,
+    \end{equation}
+    which can be also written as
+    \begin{equation*}
+        \lim_{n\to\infty} \int^{\pi}_{-\pi} \left( \psi_n\left( t \right)-f\left( t \right) \right)^{2}\dif t = 0.
+    \end{equation*}
+    Since $f$ and every $\psi_n$'s are in $C\left( \left[ -\pi,\pi \right],\R \right)$, where we like to use the supremum norm $\left\lVert \cdot \right\rVert_{\infty}$, we ask:
+    \begin{equation}
+        \text{\textit{couldn't it be true that we actually have $\psi_n\to f$ as $n\to\infty$ with respect to $\left\lVert \cdot \right\rVert_{\infty}$?}}
+    \end{equation}
+    Note that [4.34] is stronger than [4.33]. Unfortunately, the answer for [4.34] is negative, but counterexamples are subtle.
+
+    A surprising twist: let us average the $\psi_n$'s, and put
+    \begin{equation}
+        \sigma_n = \frac{1}{n+1} \left( \psi_0 + \cdots + \psi_n \right) = \frac{1}{n+1} \sum^{n}_{i=0}\psi_i, \hspace{0.5cm}\forall n\in\N\cup\left\lbrace 0 \right\rbrace.
+    \end{equation}
+    Note that each $\sigma_n$ is still a trigonometric polynomial. By a direct calculation, we can verify that
+    \begin{equation}
+        \sigma_n = \sum^{n}_{i=0} c_i \frac{n+1-i}{n+1} \psi_i, \forall n\in\N\cup\left\lbrace 0 \right\rbrace.
+    \end{equation}
+    Then Fejer's theorem says that $\sigma_n$'s do the job.
+
+    \begin{theorem}{Fejer's Theorem}
+        Consider $\left( \sigma_{n} \right)^{\infty}_{n=0}$ defined above. Then
+        \begin{equation*}
+            \sigma_n\to f
+        \end{equation*}
+        with respect to $\left\lVert \cdot\right\rVert_{\infty}$ as $n\to\infty$.
+    \end{theorem}
+
+    \rruleline
+    
+    \np The important part of the proof of Fejer's theorem lies in the following fact: for all $n\in\N\cup\left\lbrace 0 \right\rbrace$, there is a continuous function $K_n$ of two variables such that
+    \begin{equation*}
+        \psi_n\left( t \right) = \int^{\pi}_{-\pi}f\left( s \right)K_n\left( s,t \right)\dif s
+    \end{equation*}
+    for all $t\in\left[ -\pi,\pi \right]$. For instance,
+    \begin{flalign*}
+        && \psi_2\left( t \right) & = c_0\phi_0\left( t \right) + c_1\phi_1\left( t \right) + c_2\phi_2\left( t \right) && \\ 
+        && & = \left( \int^{\pi}_{-\pi}f\left( s \right)\phi_0\left( s \right)\dif s \right)\phi_0\left( t \right) + \left( \int^{\pi}_{-\pi}f\left( s \right)\phi_1\left( s \right)\dif s \right)\phi_1\left( t \right) + \left( \int^{\pi}_{-\pi}f\left( s \right)\phi_2\left( s \right)\dif s \right)\phi_2\left( t \right) && \\
+        && & = \int^{\pi}_{-\pi} f\left( s \right) \sum^{2}_{n=0} \phi_n\left( s \right)\phi_n\left( t \right)\dif s.
+    \end{flalign*}
+    This means
+    \begin{equation*}
+        K_n\left( s,t \right) = \sum^{2}_{n=0} \phi_n\left( s \right)\phi_n\left( t \right).
+    \end{equation*}
+    In general, we obtain
+    \begin{equation}
+        K_n\left( s,t \right) = \sum^{n}_{i=0}\phi_i\left( s \right)\phi_i\left( t \right),\hspace{0.5cm}\forall n\in\N\cup\left\lbrace 0 \right\rbrace,
+    \end{equation}
+    on which we can use trigonometric identities to obtain an explicit formula for $K_n\left( s,t \right)$, leading to a function called \textit{Dirichlet kernel}.
+    
+    When we average $\sigma_n = \frac{1}{n+1} \sum^{n}_{i=0}\psi_i$, we get
+    \begin{equation*}
+        \sigma_n\left( t \right) = \int^{\pi}_{-\pi} f\left( s \right) F_n\left( s,t \right)\dif s,
+    \end{equation*}
+    where $F_n\left( s,t \right) = \sum^{n}_{i=0}K_n\left( s,t \right)$. These $F_n$'s lead to a function called the \textit{Fejer kernel}.
+
+    With these kernels in hand, Fejer's theorem becomes:
+    \begin{equation*}
+        \lim_{n\to\infty} \int^{\pi}_{-\pi} f\left( s \right)F_n\left( s,t \right)\dif s - f\left( t \right) = 0
+    \end{equation*}
+    uniformly for all $t\in\left[ -\pi,\pi \right]$.
     
     
     
@@ -334,22 +1403,17 @@
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
+
+
+
+
+
 
 \end{document}
